@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>PRODUCT TEST</title>
+  <%- include ../logo %>
+    <%- include ../layout_datetime_table1 %>
+
+</head>
+
+<body>
+  <%- include ../layout %>
+    <div class="main">
+
+      <section class="content">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="box box-primary">
+              <div class="box-header with-border" align="center">
+                <h3 class="box-title">GPS Logs</h3>
+
+              </div>
+              <form class="" action="/loggps_data_iris/add" method="post">
+                <script>
+
+                  console.log("helli");
+
+                </script>
+                <div style="display:flex; flex-direction: row; justify-content: left; align-items: center">
+                  <label for="imei">หมายเลข IMEI : </label>
+                  <input name="imei" type="text" size="14" <%=valueimei %> />
+                  <label for="datepicker">กรุณาเลือกวันที่ :</label>
+                  <input type="text" id="datepicker" name="cals" <%=valuedate %>>
+                  <label for="limit">Limit :</label>
+                  <div class="col-sm-1">
+                    <select name="limit" id="limit" value="30">
+                      <option <%=valuelimit %> ><%=valuelimit2 %>
+                      </option>
+                      <option value="3">3</option>
+
+                      <option value="10">10</option>
+
+                      <option value="50">50</option>
+
+                      <option value="100">100</option>
+
+                      <option value="500">500</option>
+
+                      <option value="1000">1000</option>
+                      <option value="2000">2000</option>
+                      <option value="3000">3000</option>
+                      <option value="0"> 1 Day</option>
+
+
+
+                    </select>
+
+                  </div>
+                  <input type="submit" class="btn btn-primary" name="Submit" id="Submit" value="Submit">
+                </div>
+
+              </form>
+            </div>
+            <div class="box">
+              <div align="center">imei = --- Port = 13300 </div>
+              <div class="box-body">
+                <form>
+
+
+
+
+
+                  <div class="form-group">
+
+
+
+
+
+                    <table id="data_table" class="table table-bordered table-hover dataTable no-footer" border="1"
+                    cellpadding="0" cellspacing="0" role="grid">
+                      <thead>
+
+                        <%- include ../layout_table_gps5 %>
+                      </thead>
+                      <tbody>
+                        <% if(userData.length!=0){ var i=1; userData.forEach(function(dataX1){ %>
+                          <tr>
+                            <td>
+                              <%=i; %>
+                            </td>
+                            <td>
+                              <%=dataX1.imei %>
+                            </td>
+                            <td>
+                              <%=dataX1.server_stamp_time_date %>
+                            </td>
+                            <td>
+                              <%=dataX1.gps_stamp_time %>
+                            </td>
+                            <td>
+                              <%=dataX1.alarm_sign %>
+                            </td>
+                            <td>
+                              <%=dataX1.ex_battery %>
+                            </td>
+                            <td>
+                              <%=dataX1.in_battery %>
+                            </td>
+                            <td>
+                              <%=dataX1.device_status %>
+                            </td>
+
+
+                            <td>
+                              <%=dataX1.latitude %>
+                            </td>
+                            <td>
+                              <%=dataX1.longitude %>
+                            </td>
+
+                            <td>
+                              <%=dataX1.gps_speed %>
+                            </td>
+                            <td>
+                              <%=dataX1.satelites %>
+                            </td>
+                            <td>
+                              <%=dataX1.gps_status %>
+                            </td>
+                            <td>
+                              <%=dataX1.altitude %>
+                            </td>
+                            <td>
+                              <%=dataX1.angle %>
+                            </td>
+                            <td>
+                              <%=dataX1.hdop %>
+                            </td>
+                            <td>
+                              <%=dataX1.pdop %>
+                            </td>
+                            <td>
+                              <%=dataX1.gps_odo %>
+                            </td>
+                            <td>
+                              <%=dataX1.gsm_jammer %>
+                            </td>
+                            <td>
+                              <%=dataX1.gps_jammer %>
+                            </td>
+                            <td>
+                              <%=dataX1.input_3 %>
+                            </td>
+
+
+                            <td>
+
+                              <%=dataX1.dlt_card_id %>
+                            </td>
+                            <td>
+                              <%=dataX1.dlt_card_type %>
+                            </td>
+                            <td>
+                              <%=dataX1.dlt_card_country %>
+                            </td>
+                            <td>
+                              <%=dataX1.dlt_card_correct %>
+                            </td>
+                            <td>
+
+                              <%=dataX1.geo_fence_in %>
+                            </td>
+                            <td>
+                              <%=dataX1.geo_fence_out %>
+                            </td>
+                            <td>
+                              <%=dataX1.geo_facen_id %>
+                            </td>
+
+                            <td>
+                              <%=dataX1.canbus_status %>
+                            </td>
+                            <td>
+                              <%=dataX1.can_speed %>
+                            </td>
+                            <td>
+                              <%=dataX1.can_rpm %>
+                            </td>
+                            <td>
+                              <%=dataX1.can_brake %>
+                            </td>
+                            <td>
+                              <%=dataX1.can_clutch_brake %>
+                            </td>
+                            <td>
+                              <%=dataX1.can_parking_brake %>
+                            </td>
+                            <td>
+                              <%=dataX1.can_exhaust_brake %>
+                            </td>
+                            <td>
+                              <%=dataX1.can_alarm_engine %>
+                            </td>
+                            <td>
+                              <%=dataX1.can_dtc_code %>
+                            </td>
+                            <td>
+                              <%=dataX1.can_accelerator %>
+                            </td>
+                            <td>
+                              <%=dataX1.can_odo %>
+                            </td>
+                            <td>
+                              <%=dataX1.can_engine_total_use_time %>
+                            </td>
+                            <td>
+                              <%=dataX1.can_fuel_total_use %>
+                            </td>
+                            <td>
+                              <%=dataX1.can_fuel_consumtion %>
+                            </td>
+                            <td>
+                              <%=dataX1.can_percen_load %>
+                            </td>
+                            <td>
+                              <%=dataX1.can_fuel_level %>
+                            </td>
+                            <td>
+                              <%=dataX1.can_engine_temperature %>
+                            </td>
+                            <td>
+                              <%=dataX1.can_oil_temp %>
+                            </td>
+                          
+                       
+                            <td>
+
+                              <%=dataX1.analog_1 %>
+                            </td>
+                            <td>
+                              <%=dataX1.analog_2 %>
+                            </td>
+                            <td>
+                              <%=dataX1.analog_3 %>
+                            </td>
+                            <td>
+                              <%=dataX1.input_0 %>
+                            </td>
+                            <td>
+                              <%=dataX1.input_1 %>
+                            </td>
+                            <td>
+                              <%=dataX1.input_2 %>
+                            </td>
+                            <td>
+                              <%=dataX1.input_3 %>
+                            </td>
+                            <td>
+                              <%=dataX1.input_4 %>
+
+                            </td>
+                            <td>
+                              <%=dataX1.input_5 %>
+                            </td>
+                            <td>
+                              <%=dataX1.input_6 %>
+                            </td>
+                            <td>
+                              <%=dataX1.input_7 %>
+                            </td>
+                            <td>
+                              <%=dataX1.input_8 %>
+                            </td>
+                            <td>
+                              <%=dataX1.input_9 %>
+                            </td>
+                            <td>
+                              <%=dataX1.input_10 %>
+                            </td>
+                            <td>
+                              <%=dataX1.input_11 %>
+                            </td>
+                            <td>
+                              <%=dataX1.output_0 %>
+                            </td>
+                            <td>
+                              <%=dataX1.output_1 %>
+                            </td>
+                            <td>
+                              <%=dataX1.output_2 %>
+                            </td>
+                            <td>
+                              <%=dataX1.output_3 %>
+                            </td>
+                            <td>
+                              <%=dataX1.output_4 %>
+
+                            </td>
+                            <td>
+                              <%=dataX1.output_5 %>
+                            </td>
+                            <td>
+                              <%=dataX1.output_6 %>
+                            </td>
+                            <td>
+                              <%=dataX1.output_7 %>
+                            </td>
+                            <td>
+                              <%=dataX1.output_8 %>
+                            </td>
+                            <td>
+                              <%=dataX1.output_9 %>
+                            </td>
+                            <td>
+                              <%=dataX1.output_10 %>
+                            </td>
+                          </tr>
+                          <% i++; }) %>
+                            <% } else{ %>
+                              <tr>
+                                <td colspan="7">No Data Found</td>
+                              </tr>
+                              <% } %>
+
+                                </thead>
+                      </tbody>
+                      <tbody>
+
+                      </tbody>
+                    </table>
+
+                  </div>
+
+
+
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+</body>
+
+</html>

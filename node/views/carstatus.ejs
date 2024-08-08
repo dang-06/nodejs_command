@@ -1,0 +1,19 @@
+<% if (value_door_stat === 0 && value_door_lock_stat===0&& value_cut_engine_stat===0) { %>
+    <img src="/images/unlock3.png" alt="My Image" width="150" height="200">
+<% } else if (value_door_stat === 0 && value_door_lock_stat===0&& value_cut_engine_stat===1) { %>
+  <img src="/images/unlock4.png" alt="My Image" width="150" height="200">
+<% }else if (value_door_stat === 0 && value_door_lock_stat===1&& value_cut_engine_stat===0) { %>
+  <img src="/images/lock3.png" alt="My Image" width="150" height="200">
+<% } else if (value_door_stat === 0 && value_door_lock_stat===1&& value_cut_engine_stat===1) { %>
+<img src="/images/lock4.png" alt="My Image" width="150" height="200">
+<% } else if (value_door_stat === 1 && value_door_lock_stat===0&& value_cut_engine_stat===0) { %>
+<img src="/images/unlock1.png" alt="My Image" width="150" height="200">
+<% } else if (value_door_stat === 1 && value_door_lock_stat===0&& value_cut_engine_stat===1) { %>
+<img src="/images/unlock2.png" alt="My Image" width="150" height="200">
+<% } else if (value_door_stat === 1 && value_door_lock_stat===1&& value_cut_engine_stat===0) { %>
+ <img src="/images/lock1.png" alt="My Image" width="150" height="200">
+ <% } else if (value_door_stat === 1 && value_door_lock_stat===1&& value_cut_engine_stat===1) { %>
+<img src="/images/lock2.png" alt="My Image" width="150" height="200">
+<% } else { %>
+
+<% } %>

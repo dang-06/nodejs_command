@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>PRODUCT TEST</title>
+  <%- include ../logo %>
+
+    <style>
+      .w3-panel {
+        background-color: rgb(241, 246, 241);
+      }
+
+      .backgroundset {
+        background-color: rgb(242, 251, 251);
+      }
+
+      .backgroundset1 {
+        background-color: rgb(253, 247, 247);
+      }
+    </style>
+</head>
+
+<body>
+  <%- include ../layout %>
+    <div class="main">
+
+      <section class="content">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="box box-primary">
+              <div class="box-header with-border" align="center">
+                <h3 class="box-title">HINO COMMAND</h3>
+
+              </div>
+              <form class="" method="post">
+                <div style="display:flex; flex-direction: row; justify-content: left; align-items: center">
+                  <label for="imei">$$ หมายเลข IMEI : </label>
+                  <input id="input-imei" name="imei" type="text" size="14" value="T015820712345" />
+
+                </div>
+                <textarea rows="3" cols="100" id="input-textarea">ROW</textarea>
+                <table id="data_table" class="table table-bordered table-hover dataTable no-footer" border="1"
+                      cellpadding="0" cellspacing="0" role="grid">
+                      
+                  <thead>
+                    <%- include ../layout_table_command %>
+
+
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <label for="Read_config1">1. </label>
+                      </td>
+                      <td>
+                        <label for="Read_config1">Read config </label>
+                      </td>
+                      <td>
+                        <input id="input-Read_config1" name="Read_config1" type="text" size="14" value="Read config" />
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-success"  onclick="sendFileContents(1,0)">Send</button>
+                      </td>
+                      <td>
+                        <label for="Read_config1"> *** สำหรับขอข้อมูล config จากอุปกรณ์ </label>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <label for="Read_config1">2. </label>
+                      </td>
+                      <td>
+                        <label for="Read_config1">Read config ID </label>
+                      </td>
+                      <td>
+                        <input id="input-Read_config1" name="Read_config1" type="text" size="14" value="Read config ID" />
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-success"  onclick="sendFileContents(2,0)">Send</button>
+                      </td>
+                      <td>
+                        <label for="Read_MAC"> *** สำหรับ read config id all from device </label>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <label for="Read_config">3. </label>
+                      </td>
+                      <td>
+                        <label for="Read_Status_car">Read Status</label>
+                      </td>
+                      <td>
+                        <input id="input-req_Status" name="Status_car" type="text" size="14" value="req_Status" />
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-success"  onclick="sendFileContents(3,0)">Send</button>
+                      </td>
+                      <td>
+                        <label for="Status_car"> *** สำหรับให้อุปกรณ์ส่งข้อมูล 1ครั้งทันที </label>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <label for="Read_config">4. </label>
+                      </td>
+                      <td>
+                        <label for="Read_Status_car">Set overspeed</label>
+                      </td>
+                      <td>
+                        <input id="input-set_overspeed" name="set_overspeed" type="text" size="3" value="80" />
+                      <td>
+                        <button type="button" class="btn btn-success"  onclick="sendFileContents(4,0)">Send</button>
+                      </td>
+                      <td>
+                        <label for="Status_car"> *** Set overspeed 0-140 </label>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <label for="Read_config">5. </label>
+                      </td>
+                      <td>
+                        <label for="Read_Status_car">Set RS232_1</label>
+                      </td>
+                      <td>
+                        <input id="input-set_RS232_1" name="set_RS232_1" type="text" size="3" value="1" />
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-success"  onclick="sendFileContents(5,0)">Send</button>
+                      </td>
+                      <td>
+                        <label for="Status_car"> *** Config RS232 0:19200 speeddisplay,1:9600 MDVR commucation,2:115200 none
+                        </label>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <label for="Read_config">6. </label>
+                      </td>
+                      <td>
+                        <label for="Read_Status_car">Set Voice group</label>
+                      </td>
+                      <td>
+                        <label for="Set_Voice_group2">group1 : </label>
+                        <input id="input-Set_Voice_group1" name="Set_Voice_group1" type="text" size="2" value="1" />
+                        <label for="Set_Voice_group2">group2 : </label>
+                        <input id="input-Set_Voice_group2" name="Set_Voice_group2" type="text" size="2" value="1" />
+                        <label for="Set_Voice_group3">group3 : </label>
+                        <input id="input-Set_Voice_group3" name="Set_Voice_group3" type="text" size="2" value="1" />
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-success"  onclick="sendFileContents(6,0)">Send</button>
+                      </td>
+                      <td>
+                        <label for="Status_car"> *** Config Set_Voice_group 0:off,1:active (Group1:hino say hi
+                          ,Group2:DLT,Group3:accident)
+                        </label>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <label for="Read_config">7. </label>
+                      </td>
+                      <td>
+                        <label for="Read_Status_car">Set voice volume</label>
+                      </td>
+                      <td>
+                        <input id="input-Set_voice_volume1" name="Set_voice_volume1" type="text" size="2" value="3" />
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-success"  onclick="sendFileContents(7,0)">Send</button>
+                      </td>
+                      <td>
+                        <label for="Set_voice_volume1">* 0=off ,1=low,2=min,3=high </label>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <label for="Read_config">8. </label>
+                      </td>
+                      <td>
+                        <label for="Set_voice_hino_A">Set voice_A9 : </label>
+                      </td>
+                      <td>
+                        <input id="input-Set_voice_hino_A1" name="Set_voice_hino_A1" type="text" size="2" value="1" />
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-success"  onclick="sendFileContents(8,0)">Send</button>
+                      </td>
+                      <td>
+                        <label for="Set_voice_hino_A1">* 0=off ,1=voice_A9,2=voice_B01</label>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <label for="Read_config">9. </label>
+                      </td>
+                      <td>
+                        <label for="Set_accident_start_speed">Set accident_start_speed</label>
+                      </td>
+                      <td>
+                        <label for="Set_accident_start_speed1">(G-sensor: </label>
+                        <input id="input-Set_accident_start_speed1" name="Set_accident_start_speed1" type="text" size="3" value="500" />
+                      <label for="Set_accident_start_speed1">G.) (speed/sec : </label>
+                      <input id="input-Set_accident_start_speed2" name="Set_accident_start_speed2" type="text" size="2" value="10" />
+                      <label for="Set_accident_start_speed1">km.) </label>
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-success"  onclick="sendFileContents(9,0)">Send</button>
+                      </td>
+                      <td>
+                        <label for="Status_car"> *** Config Set_accident_start_speed (G-sensor:1-700,speed:1-30)
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <label for="Read_config">10. </label>
+                      </td>
+                      <td>
+                        <label for="Set_accident_up_speed">Set accident_up_speed </label>                      </td>
+                      <td>
+                        <label for="Set_accident_up_speed1">(G-sensor:</label>
+                        <input id="input-Set_accident_up_speed1" name="Set_accident_up_speed1" type="text" size="3" value="500" />
+                        <label for="Set_accident_up_speed1">G.) (stoptimedet : </label>
+
+                        <input id="input-Set_accident_up_speed2" name="Set_accident_up_speed2" type="text" size="2" value="6" />
+                        <label for="Set_accident_up_speed1">sec.) (speed/sec : </label>
+                        <input id="input-Set_accident_up_speed3" name="Set_accident_up_speed3" type="text" size="2" value="10" />
+                        <label for="Set_accident_up_speed3">km.) </label>
+                        <input id="input-Set_accident_up_speed4" name="Set_accident_up_speed4" type="text" size="2" value="550" />
+                        <label for="Set_accident_up_speed4">. </label>
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-success"  onclick="sendFileContents(10,0)">Send</button>
+                      </td>
+                      <td>
+                        <label for="Uncut start"> </label>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <label for="Read_config">11. </label>
+                      </td>
+                      <td>
+                        <label for="Set_accident_down_speed">Set accident_down_speed (G-sensor: </label>
+                      </td>
+                      <td>
+                        <label for="Set_accident_down_speed1">(G-sensor:</label>
+                        <input id="input-Set_accident_down_speed1" name="Set_accident_down_speed1" type="text" size="3" value="500" />
+                        <label for="Set_accident_down_speed1">G.) (stoptimedet : </label>
+
+                        <input id="input-Set_accident_down_speed2" name="Set_accident_down_speed2" type="text" size="2" value="6" />
+                        <label for="Set_accident_down_speed2">sec.) (speed1sec : </label>
+                        <input id="input-Set_accident_down_speed3" name="Set_accident_down_speed3" type="text" size="2" value="10" />
+                        <label for="Set_accident_down_speed3">km.)(speed2sec : </label>
+
+                        <input id="input-Set_accident_down_speed4" name="Set_accident_down_speed4" type="text" size="2" value="20" />
+                        <label for="Set_accident_down_speed4">km.) </label>
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-success"  onclick="sendFileContents(11,0)">Send</button>
+                      </td>
+                      <td>
+                        <label for="Uncut start">  </label>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <label for="Read_config">12. </label>
+                      </td>
+                      <td>
+                        <label for="Set_accident_shrpturn_speed">Set accident_shrpturn </label>
+                      </td>
+                      <td>
+                        <label for="Set_accident_shrpturn_speed2">(G-sensor:</label>
+                        <input id="input-Set_accident_shrpturn_speed1" name="Set_accident_shrpturn_speed1" type="text" size="3" value="500" />
+                        <label for="Set_accident_shrpturn_speed2">G.) (stoptimedet : </label>
+
+                        <input id="input-Set_accident_shrpturn_speed2" name="Set_accident_shrpturn_speed2" type="text" size="2" value="6" />
+                        <label for="Set_accident_shrpturn_speed3">sec.) (speed > </label>
+                        <input id="input-Set_accident_shrpturn_speed3" name="Set_accident_shrpturn_speed3" type="text" size="2" value="35" />
+                        <label for="Set_accident_shrpturn_speed3">km.)(Angle 1sec > </label>
+
+                        <input id="input-Set_accident_shrpturn_speed4" name="Set_accident_shrpturn_speed4" type="text" size="3" value="120" />
+                        <label for="Set_accident_shrpturn_speed4">°.)(Angle 2sec > </label>
+
+                        <input id="input-Set_accident_shrpturn_speed5" name="Set_accident_shrpturn_speed5" type="text" size="3" value="240" />
+                        <label for="Set_accident_shrpturn_speed5">°.) </label>
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-success"  onclick="sendFileContents(12,0)">Send</button>
+                      </td>
+                      <td>
+                        <label for="Uncut start"> </label>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <label for="Read_config">13. </label>
+                      </td>
+                      <td>
+                        <label for="Set_over_rpm">Set Over RPM: </label>
+                      </td>
+                      <td>
+                        <label for="Set_over_rpm1">RPM :</label>
+                        <input id="input-Set_over_rpm1" name="Set_over_rpm1" type="text" size="4" value="2200" />
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-success"  onclick="sendFileContents(13,0)">Send</button>
+
+                      </td>
+                      <td>
+                        <label for="Uncut start"> </label>
+
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <label for="Read_config">14. </label>
+                      </td>
+                      <td>
+                        <label for="Set_ip_port_apn">Set ip&port&APN</label>
+                      </td>
+                      <td>
+                        <label for="Set_ip_port_apn1">IP: </label>
+                        <input id="input-Set_ip_port_apn1" name="Set_ip_port_apn1" type="text" size="16" value="hinogps.onelink-iot.com" />
+                        <label for="Set_ip_port_apn1">PORT: </label>
+
+                        <input id="input-Set_ip_port_apn2" name="Set_ip_port_apn2" type="text" size="5" value="11101" />
+                        <label for="Set_ip_port_apn2">APN:</label>
+                        <input id="input-Set_ip_port_apn3" name="Set_ip_port_apn3" type="text" size="7" value="onelink.net" />
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-success"  onclick="sendFileContents(14,0)">Send</button>
+                      </td>
+                      <td>
+                        <label for="Uncut start"> </label>
+
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <label for="Read_config">15. </label>
+                      </td>
+                      <td>
+                        <label for="Set_acc_tracking_on">Set ACC ON Tracking </label>
+                      </td>
+                      <td>
+                        <label for="Set_acc_tracking_on1">interval </label>
+                        <input id="input-Set_acc_tracking_on1" name="Set_acc_tracking_on1" type="text" size="2" value="60" />
+                        <label for="Set_acc_tracking_on1">sec </label>
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-success"  onclick="sendFileContents(15,0)">Send</button>
+                      </td>
+                      <td>
+                        <label for="Uncut start"> </label>
+
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <label for="Read_config">16. </label>
+                      </td>
+                      <td>
+                        <label for="Set_acc_tracking_off">Set ACC OFF Tracking: </label>
+                        
+                      </td>
+                      <td>
+                        <label for="Set_acc_tracking_off1">interval </label>
+                        <input id="input-Set_acc_tracking_off1" name="Set_acc_tracking_off1" type="text" size="2" value="60" />
+                        <label for="Set_acc_tracking_off1">sec </label>
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-success"  onclick="sendFileContents(16,0)">Send</button>
+                      </td>
+                      <td>
+                        <label for="Uncut start"> </label>
+
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <label for="Read_config">17. </label>
+                      </td>
+                      <td>
+                        <label for="Set_Heartbeat_tracking">Set Heartbeat ACC_ON: </label>
+                      </td>
+                      <td>
+                        <label for="Set_Heartbeat_tracking1">interval</label>
+                        <input id="input-Set_Heartbeat_tracking1" name="Set_Heartbeat_tracking1" type="text" size="2" value="60" />
+                        <label for="Set_Heartbeat_tracking1">sec. ACC_OFF:</label>
+                        <input id="input-Set_Heartbeat_tracking2" name="Set_Heartbeat_tracking2" type="text" size="2" value="60" />
+                        <label for="Set_Heartbeat_tracking2">sec. </label>
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-success"  onclick="sendFileContents(17,0)">Send</button>
+                      </td>
+                      <td>
+                        <label for="Uncut start"> </label>
+
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <label for="Read_config">18. </label>
+                      </td>
+                      <td>
+                        <label for="Set_ip_port_apn">Set ODOmeter</label>
+                      </td>
+                      <td>
+                        <input id="input-Set_odometer1" name="Set_odometer1" type="text" size="6" value="9999" />
+                        <label for="Set_odometer1">เมตร. </label>
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-success"  onclick="sendFileContents(18,0)">Send</button>
+                      </td>
+                      <td>
+                        <label for="Uncut start"> </label>
+
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <label for="Read_config">19. </label>
+                      </td>
+                      <td>
+                        <label for="Set_ip_port_apn">Set Model</label>
+                      </td>
+                      <td>
+                        <label for="Set_model_id2">ID </label>
+                        <input id="input-Set_model_id1" name="Set_model_id1" type="text" size="6" value="F101" />
+                        <label for="Set_model_id2">. </label>
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-success"  onclick="sendFileContents(19,0)">Send</button>
+                      </td>
+                      <td>
+                        <label for="Uncut start"> </label>
+
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <label for="Read_config">20. </label>
+                      </td>
+                      <td>
+                        <label for="Set_sleep_mode">Set Sleep_mode</label>
+                      </td>
+                      <td>
+                        <input id="input-Set_sleep_mode1" name="Set_sleep_mode1" type="text" size="6" value="0" />
+
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-success"  onclick="sendFileContents(20,0)">Send</button>
+                      </td>
+                      <td>
+                        <label for="Set_sleep_mode1">* 0=normal ,1=sleep_mode </label>
+
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <label for="Read_config">21. </label>
+                      </td>
+                      <td>
+                        <label for="Set_up_firmware">up firmware : </label>
+                      </td>
+                      <td>
+                        <label for="Set_up_firmware">version : </label>
+                        <input id="input-Set_up_firmware1" name="Set_up_firmware1" type="text" size="15" value="HLT500_V306702" />
+                        <label for="Set_up_firmware1">ip: </label>
+                        <input id="input-Set_up_firmware2" name="Set_up_firmware2" type="text" size="15" value="3.0.63.30" />
+                        <label for="Set_up_firmware2">Folder: </label>
+                        <input id="input-Set_up_firmware3" name="Set_up_firmware3" type="text" size="15" value="/" />
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-success"  onclick="sendFileContents(21,0)">Send</button>
+                      </td>
+                      <td>
+                        <label for="Uncut start"> </label>
+
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <label for="Read_config">22. </label>
+                      </td>
+                      <td>
+                        <label for="set_input7_8">Set input7_8 : </label>
+                      </td>
+                      <td>
+                       
+                        <input id="input-set_input7_8" name="set_input7_8" type="text" size="15" value="1" />
+                        
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-success"  onclick="sendFileContents(22,0)">Send</button>
+                      </td>
+                      <td>
+                        <label for="Uncut start">0=normal active, 1=pulse active</label>
+
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <label for="Read_config">23. </label>
+                      </td>
+                      <td>
+                        <label for="reboot_device">send Reboot : </label>
+                      </td>
+                      <td>
+                       
+                        <input id="input-reboot_device" name="reboot_device" type="text" size="15" value="1" />
+                        
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-success"  onclick="sendFileContents(23,0)">Send</button>
+                      </td>
+                      <td>
+                        <label for="reboot_device"> Reboot device</label>
+
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <label for="Read_config">24. </label>
+                      </td>
+                      <td>
+                        <label for="Read_Status_car">command by sms :</label>
+                      </td>
+                      <td>
+                        <input id="input-command_by_sms"  name="command_by_sms" type="text" size="35" value="" />
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-success"  onclick="sendFileContents(24,0)">Send</button>
+                      </td>
+                      <td>
+                        <label for="Uncut start"> *** server command by sms    </label>
+  
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td>
+                        <label for="Read_config">25. </label>
+                      </td>
+                      <td>
+                        <label for="Read_Status_car">import file imei:</label>
+                      </td>
+                      <td>
+                        <form id="upload-form">
+                          <input type="file" id="file-input" accept=".txt" required>
+                        </form>
+                        
+                        <label for="checkfuncntion">No: </label>
+                        <select id="input-selecid" name="limit">  
+                          <option value="0" >0</option>                             
+                          <option value="1" >1</option>        
+                          <option value="2">2</option>  
+                          <option value="3">3</option>       
+                          <option value="4">4</option>        
+                          <option value="5">5</option>        
+                          <option value="6">6</option>
+                          <option value="7">7</option>        
+                          <option value="8">8</option>      
+                          <option value="9">9</option> 
+                          <option value="10" >10</option>                             
+                          <option value="11" >11</option>        
+                          <option value="12">12</option>  
+                          <option value="13">13</option>       
+                          <option value="14">14</option>        
+                          <option value="15">15</option>        
+                          <option value="16">16</option>
+                          <option value="17">17</option>        
+                          <option value="18">18</option>         
+                          <option value="19">19</option>        
+                          <option value="20">20</option>
+                          <option value="21">21</option>        
+                          <option value="22">22</option>   
+                          <option value="23">23</option>        
+                          <option value="24">24</option>  
+    
+                        </select>
+                        <input id="file-contents" rows="3" cols="20"></input>
+                        
+                        
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-success"  onclick="auto_send()">Auto Send</button>
+
+                      </td>
+                      <td>
+                        <label for="Uncut start"> *** auto send     </label>
+  
+                      </td>
+                    </tr>
+
+                  </tbody>
+                </table>
+            </form>
+          </div>
+        </div>
+      </section>
+
+    </div>
+    <%- include hino_script_send_command %>
+</body>
+
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: "Lato", sans-serif;
+    }
+
+    .sidenav {
+      height: 100%;
+      width: 160px;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      background-color: #111;
+      overflow-x: hidden;
+      padding-top: 20px;
+    }
+
+    .sidenav a {
+      padding: 6px 8px 6px 16px;
+      text-decoration: none;
+      font-size: 19px;
+      color: #818181;
+      display: block;
+    }
+
+    .sidenav a:hover {
+      color: #f1f1f1;
+    }
+
+    .main {
+      margin-left: 160px;
+      /* Same as the width of the sidenav */
+      font-size: 20px;
+      /* Increased text to enable scrolling */
+      padding: 0px 10px;
+    }
+
+    @media screen and (max-height: 450px) {
+      .sidenav {
+        padding-top: 15px;
+      }
+
+      .sidenav a {
+        font-size: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="sidenav">
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#Command_send">Command_send</a>
+    <a href="#contact">Contact</a>
+    <a href="#GPS_DATA_T1">GPS_DATA_T1</a>
+    <a href="#GPS_DATA_T2">GPS_DATA_T2</a>
+    <a href="logdata1">LOG_DATA</a>
+    <a href="server">Decode_T500</a>
+
+  </div>
+
+  <div class="main">
+    <h2>Server Test Engineer</h2>
+    <form class="" action="/server/add" method="post">
+      <div class="form-group">
+        <label for="">data</label>
+        <input type="text" name="name" value="" class="form-control">
+
+      </div>
+      <div class="form-group">
+        <label for="">deteil</label>
+        <textarea type="text" name="description" rows="8" cols="80" class="form-control"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="">name</label>
+        <input type="text" name="author" value="" class="form-control">
+
+      </div>
+      <input type="submit" name="" value="บันทึก" class="btn btn-primary">
+
+    </form>
+
+
+
+  </div>
+
+</body>
+
+</html>
+
+<head>
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><%= title %></title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+  <h1><%= title %></h1>
+  <p>Welcome to <%= title %></p>
+</body> -->

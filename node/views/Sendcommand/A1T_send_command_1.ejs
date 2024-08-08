@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>PRODUCT TEST</title>
+  <%- include ../logo %>
+    <style>
+      .w3-panel {
+        background-color: rgb(241, 246, 241);
+      }
+
+      .backgroundset {
+        background-color: rgb(242, 251, 251);
+      }
+
+      .backgroundset1 {
+        background-color: rgb(253, 247, 247);
+      }
+    </style>
+    <%- include ../layout_datetime_table %>
+</head>
+
+<body>
+  <%- include ../layout %>
+    <div class="main">
+
+      <section class="content">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="box box-primary">
+              <div class="box-header with-border" align="center">
+                <h3 class="box-title">A1T COMMAND</h3>
+
+              </div>
+              <form class="" method="post">
+                <div style="display:flex; flex-direction: row; justify-content: left; align-items: center">
+                  <label for="imei">$$ หมายเลข IMEI : </label>
+                  <input name="imei" type="text" size="14" value=<%=valueimei %>
+                  </input>
+
+                </div>
+                  <div style="display:flex; flex-direction: row; justify-content: left; align-items: left">
+                    <textarea rows="5" cols="300" id="yourTextArea">(<%=valueimei %>) <%=command_fail %> -- <%=command_result %> -- <%=userData %> 
+                    </textarea>
+                  </div>
+
+            </div>
+
+
+            <!-- <div style="display:flex; flex-direction: row; justify-content: left; align-items: center"> -->
+              <!-- <label for="Read_config">1. </label> -->
+            <div style="display:flex; flex-direction: row; justify-content: left; align-items: center">
+              <!-- Set by command -->
+              <label for="Read_Status_car">1. Set by command(SMS) : </label>
+              <input name="set_overspeed" type="text" size="100" <%=value_set_command %>  />
+              <button class="btn btn-success" onclick='action="/A1T_send_command/A1T_set_command"'>Send</button>
+              <label for="Status_car"> *** Enter the SMS Command *** </label>
+            </div>
+            <div style="display:flex; flex-direction: row; justify-content: left; align-items: center">
+              <!-- Set initial working -->
+              <label for="Read_Status_car1">2. Set initial working hour : </label>
+              <input name="working_hour" type="text" size="10" value=""  />
+              <button class="btn btn-success" onclick='action="/A1T_send_command/A1T_set_working_hour"'>SET</button>
+              <label for="Status_car1"> *** Enter the value in minutes. *** </label>
+            </div>
+            <div style="display:flex; flex-direction: row; justify-content: left; align-items: center">
+              <!-- Set interval time -->
+              <label for="Read_Status_car1">3. Set interval time : </label>
+              <input name="interval_time" type="text" size="10" value="" />
+              <button class="btn btn-success" onclick='action="/A1T_send_command/A1T_set_working_hour"'>SET</button>
+              <label for="Status_car1"> ** Enter the value in seconds. ** </label>
+            </div>
+            <div style="display:flex; flex-direction: row; justify-content: left; align-items: center">
+              <!-- System reset -->
+              <label for="Read_Status_car1">4. System Reset: </label>
+              <input name="system_reset" type="text" size="10" value="" />
+              <button class="btn btn-success" onclick='action="/A1T_send_command/A1T_set_working_hour"'>RESET</button>
+              <label for="Status_car1"> ** Enter reset ** </label>
+            </div>
+            <div style="display:flex; flex-direction: row; justify-content: left; align-items: center">
+              <!-- Cut-Start-->
+              <label for="Read_Status_car1">5. Cut-Start: </label>
+              <input name="cut_start" type="text" size="10" value="" />
+              <button class="btn btn-success" onclick='action="/A1T_send_command/A1T_set_working_hour"'>SET</button>
+              <label for="Status_car1"> ** Enter CUT or OK ** </label>
+            </div>
+            <div style="display:flex; flex-direction: row; justify-content: left; align-items: center">
+              <label for="Read_Status_car1">         -            </label>
+              <label for="Status_car1">             -          </label>
+            </div>
+            <div style="display:flex; flex-direction: row; justify-content: left; align-items: center">
+              <!-- Upgrade FW-->
+              <!-- <label for="Read_Status_car1">6. Go to FW Upgrade: </label> -->
+              <!-- <input name="FW_upgrade" type="text" size="1" value="" />  -->
+              <input class="btn btn-dark" name="FW_upgrade" type="submit" size="10" value="Go to FW Upgrade" onclick='action="/A1T_send_command/A1T_FW_upgrade"'/> 
+              <!-- <button class="btn btn-dark" onclick='action="/A1T_send_command/A1T_FW_upgrade"'>Go to FW Upgrade</button> -->
+              <label for="Status_car1">    </label>
+            </div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+</body>
+
+</html>

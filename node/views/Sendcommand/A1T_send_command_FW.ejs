@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>PRODUCT TEST</title>
+  <%- include ../logo %>
+    <style>
+      .w3-panel {
+        background-color: rgb(241, 246, 241);
+      }
+
+      .backgroundset {
+        background-color: rgb(242, 251, 251);
+      }
+
+      .backgroundset1 {
+        background-color: rgb(253, 247, 247);
+      }
+    </style>
+    <%- include ../layout_datetime_table %>
+</head>
+
+<body>
+  <%- include ../layout %>
+    <div class="main">
+
+      <section class="content">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="box box-primary">
+              <div class="box-header with-border" align="center">
+                <h3 class="box-title">A1T FW Upgrade</h3>
+
+              </div>
+              <form class="" method="post">
+                <div style="display:flex; flex-direction: row; justify-content: left; align-items: center">
+                  <label for="imei">$$ หมายเลข IMEI : </label>
+                  <input name="imei" type="text" size="14" value=<%=valueimei %>
+                  </input>
+
+                </div>
+                  <!-- <textarea rows="5" cols="200" id="yourTextArea"><%=userData %></textarea> -->
+                  <div style="display:flex; flex-direction: row; justify-content: left; align-items: left">
+                    <textarea rows="5" cols="300" id="yourTextArea">(<%=valueimei %>) <%=command_fail %> -- <%=command_result %> -- <%=userData %>
+                    </textarea>
+                  </div>
+            </div>
+
+
+            <!-- <div style="display:flex; flex-direction: row; justify-content: left; align-items: center"> -->
+              <!-- <label for="Read_config">1. </label> -->
+              <div style="display:flex; flex-direction: row; justify-content: left; align-items: center">
+                <!-- Set by command -->
+                <label for="Read_Status_car">1. Set - upgrade FW : </label>
+                <input name="FW_upgrade_CMD" type="text" size="10" value=""  />
+                <button class="btn btn-info" onclick='action="/A1T_send_command/A1T_FW_upgrade"'>SET</button>
+                <label for="Status_car"> *** Enter the FW version(415) *** </label>
+              </div>
+              <div style="display:flex; flex-direction: row; justify-content: left; align-items: center">
+                <!-- Set initial working -->
+                <label for="Read_Status_car1">2. Set - Turn off heartbeat : </label>
+                <input name="heartbeat_off" type="text" size="10" value=""  />
+                <button class="btn btn-info" onclick='action="/A1T_send_command/A1T_FW_upgrade"'>SET</button>
+                <label for="Status_car1"> *** Enter 0 to turn off *** </label>
+              </div>
+              <div style="display:flex; flex-direction: row; justify-content: left; align-items: center">
+                <!-- Set interval time -->
+                <label for="Read_Status_car1">3. Set - Wake up level : </label>
+                <input name="Wake_up_level" type="text" size="10" value="" />
+                <button class="btn btn-info" onclick='action="/A1T_send_command/A1T_FW_upgrade"'>SET</button>
+                <label for="Status_car1"> ** Enter 1 to set wake-up level to 1 ** </label>
+              </div>
+              <div style="display:flex; flex-direction: row; justify-content: left; align-items: center">
+                <!-- System reset -->
+                <label for="Read_Status_car1">4. Set - Filter voltage level : </label>
+                <input name="Filter_volt" type="text" size="10" value="" />
+                <button class="btn btn-info" onclick='action="/A1T_send_command/A1T_FW_upgrade"'>SET</button>
+                <label for="Status_car1"> ** Enter 100 to set  ** </label>
+              </div>
+              <div style="display:flex; flex-direction: row; justify-content: left; align-items: center">
+                <!-- System reset -->
+                <label for="Read_Status_car1">5. Set - Wake-up time : </label>
+                <input name="Wake_up_time" type="text" size="10" value="" />
+                <button class="btn btn-info" onclick='action="/A1T_send_command/A1T_FW_upgrade"'>SET</button>
+                <label for="Status_car1"> ** Enter 60 to set  ** </label>
+              </div>
+              <div style="display:flex; flex-direction: row; justify-content: left; align-items: center">
+                <!-- Cut-Start-->
+                <label for="Read_Status_car1">6. Set - Time-Zone: </label>
+                <input name="Time_Zone" type="text" size="10" value="" />
+                <button class="btn btn-info" onclick='action="/A1T_send_command/A1T_FW_upgrade"'>SET</button>
+                <label for="Status_car1"> ** Enter 07 to set GMT+7 ** </label>
+              </div>
+              <div style="display:flex; flex-direction: row; justify-content: left; align-items: center">
+                <!-- Cut-Start-->
+                <label for="Read_Status_car1">7. Set - Working hour: </label>
+                <input name="working_hour" type="text" size="10" value="" />
+                <button class="btn btn-info" onclick='action="/A1T_send_command/A1T_FW_upgrade"'>SET</button>
+                <label for="Status_car1"> ** Enter Working hour(mins) ** </label>
+              </div>
+              <div style="display:flex; flex-direction: row; justify-content: left; align-items: center">
+                <!-- Cut-Start-->
+                <label for="Read_Status_car1">8. Set - System reset: </label>
+                <input name="system_reset" type="text" size="10" value="" />
+                <button class="btn btn-info" onclick='action="/A1T_send_command/A1T_FW_upgrade"'>SET</button>
+                <label for="Status_car1"> ** Enter reset ** </label>
+              </div>
+              <div style="display:flex; flex-direction: row; justify-content: left; align-items: center">
+                <label for="Read_Status_car1">        -             </label>
+                <label for="Status_car1">             -          </label>
+              </div>
+              <div style="display:flex; flex-direction: row; justify-content: left; align-items: center">
+                <!-- Cut-Start-->
+                <!-- <label for="Read_Status_car1">9. Go to Send Command: </label> -->
+                <input class="btn btn-dark" name="go_send_cmd" type="submit" size="10" value="Go to Send Command" onclick='action="/A1T_send_command/A1T_set_working_hour"'/> 
+                <!-- <button class="btn btn-dark" onclick='action="/A1T_send_command/A1T_set_working_hour"'>Go to Send Command</button> -->
+                <label for="Status_car1">  </label>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+</body>
+
+</html>

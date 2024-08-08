@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>PRODUCT TEST</title>
+  <%- include ../logo %>
+
+    <style>
+      .w3-panel {
+        background-color: rgb(241, 246, 241);
+      }
+
+      .backgroundset {
+        background-color: rgb(242, 251, 251);
+      }
+
+      .backgroundset1 {
+        background-color: rgb(253, 247, 247);
+      }
+    </style>
+    <%- include ../layout_datetime_table %>
+</head>
+
+<body>
+  <%- include ../layout %>
+    <div class="main">
+
+      <section class="content">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="box box-primary">
+              <div class="box-header with-border" align="center">
+                <h3 class="box-title">ptt COMMAND</h3>
+
+              </div>
+              <form class="" method="post">
+                <div style="display:flex; flex-direction: row; justify-content: left; align-items: center">
+                  <label for="imei">$$ หมายเลข IMEI : </label>
+                  <input name="imei" type="text" size="14" <%=valueimei %>
+                  </input>
+
+                </div>
+                <textarea rows="3" cols="100" id="yourTextArea"><%=userData %></textarea>
+                <table id="data_table" class="table table-bordered table-hover dataTable no-footer" border="1"
+                cellpadding="0" cellspacing="0" role="grid">
+                
+            <thead>
+              <%- include ../layout_table_command %>
+
+
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <label for="Read_config1">1. </label>
+                </td>
+                <td>
+                  <label for="Read_config1">Read config </label>
+                </td>
+                <td>
+                  <input name="Read_config1" type="text" size="14" value="Read config" />
+                </td>
+                <td>
+                  <button class="btn btn-success" onclick='action="/ptt_send_command/readconfig"'>Send</button>
+                </td>
+                <td>
+                  <label for="Read_config1"> *** สำหรับขอข้อมูล config จากอุปกรณ์ </label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="Read_config1">2. </label>
+                </td>
+                <td>
+                  <label for="Read_config1">Read config ID </label>
+                </td>
+                <td>
+                  <input name="Read_MAC" type="text" size="14" value="Read config ID" />
+                </td>
+                <td>
+                  <button class="btn btn-success" onclick='action="/ptt_send_command/readconfigID"'>Send</button>
+                </td>
+                <td>
+                  <label for="Read_MAC"> *** สำหรับ read config id all from device </label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="Read_config">3. </label>
+                </td>
+                <td>
+                  <label for="Read_Status_car">Read Status</label>
+                </td>
+                <td>
+                  <input name="Status_car" type="text" size="14" value="req_Status" />
+                </td>
+                <td>
+                  <button class="btn btn-success" onclick='action="/ptt_send_command/req_Status"'>Send</button>
+                </td>
+                <td>
+                  <label for="Status_car"> *** สำหรับให้อุปกรณ์ส่งข้อมูล 1ครั้งทันที </label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="Read_config">4. </label>
+                </td>
+                <td>
+                  <label for="Read_Status_car">Set overspeed</label>
+                </td>
+                <td>
+                  <input name="set_overspeed" type="text" size="3" <%=value_set_overspeed %> />
+                <td>
+                  <button class="btn btn-success" onclick='action="/ptt_send_command/set_overspeed"'>Send</button>
+                </td>
+                <td>
+                  <label for="Status_car"> *** Set overspeed 0-140 </label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="Read_config">5. </label>
+                </td>
+                <td>
+                  <label for="Read_Status_car">Set RS232_1</label>
+                </td>
+                <td>
+                  <input name="set_RS232_1" type="text" size="3" <%=value_set_RS232_1 %> />
+                </td>
+                <td>
+                  <button class="btn btn-success" onclick='action="/ptt_send_command/set_RS232_1"'>Send</button>
+                </td>
+                <td>
+                  <label for="Status_car"> *** Config RS232 0:19200 speeddisplay,1:9600 MDVR commucation,2:115200 none
+                  </label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="Read_config">6. </label>
+                </td>
+                <td>
+                  <label for="Read_Status_car">Set Voice group</label>
+                </td>
+                <td>
+                  <label for="Set_Voice_group2">group1 : </label>
+                  <input name="Set_Voice_group1" type="text" size="2" <%=value_Set_Voice_group1 %> />
+                  <label for="Set_Voice_group2">group2 : </label>
+                  <input name="Set_Voice_group2" type="text" size="2" <%=value_Set_Voice_group2 %> />
+                  <label for="Set_Voice_group3">group3 : </label>
+                  <input name="Set_Voice_group3" type="text" size="2" <%=value_Set_Voice_group3 %> />
+                </td>
+                <td>
+                  <button class="btn btn-success" onclick='action="/ptt_send_command/Set_Voice_group"'>Send</button>
+                </td>
+                <td>
+                  <label for="Status_car"> *** Config Set_Voice_group 0:off,1:active (Group1:ptt say hi
+                    ,Group2:DLT,Group3:accident)
+                  </label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="Read_config">7. </label>
+                </td>
+                <td>
+                  <label for="Read_Status_car">Set voice volume</label>
+                </td>
+                <td>
+                  <input name="Set_voice_volume1" type="text" size="2" <%=value_Set_voice_volume1 %> />
+                </td>
+                <td>
+                  <button class="btn btn-success" onclick='action="/ptt_send_command/Set_voice_volume"'>Send</button>
+                </td>
+                <td>
+                  <label for="Set_voice_volume1">* 0=off ,1=low,2=min,3=high </label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="Read_config">8. </label>
+                </td>
+                <td>
+                  <label for="Set_voice_ptt_A">Set voice_A9 : </label>
+                </td>
+                <td>
+                  <input name="Set_voice_ptt_A1" type="text" size="2" <%=value_Set_voice_ptt_A1 %> />
+                </td>
+                <td>
+                  <button class="btn btn-success" onclick='action="/ptt_send_command/Set_voice_ptt_A"'>Send</button>
+                </td>
+                <td>
+                  <label for="Set_voice_ptt_A1">* 0=off ,1=voice_A9,2=voice_B01</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="Read_config">9. </label>
+                </td>
+                <td>
+                  <label for="Set_accident_start_speed">Set accident_start_speed</label>
+                </td>
+                <td>
+                  <label for="Set_accident_start_speed1">(G-sensor: </label>
+                  <input name="Set_accident_start_speed1" type="text" size="3" <%=value_Set_accident_start_speed1 %> />
+                <label for="Set_accident_start_speed1">G.) (speed/sec : </label>
+                <input name="Set_accident_start_speed2" type="text" size="2" <%=value_Set_accident_start_speed2 %> />
+                <label for="Set_accident_start_speed1">km.) </label>
+                </td>
+                <td>
+                  <button class="btn btn-success"
+                  onclick='action="/ptt_send_command/Set_accident_start_speed"'>Send</button>
+                </td>
+                <td>
+                  <label for="Status_car"> *** Config Set_accident_start_speed (G-sensor:1-700,speed:1-30)
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="Read_config">10. </label>
+                </td>
+                <td>
+                  <label for="Set_accident_up_speed">Set accident_up_speed </label>                      </td>
+                <td>
+                  <label for="Set_accident_up_speed1">(G-sensor:</label>
+                  <input name="Set_accident_up_speed1" type="text" size="3" <%=value_Set_accident_up_speed1 %> />
+                  <label for="Set_accident_up_speed1">G.) (stoptimedet : </label>
+
+                  <input name="Set_accident_up_speed2" type="text" size="2" <%=value_Set_accident_up_speed2 %> />
+                  <label for="Set_accident_up_speed1">sec.) (speed/sec : </label>
+                  <input name="Set_accident_up_speed3" type="text" size="2" <%=value_Set_accident_up_speed3 %> />
+                  <label for="Set_accident_up_speed3">km.) </label>
+                  <input name="Set_accident_up_speed4" type="text" size="2" <%=value_Set_accident_up_speed4 %> />
+                  <label for="Set_accident_up_speed4">. </label>
+                </td>
+                <td>
+                  <button class="btn btn-success" onclick='action="/ptt_send_command/Set_accident_up_speed"'>Send</button>
+                </td>
+                <td>
+                  <label for="Uncut start"> </label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="Read_config">11. </label>
+                </td>
+                <td>
+                  <label for="Set_accident_down_speed">Set accident_down_speed (G-sensor: </label>
+                </td>
+                <td>
+                  <label for="Set_accident_down_speed1">(G-sensor:</label>
+                  <input name="Set_accident_down_speed1" type="text" size="3" <%=value_Set_accident_down_speed1 %> />
+                  <label for="Set_accident_down_speed1">G.) (stoptimedet : </label>
+
+                  <input name="Set_accident_down_speed2" type="text" size="2" <%=value_Set_accident_down_speed2 %> />
+                  <label for="Set_accident_down_speed2">sec.) (speed1sec : </label>
+                  <input name="Set_accident_down_speed3" type="text" size="2" <%=value_Set_accident_down_speed3 %> />
+                  <label for="Set_accident_down_speed3">km.)(speed2sec : </label>
+
+                  <input name="Set_accident_down_speed4" type="text" size="2" <%=value_Set_accident_down_speed4 %> />
+                  <label for="Set_accident_down_speed4">km.) </label>
+                </td>
+                <td>
+                  <button class="btn btn-success"
+                  onclick='action="/ptt_send_command/Set_accident_down_speed"'>Send</button>
+                </td>
+                <td>
+                  <label for="Uncut start">  </label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="Read_config">12. </label>
+                </td>
+                <td>
+                  <label for="Set_accident_shrpturn_speed">Set accident_shrpturn </label>
+                </td>
+                <td>
+                  <label for="Set_accident_shrpturn_speed2">(G-sensor:</label>
+                  <input name="Set_accident_shrpturn_speed1" type="text" size="3" <%=value_Set_accident_shrpturn_speed1 %> />
+                  <label for="Set_accident_shrpturn_speed2">G.) (stoptimedet : </label>
+
+                  <input name="Set_accident_shrpturn_speed2" type="text" size="2" <%=value_Set_accident_shrpturn_speed2 %> />
+                  <label for="Set_accident_shrpturn_speed3">sec.) (speed > </label>
+                  <input name="Set_accident_shrpturn_speed3" type="text" size="2" <%=value_Set_accident_shrpturn_speed3 %> />
+                  <label for="Set_accident_shrpturn_speed3">km.)(Angle 1sec > </label>
+
+                  <input name="Set_accident_shrpturn_speed4" type="text" size="3" <%=value_Set_accident_shrpturn_speed4 %> />
+                  <label for="Set_accident_shrpturn_speed4">°.)(Angle 2sec > </label>
+
+                  <input name="Set_accident_shrpturn_speed5" type="text" size="3" <%=value_Set_accident_shrpturn_speed5 %> />
+                  <label for="Set_accident_shrpturn_speed5">°.) </label>
+                </td>
+                <td>
+                  <button class="btn btn-success"
+            onclick='action="/ptt_send_command/Set_accident_shrpturn_speed"'>Send</button>
+                </td>
+                <td>
+                  <label for="Uncut start"> </label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="Read_config">13. </label>
+                </td>
+                <td>
+                  <label for="Set_over_rpm">Set Over RPM: </label>
+                </td>
+                <td>
+                  <label for="Set_over_rpm1">RPM :</label>
+                  <input name="Set_over_rpm1" type="text" size="4" <%=value_Set_over_rpm1 %> />
+                </td>
+                <td>
+                  <button class="btn btn-success" onclick='action="/ptt_send_command/Set_over_rpm"'>Send</button>
+
+                </td>
+                <td>
+                  <label for="Uncut start"> </label>
+
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="Read_config">14. </label>
+                </td>
+                <td>
+                  <label for="Set_ip_port_apn">Set ip&port&APN</label>
+                </td>
+                <td>
+                  <label for="Set_ip_port_apn1">IP: </label>
+                  <input name="Set_ip_port_apn1" type="text" size="16" <%=value_Set_ip_port_apn1 %> />
+                  <label for="Set_ip_port_apn1">PORT: </label>
+
+                  <input name="Set_ip_port_apn2" type="text" size="5" <%=value_Set_ip_port_apn2 %> />
+                  <label for="Set_ip_port_apn2">APN:</label>
+                  <input name="Set_ip_port_apn3" type="text" size="7" <%=value_Set_ip_port_apn3 %> />
+                </td>
+                <td>
+                  <button class="btn btn-success" onclick='action="/ptt_send_command/Set_ip_port_apn"'>Send</button>
+                </td>
+                <td>
+                  <label for="Uncut start"> </label>
+
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="Read_config">15. </label>
+                </td>
+                <td>
+                  <label for="Set_acc_tracking_on">Set ACC ON Tracking </label>
+                </td>
+                <td>
+                  <label for="Set_acc_tracking_on1">interval </label>
+                  <input name="Set_acc_tracking_on1" type="text" size="2" <%=value_Set_acc_tracking_on1 %> />
+                  <label for="Set_acc_tracking_on1">sec </label>
+                </td>
+                <td>
+                  <button class="btn btn-success" onclick='action="/ptt_send_command/Set_acc_tracking_on"'>Send</button>
+                </td>
+                <td>
+                  <label for="Uncut start"> </label>
+
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="Read_config">16. </label>
+                </td>
+                <td>
+                  <label for="Set_acc_tracking_off">Set ACC OFF Tracking: </label>
+                  
+                </td>
+                <td>
+                  <label for="Set_acc_tracking_off1">interval </label>
+                  <input name="Set_acc_tracking_off1" type="text" size="2" <%=value_Set_acc_tracking_off1 %> />
+                  <label for="Set_acc_tracking_off1">sec </label>
+                </td>
+                <td>
+                  <button class="btn btn-success" onclick='action="/ptt_send_command/Set_acc_tracking_off"'>Send</button>
+                </td>
+                <td>
+                  <label for="Uncut start"> </label>
+
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="Read_config">17. </label>
+                </td>
+                <td>
+                  <label for="Set_Heartbeat_tracking">Set Heartbeat ACC_ON: </label>
+                </td>
+                <td>
+                  <label for="Set_Heartbeat_tracking1">interval</label>
+                  <input name="Set_Heartbeat_tracking1" type="text" size="2" <%=value_Set_Heartbeat_tracking1 %> />
+                  <label for="Set_Heartbeat_tracking1">sec. ACC_OFF:</label>
+                  <input name="Set_Heartbeat_tracking2" type="text" size="2" <%=value_Set_Heartbeat_tracking2 %> />
+                  <label for="Set_Heartbeat_tracking2">sec. </label>
+                </td>
+                <td>
+                  <button class="btn btn-success"
+                    onclick='action="/ptt_send_command/Set_Heartbeat_tracking"'>Send</button>
+                </td>
+                <td>
+                  <label for="Uncut start"> </label>
+
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="Read_config">18. </label>
+                </td>
+                <td>
+                  <label for="Set_ip_port_apn">Set ODOmeter</label>
+                </td>
+                <td>
+                  <input name="Set_odometer1" type="text" size="6" <%=value_Set_odometer1 %> />
+                  <label for="Set_odometer1">เมตร. </label>
+                </td>
+                <td>
+                  <button class="btn btn-success" onclick='action="/ptt_send_command/Set_odometer"'>Send</button>
+                </td>
+                <td>
+                  <label for="Uncut start"> </label>
+
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="Read_config">19. </label>
+                </td>
+                <td>
+                  <label for="Set_ip_port_apn">Set Model</label>
+                </td>
+                <td>
+                  <label for="Set_model_id2">ID </label>
+                  <input name="Set_model_id1" type="text" size="6" <%=value_Set_model_id1 %> />
+                  <label for="Set_model_id2">. </label>
+                </td>
+                <td>
+                  <button class="btn btn-success" onclick='action="/ptt_send_command/Set_model_id"'>Send</button>
+                </td>
+                <td>
+                  <label for="Uncut start"> </label>
+
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="Read_config">20. </label>
+                </td>
+                <td>
+                  <label for="Set_sleep_mode">Set Sleep_mode</label>
+                </td>
+                <td>
+                  <input name="Set_sleep_mode1" type="text" size="6" <%=value_Set_sleep_mode1 %> />
+
+                </td>
+                <td>
+                  <button class="btn btn-success" onclick='action="/ptt_send_command/Set_sleep_mode"'>Send</button>
+                </td>
+                <td>
+                  <label for="Set_sleep_mode1">* 0=normal ,1=sleep_mode </label>
+
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="Read_config">21. </label>
+                </td>
+                <td>
+                  <label for="Set_up_firmware">up firmware : </label>
+                </td>
+                <td>
+                  <label for="Set_up_firmware">version : </label>
+                  <input name="Set_up_firmware1" type="text" size="15" <%=value_Set_up_firmware1 %> />
+                  <label for="Set_up_firmware1">ip: </label>
+                  <input name="Set_up_firmware2" type="text" size="15" <%=value_Set_up_firmware2 %> />
+                  <label for="Set_up_firmware2">Folder: </label>
+                  <input name="Set_up_firmware3" type="text" size="15" <%=value_Set_up_firmware3 %> />
+                </td>
+                <td>
+                  <button class="btn btn-success" onclick='action="/ptt_send_command/Set_up_firmware"'>Send</button>
+                </td>
+                <td>
+                  <label for="Uncut start"> </label>
+
+                </td>
+              </tr>
+            </tr>
+            <tr>
+              <td>
+                <label for="Read_config">22. </label>
+              </td>
+              <td>
+                <label for="set_input7_8">Set input7_8 : </label>
+              </td>
+              <td>
+               
+                <input name="set_input7_8" type="text" size="15" <%=value_set_input7_8 %> />
+                
+              </td>
+              <td>
+                <button class="btn btn-success" onclick='action="/ptt_send_command/set_input7_8"'>Send</button>
+              </td>
+              <td>
+                <label for="Uncut start">0=normal active, 1=pulse active</label>
+
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="Read_config">23. </label>
+              </td>
+              <td>
+                <label for="reboot_device">send Reboot : </label>
+              </td>
+              <td>
+               
+                <input name="reboot_device" type="text" size="15" value="1" />
+                
+              </td>
+              <td>
+                <button class="btn btn-success" onclick='action="/ptt_send_command/reboot_device"'>Send</button>
+              </td>
+              <td>
+                <label for="reboot_device"> Reboot device</label>
+
+              </td>
+            </tr>
+
+
+            </tbody>
+          </table>
+          </form>
+        </div>
+    </div>
+    </section>
+
+    </div>
+
+</body>
+
+</html>

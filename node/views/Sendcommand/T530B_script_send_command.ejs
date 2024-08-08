@@ -1,0 +1,256 @@
+<script>
+  document.getElementById('file-input').addEventListener('change', readFile);
+
+  function readFile(event) {
+    const file = event.target.files[0];
+    if (!file) {
+      alert('Please select a file first.');
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = function(event) {
+      let  contents = event.target.result;
+      contents = contents.replace(/\r\n/g, ',').replace(/ /g, '');
+      document.getElementById('file-contents').value = contents;
+    };
+
+    reader.readAsText(file);
+  }
+  
+
+
+  //17
+  //18
+  function sendFileContents(number,keep) {
+  
+    var  select_function;
+    const contents = document.getElementById('file-contents').value;       
+    const set_imei = document.getElementById('input-imei').value;                                
+    var set_change_password= document.getElementById('input-change_password').value;
+    const set_config_accON = document.getElementById('input-config_accON').value;
+    var set_config_model_id= document.getElementById('input-config_model_id').value;
+    const set_Set_ip_port_apn1= document.getElementById('input-Set_ip_port_apn1').value;
+    const set_Set_ip_port_apn2= document.getElementById('input-Set_ip_port_apn2').value;                             
+    const set_command_by_sms= document.getElementById('input-command_by_sms').value;
+
+    const Set_up_firmware1= document.getElementById('input-Set_up_firmware1').value;
+    const Set_up_firmware2= document.getElementById('input-Set_up_firmware2').value;
+    const Set_up_firmware3= document.getElementById('input-Set_up_firmware3').value;
+    const Set_up_firmware4= document.getElementById('input-Set_up_firmware4').value;
+    console.log(number);
+    
+         
+    switch(number) {
+        case 1:
+          // code block
+          select_function="/T530B_send_command/readconfig";
+          break;
+        case 2:
+          // code 
+          select_function = "/T530B_send_command/MAC_ID";
+          break;
+        case 3:
+          // code block
+          select_function = "/T530B_send_command/Status_car";
+          break;
+        case 4:
+          // code block
+          select_function = "/T530B_send_command/Cut_start_car";
+          break;
+        case 5:
+          // code block
+          select_function = "/T530B_send_command/UnCut_start_car";
+          break;
+        case 6:
+          // code block
+          select_function = "/T530B_send_command/lock_car";
+          break;
+        case 7:
+          // code block
+          select_function = "/T530B_send_command/unlock_car";
+          break;
+          
+        case 8:
+          // code block
+          select_function = "/T530B_send_command/start_car";
+          break;                           
+        case 9:
+          // code block
+          select_function = "/T530B_send_command/stop_car";
+          break;
+        case 10:
+          // code block
+          select_function = "/T530B_send_command/change_password";
+          break;
+        case 11:
+          // code block
+          select_function = "/T530B_send_command/config_packdata";              
+          break;
+        case 12:
+          // code block
+          select_function = "/T530B_send_command/config_interval_time";
+          break;
+        case 13:
+          // code block
+          select_function = "/T530B_send_command/config_accON_voltage";
+          break;
+        case 14:
+          // code block
+          select_function = "/T530B_send_command/config_model_id";
+          break;            
+        case 15:
+          // code block
+          select_function = "/T530B_send_command/Set_ip_port_apn";
+          break;
+        case 16:
+          // code block
+          select_function = "/T530B_send_command/update_firmware";
+          break;
+        case 17:
+          // code block
+          select_function = "/T530B_send_command/command_by_sms";
+          break;
+        case 18:
+          // code block
+         
+          select_function="/T530B_send_command/upload";
+          break;
+       
+        default:
+          // code block
+      }
+    // console.log(select_function);
+    fetch(select_function, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ fileContents: "",
+        imei: set_imei,
+        set_change_password: set_change_password,
+        set_config_accON: set_config_accON,
+        set_config_model_id: set_config_model_id,
+        Set_ip_port_apn1: set_Set_ip_port_apn1,
+        Set_ip_port_apn2: set_Set_ip_port_apn2,                          
+        set_command_by_sms: set_command_by_sms,
+        Set_up_firmware1: Set_up_firmware1,
+        Set_up_firmware2: Set_up_firmware2,
+        Set_up_firmware3: Set_up_firmware3,
+        Set_up_firmware4: Set_up_firmware4,
+       })
+    })
+    .then(response => response.json())
+    .then(data => {
+     
+      // console.log(data);
+      console.log(keep);
+      if(number==2){
+        const DfileContents = JSON.parse(data.fileContents); // Parse the JSON string
+        const formattedJson = JSON.stringify(DfileContents, null, 4);
+        if(keep){ //keep data
+        document.getElementById('input-textarea').value =formattedJson +"\r\n" + document.getElementById('input-textarea').value;
+        document.getElementById('input-textarea').style.fontSize = '16px'; /* Adjust the font size here */
+        }else{  //keep
+          document.getElementById('input-textarea').value =formattedJson;
+          document.getElementById('input-textarea').style.fontSize = '16px'; /* Adjust the font size here */
+        }
+       
+      }else if (number==3){
+        const DfileContents = JSON.parse(data.fileContents); // Parse the JSON string
+       
+        const formattedJson = syntaxHighlight(DfileContents);
+        document.getElementById('highlighted-json').innerHTML = formattedJson;
+        document.getElementById('input-textarea').value = JSON.stringify(DfileContents, null, 4);
+       
+        document.getElementById('input-textarea').style.fontSize = '14px'; /* Adjust the font size here */
+        document.getElementById('image-carstatus').src =data.checkcarstus;
+        
+      }else{
+        if(keep){ //keep data
+        document.getElementById('input-textarea').value =data.fileContents +"\r\n" + document.getElementById('input-textarea').value;
+       
+        }else{  //keep
+          document.getElementById('input-textarea').value =data.fileContents;
+        }      
+        
+      }
+      //  console.log('Success:', data);
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+  }
+
+  function syntaxHighlight(json) {
+    if (typeof json != 'string') {
+        json = JSON.stringify(json, undefined, 4);
+    }
+    json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
+        var cls = 'json-number';
+        if (/^"/.test(match)) {
+            if (/:$/.test(match)) {
+                cls = 'json-key';
+            } else {
+                cls = 'json-string';
+            }
+        } else if (/true|false/.test(match)) {
+            cls = 'json-boolean';
+        } else if (/null/.test(match)) {
+            cls = 'json-null';
+        }
+        return '<span class="' + cls + '">' + match + '</span>';
+    });
+
+    
+}
+
+function auto_send() {
+  let  filecontents = document.getElementById('file-contents').value;
+  document.getElementById('input-textarea').value ="";
+  dataItems = filecontents.split(',');
+  // console.log('Data Items:', dataItems.length); // Check dataItems
+  count_imei_number=0; //set start 0
+  max_counter=dataItems.length; //set max counter
+  selsect_function=parseInt(document.getElementById('input-selecid').value);  //set function
+  keepdata =1;
+  if(selsect_function>0){
+  timerInterval = setInterval(updateTimer, 2000); // run 1000 mean interval auto 1 sec  
+  }else{
+    alert("Pls you select No.  ****IN function import file");
+  }
+  
+  
+}       
+        let timerInterval=0;  // for stop timer tiger
+        let keepdata = 0;  //keep data row
+        let selsect_function = 0; //function to run auto
+        let count_imei_number =0;  // counter imei
+        let max_counter =2; // for number of imei
+        let  dataItems ="";
+        function updateTimer() {
+          
+          if(dataItems[count_imei_number].length==12) //t530=12
+          {
+            document.getElementById('input-imei').value =dataItems[count_imei_number];
+            
+            sendFileContents(selsect_function,keepdata);
+
+          }else{
+            
+          }
+          
+            count_imei_number++;
+            if(count_imei_number >= max_counter){
+              keepdata = 0;
+              clearInterval(timerInterval);
+              alert("*** Auto Send ทำการส่งทั้งหมดเรียบร้อยแล้ว");
+            }
+           
+        }
+
+       
+
+       
+</script>

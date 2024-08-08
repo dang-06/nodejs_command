@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>PRODUCT TEST</title>
+  <%- include logo %>
+    <style>
+      .w3-panel {
+        background-color: rgb(241, 246, 241);
+      }
+
+      .backgroundset {
+        background-color: rgb(242, 251, 251);
+      }
+
+      .backgroundset1 {
+        background-color: rgb(253, 247, 247);
+      }
+    </style>
+    <%- include layout_datetime_table %>
+</head>
+
+<body>
+  <%- include layout %>
+    <div class="main">
+
+      <section class="content">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="box box-primary">
+              <div class="box-header with-border" align="center">
+                <h3 class="box-title">Services</h3>
+
+              </div>
+              <form class="" method="post">
+
+
+
+
+
+                <textarea rows="3" cols="100" id="yourTextArea"><%=userData %></textarea>
+
+
+            </div>
+
+
+            <div style="display:flex; flex-direction: row; justify-content: left; align-items: center">
+              <label for="Read_config">1. </label>
+            </div>
+            <div style="display:flex; flex-direction: row; justify-content: left; align-items: center">
+              <div style="display:flex; flex-direction: row; justify-content: left; align-items: center">
+
+                <label for="imei">$$ action : </label>
+                <select name="imei">
+
+
+                  <option value=" START">START
+                  </option>
+
+                  <option value="STOP">STOP</option>
+
+                  <option value="Restart">Restart</option>
+
+                  <option value="Restart web">Restart web</option>
+
+
+
+
+                </select>
+
+
+
+
+
+                <label for="Read_Status_car">$$ file : </label>
+
+                <input list="set_overspeed" name="set_overspeed" size="30" <%=set_overspeed %> >
+                <datalist id="set_overspeed" name="set_overspeed">
+                  <option value="py_IRIS_Receiver">
+                  <option value="py_DT800_Receiver">
+                  <option value="py_A1T_Receiver">
+
+                </datalist>
+
+                <button class="btn btn-success" onclick='action="/services/services_recive"'>Send</button>
+
+
+              </div>
+
+              </form>
+            </div>
+          </div>
+      </section>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Combine Binary Files with Padding</title>
+</head>
+<body>
+	<%- include ../layout %>
+    <h1>Combine Binary Files  For factory</h1>
+    <table id="data_table" class="table table-bordered table-hover dataTable no-footer" border="1"
+    cellpadding="0" cellspacing="0" role="grid">
+    
+    <thead>
+        <%- include ../layout_table_tool_bin %>
+
+
+      </thead>
+
+        <tbody>
+            <tr>
+                <td>
+            <input type="file" id="binary1" />
+                </td>
+                <td>
+            <input type="file" id="binary2" />
+                </td>
+                <td>
+            <button id="combineButton">Combine Files</button>
+                </td>
+            </tr>    
+        </tbody>
+    </table>
+    <a id="downloadLink" style="display: none;">Download Combined File</a>
+
+    <script>
+        document.getElementById('combineButton').addEventListener('click', function() {
+            const binary1Input = document.getElementById('binary1');
+            const binary2Input = document.getElementById('binary2');
+
+            if (binary1Input.files.length === 0 || binary2Input.files.length === 0) {
+                alert('Please select both files.');
+                return;
+            }
+
+            const binary1File = binary1Input.files[0];
+            const binary2File = binary2Input.files[0];
+
+            const reader1 = new FileReader();
+            const reader2 = new FileReader();
+            const offset = 0x10000;
+
+            reader1.onload = function(event) {
+                const binary1Content = event.target.result;
+
+                reader2.onload = function(event) {
+                    const binary2Content = event.target.result;
+
+                    let part1;
+                    if (binary1Content.byteLength < offset) {
+                        // Create a new ArrayBuffer with padding
+                        const paddedArrayBuffer = new ArrayBuffer(offset);
+                        const paddedView = new Uint8Array(paddedArrayBuffer);
+
+                        // Copy the content of binary1 into the padded buffer
+                        const binary1View = new Uint8Array(binary1Content);
+                        paddedView.set(binary1View);
+
+                        // Fill the remaining part with 0x55
+                        for (let i = binary1View.length; i < offset; i++) {
+                            paddedView[i] = 0xff;
+                        }
+
+                        part1 = paddedArrayBuffer;
+                    } else {
+                        part1 = binary1Content.slice(0, offset);
+                    }
+
+                    // Combine the contents of part1 and binary2Content
+                    const combinedContent = new Blob([part1, binary2Content]);
+					// Generate date-time stamp
+                    const now = new Date();
+                    const timestamp = now.toISOString().replace(/[-:.TZ]/g, '').slice(0, 14).slice(2);
+
+                    // Create a URL for the combined file and trigger a download
+                    const downloadLink = document.getElementById('downloadLink');
+                    downloadLink.href = URL.createObjectURL(combinedContent);
+                    downloadLink.download = `iris_factory_${timestamp}.bin`;
+                    downloadLink.style.display = 'block';
+                    downloadLink.click();
+                };
+
+                reader2.readAsArrayBuffer(binary2File);
+            };
+
+            reader1.readAsArrayBuffer(binary1File);
+        });
+    </script>
+</body>
+</html>

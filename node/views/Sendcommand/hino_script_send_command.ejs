@@ -1,0 +1,315 @@
+<script>
+  document.getElementById('file-input').addEventListener('change', readFile);
+
+  function readFile(event) {
+    const file = event.target.files[0];
+    if (!file) {
+      alert('Please select a file first.');
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = function(event) {
+      let  contents = event.target.result;
+      contents = contents.replace(/\r\n/g, ',').replace(/ /g, '');
+      document.getElementById('file-contents').value = contents;
+    };
+
+    reader.readAsText(file);
+  }
+  
+
+
+  //17
+  //18
+  function sendFileContents(number,keep) {
+  
+    var  select_function;
+    const contents = document.getElementById('file-contents').value;       
+    let set_imei = document.getElementById('input-imei').value; 
+    
+    
+    // 4
+    const set_overspeed = document.getElementById('input-set_overspeed').value;
+    const  set_RS232_1 = document.getElementById('input-set_RS232_1').value;
+    const  Set_Voice_group1 = document.getElementById('input-Set_Voice_group1').value;
+    const  Set_Voice_group2 = document.getElementById('input-Set_Voice_group2').value;
+    const  Set_Voice_group3 = document.getElementById('input-Set_Voice_group3').value;
+    const  Set_accident_start_speed1 = document.getElementById('input-Set_accident_start_speed1').value;
+    const  Set_accident_start_speed2 = document.getElementById('input-Set_accident_start_speed2').value;
+    const  Set_accident_up_speed1 = document.getElementById('input-Set_accident_up_speed1').value;
+    const  Set_accident_up_speed2 = document.getElementById('input-Set_accident_up_speed2').value;
+    const  Set_accident_up_speed3 = document.getElementById('input-Set_accident_up_speed3').value;
+    const  Set_accident_up_speed4 = document.getElementById('input-Set_accident_up_speed4').value;
+    const  Set_accident_down_speed1 = document.getElementById('input-Set_accident_down_speed1').value;
+    const  Set_accident_down_speed2 = document.getElementById('input-Set_accident_down_speed2').value;
+    const  Set_accident_down_speed3 = document.getElementById('input-Set_accident_down_speed3').value;
+    const  Set_accident_down_speed4 = document.getElementById('input-Set_accident_down_speed4').value;
+    const  Set_accident_shrpturn_speed1 = document.getElementById('input-Set_accident_shrpturn_speed1').value;
+    const  Set_accident_shrpturn_speed2 = document.getElementById('input-Set_accident_shrpturn_speed2').value;
+    const  Set_accident_shrpturn_speed3 = document.getElementById('input-Set_accident_shrpturn_speed3').value;
+    const  Set_accident_shrpturn_speed4 = document.getElementById('input-Set_accident_shrpturn_speed4').value;
+    const  Set_accident_shrpturn_speed5 = document.getElementById('input-Set_accident_shrpturn_speed5').value;
+    const  Set_voice_volume1 = document.getElementById('input-Set_voice_volume1').value;
+    const  Set_voice_hino_A1 = document.getElementById('input-Set_voice_hino_A1').value;
+    const  Set_over_rpm1 = document.getElementById('input-Set_over_rpm1').value;
+    const  Set_ip_port_apn1 = document.getElementById('input-Set_ip_port_apn1').value;
+    const  Set_ip_port_apn2 = document.getElementById('input-Set_ip_port_apn2').value;
+    const  Set_ip_port_apn3 = document.getElementById('input-Set_ip_port_apn3').value;
+    const  Set_acc_tracking_on1 = document.getElementById('input-Set_acc_tracking_on1').value;
+    const  Set_acc_tracking_off1 = document.getElementById('input-Set_acc_tracking_off1').value;
+    const  Set_Heartbeat_tracking1 = document.getElementById('input-Set_Heartbeat_tracking1').value;
+    const  Set_Heartbeat_tracking2 = document.getElementById('input-Set_Heartbeat_tracking2').value;
+    const  Set_odometer1 = document.getElementById('input-Set_odometer1').value;
+    const  Set_model_id1 = document.getElementById('input-Set_model_id1').value;
+    const  Set_sleep_mode1 = document.getElementById('input-Set_sleep_mode1').value;
+    const  Set_up_firmware1 = document.getElementById('input-Set_up_firmware1').value;
+    const  Set_up_firmware2 = document.getElementById('input-Set_up_firmware2').value;
+    const  Set_up_firmware3 = document.getElementById('input-Set_up_firmware3').value;
+    const  set_input7_8 = document.getElementById('input-set_input7_8').value;
+    const  set_command_by_sms = document.getElementById('input-command_by_sms').value;
+    console.log(number);
+    
+         
+    switch(number) {
+        case 1:
+          // code block
+          select_function ="/hino_send_command/readconfig";
+          break;
+        case 2:
+          // code 
+          select_function = "/hino_send_command/readconfigID";
+          break;
+        case 3:
+          // code block
+          select_function = "/hino_send_command/req_Status";
+          break;
+        case 4:
+          // code block
+          select_function = "/hino_send_command/set_overspeed";
+          break;
+        case 5:
+          // code block
+          select_function = "/hino_send_command/set_RS232_1";
+          break;
+        case 6:
+          // code block
+          select_function = "/hino_send_command/Set_Voice_group";
+          break;
+        case 7:
+          // code block
+          select_function = "/hino_send_command/Set_voice_volume";
+          break;
+          
+        case 8:
+          // code block
+          select_function = "/hino_send_command/Set_voice_hino_A";
+          break;                           
+        case 9:
+          // code block
+          select_function = "/hino_send_command/Set_accident_start_speed";
+          break;
+        case 10:
+          // code block
+          select_function = "/hino_send_command/Set_accident_up_speed";
+          break;
+        case 11:
+          // code block
+          select_function = "/hino_send_command/Set_accident_down_speed";              
+          break;
+        case 12:
+          // code block
+          select_function = "/hino_send_command/Set_accident_shrpturn_speed";
+          break;
+        case 13:
+          // code block
+          select_function = "/hino_send_command/Set_over_rpm";
+          break;
+        case 14:
+          // code block
+          select_function = "/hino_send_command/Set_ip_port_apn";
+          break;            
+        case 15:
+          // code block
+          select_function = "/hino_send_command/Set_acc_tracking_on";
+          break;
+        case 16:
+          // code block
+          select_function = "/hino_send_command/Set_acc_tracking_off";
+          break;
+        case 17:
+          // code block
+          select_function = "/hino_send_command/Set_Heartbeat_tracking";
+          break;
+        case 18:
+          // code block
+         
+          select_function="/hino_send_command/Set_odometer";
+          break;
+        case 19:
+          // code block
+         
+          select_function="/hino_send_command/Set_model_id";
+          break;
+        case 20:
+          // code block
+         
+          select_function="/hino_send_command/Set_sleep_mode";
+          break;
+        case 21:
+          // code block
+         
+          select_function="/hino_send_command/Set_up_firmware";
+          break;
+        case 22:
+          // code block
+         
+          select_function="/hino_send_command/set_input7_8";
+          break;
+        case 23:
+          // code block
+         
+          select_function="/hino_send_command/reboot_device";
+          break;
+        case 24:
+          // code block
+         
+          select_function="/hino_send_command/command_by_sms";
+          break;
+       
+        default:
+          // code block
+      }
+    // console.log(select_function);
+    
+    fetch(select_function, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ fileContents: "",
+        setimei: set_imei,
+        set_overspeed: set_overspeed,
+        set_RS232_1: set_RS232_1, 
+        Set_Voice_group1: Set_Voice_group1, 
+        Set_Voice_group2: Set_Voice_group2, 
+        Set_Voice_group3: Set_Voice_group3, 
+        Set_accident_start_speed1: Set_accident_start_speed1,
+        Set_accident_start_speed2: Set_accident_start_speed2,
+        Set_accident_up_speed1: Set_accident_up_speed1,
+        Set_accident_up_speed2: Set_accident_up_speed2,
+        Set_accident_up_speed3: Set_accident_up_speed3,
+        Set_accident_up_speed4: Set_accident_up_speed4,
+        Set_accident_down_speed1: Set_accident_down_speed1,
+        Set_accident_down_speed2: Set_accident_down_speed2,
+        Set_accident_down_speed3: Set_accident_down_speed3,
+        Set_accident_down_speed4: Set_accident_down_speed4,
+        Set_accident_shrpturn_speed1: Set_accident_shrpturn_speed1,
+        Set_accident_shrpturn_speed2: Set_accident_shrpturn_speed2,
+        Set_accident_shrpturn_speed3: Set_accident_shrpturn_speed3,
+        Set_accident_shrpturn_speed4: Set_accident_shrpturn_speed4,
+        Set_accident_shrpturn_speed5: Set_accident_shrpturn_speed5,
+        Set_voice_volume1: Set_voice_volume1,
+        Set_voice_hino_A1: Set_voice_hino_A1,
+        Set_over_rpm1: Set_over_rpm1,
+        Set_ip_port_apn1: Set_ip_port_apn1,
+        Set_ip_port_apn2: Set_ip_port_apn2,
+        Set_ip_port_apn3: Set_ip_port_apn3,
+        Set_acc_tracking_on1: Set_acc_tracking_on1,
+        Set_acc_tracking_off1: Set_acc_tracking_off1,
+        Set_Heartbeat_tracking1: Set_Heartbeat_tracking1,
+        Set_Heartbeat_tracking2: Set_Heartbeat_tracking2,
+        Set_odometer1: Set_odometer1,
+        Set_model_id1: Set_model_id1,
+        Set_sleep_mode1: Set_sleep_mode1,
+        Set_up_firmware1: Set_up_firmware1,
+        Set_up_firmware2: Set_up_firmware2,
+        Set_up_firmware3: Set_up_firmware3,
+        set_input7_8: set_input7_8,
+        set_command_by_sms: set_command_by_sms,
+       })
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+      document.getElementById('input-textarea').value =data.fileContents;
+      console.log(keep);
+           
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+  }
+
+  function syntaxHighlight(json) {
+    if (typeof json != 'string') {
+        json = JSON.stringify(json, undefined, 4);
+    }
+    json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
+        var cls = 'json-number';
+        if (/^"/.test(match)) {
+            if (/:$/.test(match)) {
+                cls = 'json-key';
+            } else {
+                cls = 'json-string';
+            }
+        } else if (/true|false/.test(match)) {
+            cls = 'json-boolean';
+        } else if (/null/.test(match)) {
+            cls = 'json-null';
+        }
+        return '<span class="' + cls + '">' + match + '</span>';
+    });
+
+    
+}
+
+function auto_send() {
+  let  filecontents = document.getElementById('file-contents').value;
+  document.getElementById('input-textarea').value ="";
+  dataItems = filecontents.split(',');
+  // console.log('Data Items:', dataItems.length); // Check dataItems
+  count_imei_number=0; //set start 0
+  max_counter=dataItems.length; //set max counter
+  selsect_function=parseInt(document.getElementById('input-selecid').value);  //set function
+  keepdata =1;
+  if(selsect_function>0){
+  timerInterval = setInterval(updateTimer, 2000); // run 1000 mean interval auto 1 sec  
+  }else{
+    alert("Pls you select No.  ****IN function import file");
+  }
+  
+  
+}       
+        let timerInterval=0;  // for stop timer tiger
+        let keepdata = 0;  //keep data row
+        let selsect_function = 0; //function to run auto
+        let count_imei_number =0;  // counter imei
+        let max_counter =2; // for number of imei
+        let  dataItems ="";
+        function updateTimer() {
+          
+          if(dataItems[count_imei_number].length==13) //t500=13
+          {
+            document.getElementById('input-imei').value =dataItems[count_imei_number];
+            
+            sendFileContents(selsect_function,keepdata);
+
+          }else{
+            
+          }
+          
+            count_imei_number++;
+            if(count_imei_number >= max_counter){
+              keepdata = 0;
+              clearInterval(timerInterval);
+              alert("*** Auto Send ทำการส่งทั้งหมดเรียบร้อยแล้ว");
+            }
+           
+        }
+
+       
+
+       
+</script>

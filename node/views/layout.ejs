@@ -1,0 +1,102 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">
+      <img src="/images/logo_aek.ico" alt="Logo" class="logo-icon" style="width: 50px; height: 50px;">
+      <!-- Replace "logo.ico" with the actual path to your logo icon -->
+    </a>
+    <a class="navbar-brand" href="/">Home</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+      aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/">Services</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            Send commnad
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" href="/asap_send_command">Asap Command</a></li>
+            <li><a class="dropdown-item" href="/hino_send_command">HINO SEND Command</a></li>
+            <li><a class="dropdown-item" href="/ptt_send_command">PTT SEND Command</a></li>
+            <li><a class="dropdown-item" href="#">FMpro5 SEND Command</a></li>
+            <li><a class="dropdown-item" href="/DT800_send_command">DT800 SEND Command</a></li>
+            <li><a class="dropdown-item" href="/A1T_send_command">A1T SEND Command</a></li>
+            <li><a class="dropdown-item" href="/IRIS_send_command">IRIS SEND Command</a></li>
+            <li><a class="dropdown-item" href="/T530B_send_command">T530 ASAP SEND Command</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            SMS
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" href="/SMS_true_22">SMS send_GSM 2.2 (True)</a></li>
+            <li><a class="dropdown-item" href="/SMS_ais_23">SMS send_GSM 2.3 (AIS)</a></li>
+            <li><a class="dropdown-item" href="/SMS_ais_24">SMS send_GSM 2.4 (AIS)</a></li>
+
+
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            GPS DATA
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" href="/loggps_data_FMC640">FMC640 Data</a></li>
+            <li><a class="dropdown-item" href="/loggps_data_FMC640">FMpro5 Data</a></li>
+            <li><a class="dropdown-item" href="/loggps_data_AT6">AT6 Data</a></li>
+            <li><a class="dropdown-item" href="/loggps_data_JM_VL04">JM_VL04 data</a></li>
+            <li><a class="dropdown-item" href="/loggps_data_JC400">JC400 data</a></li>
+            <li><a class="dropdown-item" href="/loggps_data_M430">M430 data</a></li>
+            <li><a class="dropdown-item" href="/loggps_data_dt800">DT800 data</a></li>
+            <li><a class="dropdown-item" href="/loggps_data_a1t">A1T data</a></li>
+            <li><a class="dropdown-item" href="/loggps_data_iris">IRIS data</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            Log DATA
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" href="/logdata1">FMC640 Log</a></li>
+            <li><a class="dropdown-item" href="/logdata1">FMpro5 Log</a></li>
+            <li><a class="dropdown-item" href="/logdata_AT6">AT6 Log</a></li>
+            <li><a class="dropdown-item" href="/logdata_JM_VL04">JM_VL04 Log</a></li>
+            <li><a class="dropdown-item" href="/logdata_JC400">JC400 Log</a></li>
+            <li><a class="dropdown-item" href="/logdata_M430">M430 Log</a></li>
+            <li><a class="dropdown-item" href="/logdata_DT800">DT800 Log</a></li>
+            <li><a class="dropdown-item" href="/logdata_A1T">A1T Log</a></li>
+            <li><a class="dropdown-item" href="/logdata_richmor">MDVR richmor Log</a></li>
+            <li><a class="dropdown-item" href="/logdata_RV8">RV8 Log</a></li>
+            <li><a class="dropdown-item" href="/logdata_IRIS">IRIS Log</a></li>
+            <li><a class="dropdown-item" href="/logdata_T530B">T530 Log</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            Tools
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" href="/RS232_Port">RS232 Log</a></li>
+            
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

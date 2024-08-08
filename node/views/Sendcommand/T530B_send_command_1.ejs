@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>PRODUCT TEST</title>
+  <%- include ../logo %>
+    <style>
+      .w3-panel {
+        background-color: rgb(241, 246, 241);
+      }
+
+      .backgroundset {
+        background-color: rgb(242, 251, 251);
+      }
+
+      .backgroundset1 {
+        background-color: rgb(253, 247, 247);
+      }
+    </style>
+    <%- include ../layout_datetime_table %>
+</head>
+
+<body>
+  <%- include ../layout %>
+    <div class="main">
+
+      <section class="content">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="box box-primary">
+              <div class="box-header with-border" align="center">
+                <h3 class="box-title">T530B ASAP READ MAC</h3>
+
+              </div>
+              <form class="" method="post">
+                <div style="display:flex; flex-direction: row; justify-content: left; align-items: center">
+                  <label for="imei">$$ หมายเลข IMEI : </label>
+                  <input name="imei" type="text" size="14" <%=valueimei %>
+                  </input>
+
+                </div>
+                <textarea rows="3" cols="100" id="yourTextArea"><%=userData %></textarea>
+                <%- include ../carstatus %>
+                
+                  
+                 
+                     
+                 
+                
+              
+                <div class="row">
+                  <div class="col-sm-12">
+                    <table id="data_table" class="table table-bordered table-hover dataTable no-footer" border="1"
+                      cellpadding="0" cellspacing="0" role="grid">
+                <thead>
+                  <%- include ../layout_table_command %>
+
+
+                </thead>
+                <tbody>
+
+                  <tr>
+                    <td>
+                      <label for="Read_config1">1. </label>
+                    </td>
+                    <td>
+                      <label for="Read_config1">Read config </label>
+                    </td>
+                    <td>
+                      <input name="Read_config1" type="text" size="14" value="Read config" />
+                    </td>
+                    <td>
+                      <button class="btn btn-success" onclick='action="/T530B_send_command/readconfig"'>Send</button>
+                    </td>
+                    <td>
+                      <label for="Read_config1"> *** สำหรับขอข้อมูล config mac จากอุปกรณ์ </label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label for="Read_config1">2. </label>
+                    </td>
+                    <td>
+                      <label for="Read_config1">Read MAC ID </label>
+                    </td>
+                    <td>
+                      <input name="Read_MAC" type="text" size="14" value="Read MAC ID" />
+                    </td>
+                    <td>
+                      <button class="btn btn-success" onclick='action="/T530B_send_command/MAC_ID"'>Send</button>
+                    </td>
+                    <td>
+                      <label for="Read_MAC"> *** สำหรับ read mac จากที่เก็บไว้ที่ server </label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label for="Read_config">3. </label>
+                    </td>
+                    <td>
+                      <label for="Read_Status_car">Read Status_car</label>
+                    </td>
+                    <td>
+                      <input name="Status_car" type="text" size="14" value="Status_car" />
+                    </td>
+                    <td>
+                      <button class="btn btn-success" onclick='action="/T530B_send_command/Status_car"'>Send</button>
+                    </td>
+                    <td>
+                      <label for="Status_car"> *** สำหรับ read Status_car จากที่เก็บไว้ที่ server </label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label for="Read_config">4. </label>
+                    </td>
+                    <td>
+                      <label for="Read_Status_car">CUT Start_car</label>
+                    </td>
+                    <td>
+                      <input name="Status_car" type="text" size="14" value="cut start" />
+                    <td>
+                      <button class="btn btn-success" onclick='action="/T530B_send_command/Cut_start_car"'>Send</button>
+                    </td>
+                    <td>
+                      <label for="cut start"> *** สำหรับ cut start car </label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label for="Read_config">5. </label>
+                    </td>
+                    <td>
+                      <label for="Read_Status_car">UnCUT Start_car</label>
+                    </td>
+                    <td>
+                      <input name="Status_car" type="text" size="14" value="Uncut start" />
+                    </td>
+                    <td>
+                      <button class="btn btn-success" onclick='action="/T530B_send_command/UnCut_start_car"'>Send</button>
+                    </td>
+                    <td>
+                      <label for="Uncut start"> *** สำหรับ ยกเลิกตัดสตาร์ท Uncut start car </label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label for="Read_config">6. </label>
+                    </td>
+                    <td>
+                      <label for="Read_Status_car">lock car</label>
+                    </td>
+                    <td>
+                      <input name="Status_car" type="text" size="14" value="lock_car" />
+                    </td>
+                    <td>
+                      <button class="btn btn-success" onclick='action="/T530B_send_command/lock_car"'>Send</button>
+                    </td>
+                    <td>
+                      <label for="cut start"> *** สำหรับ lock car </label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label for="Read_config">7. </label>
+                    </td>
+                    <td>
+                      <label for="Read_Status_car">Unlock car</label>
+                    </td>
+                    <td>
+                      <input name="Status_car" type="text" size="14" value="unlock_car" />
+                    </td>
+                    <td>
+                      <button class="btn btn-success" onclick='action="/T530B_send_command/unlock_car"'>Send</button>
+                    </td>
+                    <td>
+                      <label for="Uncut start"> *** สำหรับ Unlock car </label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label for="Read_config">8. </label>
+                    </td>
+                    <td>
+                      <label for="Read_Status_car">start car</label>
+                    </td>
+                    <td>
+                      <input name="Status_car" type="text" size="14" value="start_car" />
+                    </td>
+                    <td>
+                      <button class="btn btn-success" onclick='action="/T530B_send_command/start_car"'>Send</button>
+                    </td>
+                    <td>
+                      <label for="Uncut start"> *** start car </label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label for="Read_config">9. </label>
+                    </td>
+                    <td>
+                      <label for="Read_Status_car">stop car</label>
+                    </td>
+                    <td>
+                      <input name="Status_car" type="text" size="14" value="stop_car" />
+                    </td>
+                    <td>
+                      <button class="btn btn-success" onclick='action="/T530B_send_command/stop_car"'>Send</button>
+                    </td>
+                    <td>
+                      <label for="Uncut start"> *** stop car </label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label for="Read_config">10. </label>
+                    </td>
+                    <td>
+                      <label for="Read_Status_car">Password Bluetooth</label>
+                    </td>
+                    <td>
+                      <input name="change_password" type="text" size="14" <%=value_set_password %>  />
+                    </td>
+                    <td>
+                      <button class="btn btn-success" onclick='action="/T530B_send_command/change_password"'>Send</button>
+                    </td>
+                    <td>
+                      <label for="Uncut start"> *** change password Bluetooth </label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label for="Read_config">11. </label>
+                    </td>
+                    <td>
+                      <label for="Read_Status_car">config packet data</label>
+                    </td>
+                    <td>
+                      <input name="change_packdata" type="text" size="14" value="packdata" />
+                    </td>
+                    <td>
+                      <button class="btn btn-success" onclick='action="/T530B_send_command/config_packdata"'>Send</button>
+                    </td>
+                    <td>
+                      <label for="Uncut start"> *** turn on obd2 packdata </label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label for="Read_config">12. </label>
+                    </td>
+                    <td>
+                      <label for="Read_Status_car">config interval time</label>
+                    </td>
+                    <td>
+                      <input name="config_interval" type="text" size="14" value="1min" />
+                    </td>
+                    <td>
+                      <button class="btn btn-success" onclick='action="/T530B_send_command/config_interval_time"'>Send</button>
+                    </td>
+                    <td>
+                      <label for="Uncut start"> *** config interval time 1min </label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label for="Read_config">13. </label>
+                    </td>
+                    <td>
+                      <label for="Read_Status_car">config ACC ON volte</label>
+                    </td>
+                    <td>
+                      <input name="config_accON" type="text" size="14" <%=value_set_accon %> />
+                    </td>
+                    <td>
+                      <button class="btn btn-success" onclick='action="/T530B_send_command/config_accON_voltage"'>Send</button>
+                    </td>
+                    <td>
+                      <label for="Uncut start"> *** config ACC ON  from voltage level battery *134 meaning 13.4 V   </label>
+
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label for="Read_config">14. </label>
+                    </td>
+                    <td>
+                      <label for="Read_Status_car">config model :</label>
+                    </td>
+                    <td>
+                      <input name="config_model_id" type="text" size="14" <%=value_set_model_id %> />
+                    </td>
+                    <td>
+                      <button class="btn btn-success" onclick='action="/T530B_send_command/config_model_id"'>Send</button>
+                    </td>
+                    <td>
+                      <label for="Uncut start"> *** config FC18=colora ,FC19=yaris   </label>
+
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label for="Read_config">15. </label>
+                    </td>
+                    <td>
+                      <label for="Read_Status_car">config server ip&port :</label>
+                    </td>
+                    <td>
+                      <label for="Set_ip_port_apn1">IP: </label>
+                            <input name="Set_ip_port_apn1" type="text" size="25" <%=value_Set_ip_port_apn1 %> />
+                            <label for="Set_ip_port_apn1">PORT: </label>
+                            <input name="Set_ip_port_apn2" type="text" size="5" <%=value_Set_ip_port_apn2 %> />
+                          
+                    </td>
+                    <td>
+                      <button class="btn btn-success" onclick='action="/T530B_send_command/Set_ip_port_apn"'>Send</button>
+                    </td>
+                    <td>
+                      <label for="Uncut start"> *** Server    </label>
+
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label for="Read_config">16. </label>
+                    </td>
+                    <td>
+                      <label for="Read_Status_car">update firmware :</label>
+                    </td>
+                    <td>
+                      <label for="Set_up_firmware">version : </label>
+                      <input name="Set_up_firmware1" type="text" size="15" value="HBT530CVM031I5" />
+                      <label for="Set_up_firmware1">ip: </label>
+                      <input name="Set_up_firmware2" type="text" size="15" value="3.0.63.30" />
+                      <label for="Set_up_firmware2">Folder: </label>
+                      <input name="Set_up_firmware3" type="text" size="15" value="/" />
+                    </td>
+                    <td>
+                      <button class="btn btn-success" onclick='action="/T530B_send_command/update_firmware"'>Send</button>
+                    </td>
+                    <td>
+                      <label for="Uncut start"> *** new firmware update    </label>
+
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label for="Read_config">17. </label>
+                    </td>
+                    <td>
+                      <label for="Read_Status_car">command by sms :</label>
+                    </td>
+                    <td>
+                      <input name="command_by_sms" type="text" size="35" <%=value_Set_command_by_sms %> />
+                    </td>
+                    <td>
+                      <button class="btn btn-success" onclick='action="/T530B_send_command/command_by_sms"'>Send</button>
+                    </td>
+                    <td>
+                      <label for="Uncut start"> *** asap server command by sms   </label>
+
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+
+
+
+
+            </form>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+</body>
+
+</html>

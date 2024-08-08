@@ -1,0 +1,93 @@
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+  $(function () {
+    $("#datepicker").datepicker({
+      dateFormat: 'yy-mm-dd',
+      yearRange: '-10:+10'
+    });
+  });
+</script>
+<style>
+  table {
+    border: 1px solid black;
+    border-collapse: collapse;
+    width: 80%;
+
+  }
+
+
+  td {
+    text-align: left;
+    padding: 8px;
+  }
+
+  tr:nth-child(even) {
+    background-color: #cedff5;
+  }
+
+  th:nth-child(even) {
+    background-color: #ee1822;
+  }
+
+  thead {
+    border: 1px solid black;
+    width: 90%;
+  }
+
+
+  div.data_table_wrapper {
+    width: 80%;
+    margin: 0 auto;
+  }
+
+
+
+
+  .form-group  {
+    width: 1800px;
+    height: 700px;
+    
+    overflow: scroll;
+  }
+  .form-group thead th {
+
+    top: 0;
+    position: sticky;
+    background-color: #69a6f5;
+
+}
+  .form-group thead th:nth-child(even) {
+
+
+    background-color: #5483c0;
+  }
+
+
+
+  .form-group3 {
+    overflow: scroll;
+    height: 1000px;
+    width: 98%;
+
+
+  }
+
+  .form-group2 {
+
+
+
+    width: 1000px;
+
+
+  }
+
+
+
+  footer {
+    width: 1000px;
+
+  }
+</style>

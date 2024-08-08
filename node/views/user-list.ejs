@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Fetch using My log</title>
+</head>
+
+<body>
+  <%- include layout %>
+    <div class="table-data">
+      <h2>Display Data using Node.js & MySQL</h2>
+      <table border="1">
+        <tr>
+          <th>S.N</th>
+          <th>imei</th>
+          <th>gpsdata</th>
+          <th>sever_ack</th>
+          <th>servertime</th>
+
+        </tr>
+
+        <% if(userData.length!=0){ var i=1; userData.forEach(function(dataX1){ %>
+          <tr>
+            <td>
+              <%=i; %>
+            </td>
+            <td>
+              <%=dataX1.imei %>
+            </td>
+            <td>
+              <%=dataX1.gpsdata %>
+            </td>
+            <td>
+              <%=dataX1.sever_ack %>
+            </td>
+            <td>
+              <%=dataX1.servertime %>
+            </td>
+
+          </tr>
+          <% i++; }) %>
+            <% } else{ %>
+              <tr>
+                <td colspan="7">No Data Found</td>
+              </tr>
+              <% } %>
+      </table>
+    </div>
+</body>
+
+</html>

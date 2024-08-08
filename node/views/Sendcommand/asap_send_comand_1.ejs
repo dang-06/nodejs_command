@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>ENGINEER TEST</title>
+  <%- include ../layout_datetime_table %>
+</head>
+
+<body>
+  <%- include ../layout %>
+    <div class="main">
+
+      <section class="content">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="box box-primary">
+              <div class="box-header with-border" align="center">
+                <h3 class="box-title">GPS READ MAC</h3>
+
+              </div>
+              <form class="" action="/asap_send_comand/add" method="post">
+                <div style="display:flex; flex-direction: row; justify-content: left; align-items: center">
+                  <label for="imei">$$ หมายเลข IMEI : </label>
+                  <input name="imei" type="text" size="14" <%=valueimei %> />
+
+
+
+
+
+                </div>
+                <textarea rows="3" cols="100" id="yourTextArea"><%=userData %></textarea>
+                <div style="display:flex; flex-direction: row; justify-content: left; align-items: center">
+                  <label for="Read_config">1. </label>
+
+                </div>
+                <div style="display:flex; flex-direction: row; justify-content: left; align-items: center">
+                  <label for="Read_config">$$ Read config : </label>
+                  <input name="Read_config" type="text" size="14" value="Read config" />
+
+
+
+
+                  <input type="submit2" class="btn btn-primary" name="Submit2" id="Submit2" value="Send">
+                  <label for="Read_config"> *** สำหรับขอข้อมูล config mac จากอุปกรณ์ </label>
+                </div>
+                <div style="display:flex; flex-direction: row; justify-content: left; align-items: center">
+                  <label for="Read_config">2. </label>
+
+                </div <div style="display:flex; flex-direction: row; justify-content: left; align-items: center">
+                <label for="Read_config">$$ Read MAC ID : </label>
+                <input name="Read_MAC" type="text" size="14" value="Read MAC ID" />
+
+
+
+
+                <input type="submit" class="btn btn-primary" name="Submit" id="Submit" value="Send">
+                <label for="Read_MAC"> *** สำหรับ read mac จากที่เก็บไว้ที่ server </label>
+            </div>
+
+            </form>
+          </div>
+
+        </div>
+    </div>
+    </section>
+
+    </div>
+
+</body>
+
+</html>

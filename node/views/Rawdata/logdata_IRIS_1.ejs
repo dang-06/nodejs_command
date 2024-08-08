@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>PRODUCT TEST</title>
+  <%- include ../logo %>
+    <title>
+      <%= userData %>
+    </title>
+    <%- include ../layout_datetime_table %>
+</head>
+
+<body>
+  <%- include ../layout %>
+    <div class="main">
+
+      <section class="content">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="box box-primary">
+              <div class="box-header with-border" align="center">
+                <h3 class="box-title">GPS Logs</h3>
+
+              </div>
+              <form class="" action="/logdata_IRIS/add" method="post">
+
+                <div style="display:flex; flex-direction: row; justify-content: left; align-items: center">
+                  <label for="imei">หมายเลข IMEI2 : </label>
+                  <input name="imei" type="text" size="14" <%=valueimei %> />
+
+                  <label for="datepicker">กรุณาเลือกวันที่ :</label>
+                  <input type="text" id="datepicker" name="cals" <%=valuedate %>>
+                  <label for="limit">Limit : </label>
+                  <div class="col-sm-1">
+                    <select name="limit">
+                      <option <%=valuelimit %> ><%=valuelimit2 %>
+                      </option>
+                      <option value="3">3</option>
+
+                      <option value="10">10</option>
+
+                      <option value="50">50</option>
+
+                      <option value="100">100</option>
+
+                      <option value="500">500</option>
+
+
+                      <option value="1000">1000</option>
+
+                      <option value="0"> 1 Day</option>
+
+
+
+                    </select>
+                  </div>
+                  <input type="submit" class="btn btn-primary" name="Submit" id="Submit" value="Submit">
+                </div>
+
+              </form>
+            </div>
+            <div class="box">
+              <div align="center">imei = --- Port = 13300 </div>
+              <div class="box-body">
+                <form>
+                  <div class="form-group">
+
+
+
+
+                    <table id="data_table" class="table table-bordered table-hover dataTable no-footer" border="1"
+                      cellpadding="0" cellspacing="0" role="grid">
+                      <thead>
+                        <%- include ../layout_table_log1 %>
+                      </thead>
+                      <% if(userData.length!=0){ var i=1; userData.forEach(function(dataX1){ %>
+                        <tr>
+                          <td>
+                            <%=i; %>
+                          </td>
+                          <td>
+                            <%=dataX1.imei %>
+                          </td>
+                          <td>
+                            <%=dataX1.server_stamp_time_date %>
+                          </td>
+                          <td>
+                            <%=dataX1.gpsdata %>
+                          </td>
+                          <td>
+                            <%=dataX1.gpsdatahex %>
+                          </td>
+                          <td>
+                            <%=dataX1.sever_ack %>
+                          </td>
+                          <td>
+                            <%=dataX1.client_host %>
+                          </td>
+                          <td>
+                            <%=dataX1.client_port %>
+                          </td>
+                        </tr>
+                        <% i++; }) %>
+                          <% } else{ %>
+                            <tr>
+                              <td colspan="7">No Data Found</td>
+                            </tr>
+                            <% } %>
+
+
+                              <tbody>
+
+                              </tbody>
+                    </table>
+
+
+
+                  </div>
+
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+</body>
+
+</html>

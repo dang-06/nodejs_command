@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>PRODUCT TEST</title>
+  <%- include ../logo %>
+    <style>
+      .w3-panel {
+        background-color: rgb(241, 246, 241);
+      }
+
+      .backgroundset {
+        background-color: rgb(242, 251, 251);
+      }
+
+      .backgroundset1 {
+        background-color: rgb(253, 247, 247);
+      }
+    </style>
+</head>
+
+<body>
+  <%- include ../layout %>
+    <div class="main">
+
+      <section class="content">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="box box-primary">
+              <div class="box-header with-border" align="center">
+                <h3 class="box-title">ASAP READ MAC</h3>
+
+              </div>
+              <form class="" method="post">
+                <div style="display:flex; flex-direction: row; justify-content: left; align-items: center">
+                  <label for="imei">$$ หมายเลข IMEI : </label>
+                  <input name="imei" type="text" size="14" value="T145181224097" />
+
+                </div>
+                <textarea rows="3" cols="100" id="yourTextArea">ROW</textarea>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <table id="data_table" class="table table-bordered table-hover dataTable no-footer" border="1"
+                      cellpadding="0" cellspacing="0" role="grid">
+                      <thead>
+                        <%- include ../layout_table_command %>
+
+
+                      </thead>
+                      <tbody>
+
+                        <tr>
+                          <td>
+                            <label for="Read_config1">1. </label>
+                          </td>
+                          <td>
+                            <label for="Read_config1">Read config </label>
+                          </td>
+                          <td>
+                            <input name="Read_config1" type="text" size="14" value="Read config" />
+                          </td>
+                          <td>
+                            <button class="btn btn-success" onclick='action="/asap_send_command/readconfig"'>Send</button>
+                          </td>
+                          <td>
+                            <label for="Read_config1"> *** สำหรับขอข้อมูล config mac จากอุปกรณ์ </label>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <label for="Read_config1">2. </label>
+                          </td>
+                          <td>
+                            <label for="Read_config1">Read MAC ID </label>
+                          </td>
+                          <td>
+                            <input name="Read_MAC" type="text" size="14" value="Read MAC ID" />
+                          </td>
+                          <td>
+                            <button class="btn btn-success" onclick='action="/asap_send_command/MAC_ID"'>Send</button>
+                          </td>
+                          <td>
+                            <label for="Read_MAC"> *** สำหรับ read mac จากที่เก็บไว้ที่ server </label>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <label for="Read_config">3. </label>
+                          </td>
+                          <td>
+                            <label for="Read_Status_car">Read Status_car</label>
+                          </td>
+                          <td>
+                            <input name="Status_car" type="text" size="14" value="Status_car" />
+                          </td>
+                          <td>
+                            <button class="btn btn-success" onclick='action="/asap_send_command/Status_car"'>Send</button>
+                          </td>
+                          <td>
+                            <label for="Status_car"> *** สำหรับ read Status_car จากที่เก็บไว้ที่ server </label>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <label for="Read_config">4. </label>
+                          </td>
+                          <td>
+                            <label for="Read_Status_car">CUT Start_car</label>
+                          </td>
+                          <td>
+                            <input name="Status_car" type="text" size="14" value="cut start" />
+                          <td>
+                            <button class="btn btn-success" onclick='action="/asap_send_command/Cut_start_car"'>Send</button>
+                          </td>
+                          <td>
+                            <label for="cut start"> *** สำหรับ cut start car </label>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <label for="Read_config">5. </label>
+                          </td>
+                          <td>
+                            <label for="Read_Status_car">UnCUT Start_car</label>
+                          </td>
+                          <td>
+                            <input name="Status_car" type="text" size="14" value="Uncut start" />
+                          </td>
+                          <td>
+                            <button class="btn btn-success" onclick='action="/asap_send_command/UnCut_start_car"'>Send</button>
+                          </td>
+                          <td>
+                            <label for="Uncut start"> *** สำหรับ ยกเลิกตัดสตาร์ท Uncut start car </label>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <label for="Read_config">6. </label>
+                          </td>
+                          <td>
+                            <label for="Read_Status_car">lock car</label>
+                          </td>
+                          <td>
+                            <input name="Status_car" type="text" size="14" value="lock_car" />
+                          </td>
+                          <td>
+                            <button class="btn btn-success" onclick='action="/asap_send_command/lock_car"'>Send</button>
+                          </td>
+                          <td>
+                            <label for="cut start"> *** สำหรับ lock car </label>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <label for="Read_config">7. </label>
+                          </td>
+                          <td>
+                            <label for="Read_Status_car">Unlock car</label>
+                          </td>
+                          <td>
+                            <input name="Status_car" type="text" size="14" value="unlock_car" />
+                          </td>
+                          <td>
+                            <button class="btn btn-success" onclick='action="/asap_send_command/unlock_car"'>Send</button>
+                          </td>
+                          <td>
+                            <label for="Uncut start"> *** สำหรับ Unlock car </label>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <label for="Read_config">8. </label>
+                          </td>
+                          <td>
+                            <label for="Read_Status_car">start car</label>
+                          </td>
+                          <td>
+                            <input name="Status_car" type="text" size="14" value="start_car" />
+                          </td>
+                          <td>
+                            <button class="btn btn-success" onclick='action="/asap_send_command/start_car"'>Send</button>
+                          </td>
+                          <td>
+                            <label for="Uncut start"> *** start car </label>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <label for="Read_config">9. </label>
+                          </td>
+                          <td>
+                            <label for="Read_Status_car">stop car</label>
+                          </td>
+                          <td>
+                            <input name="Status_car" type="text" size="14" value="stop_car" />
+                          </td>
+                          <td>
+                            <button class="btn btn-success" onclick='action="/asap_send_command/stop_car"'>Send</button>
+                          </td>
+                          <td>
+                            <label for="Uncut start"> *** stop car </label>
+                          </td>
+                        </tr>
+                        
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>PRODUCT TEST</title>
+  <%- include ../logo %>
+    <style>
+      .w3-panel {
+        background-color: rgb(241, 246, 241);
+      }
+
+      .backgroundset {
+        background-color: rgb(242, 251, 251);
+      }
+
+      .backgroundset1 {
+        background-color: rgb(253, 247, 247);
+      }
+      .json-key { color: brown; }
+      .json-string { color: green; }
+      .json-number { color: blue; }
+      .json-boolean { color: red; }
+      .json-null { color: magenta; }
+  
+    </style>
+</head>
+
+<body>
+  <%- include ../layout %>
+    <div class="main">
+
+      <section class="content">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="box box-primary">
+              <div class="box-header with-border" align="center">
+                <h3 class="box-title">T530B ASAP READ MAC</h3>
+               
+              </div>
+              <form class="" method="post">
+                
+                <div style="display:flex; flex-direction: row; justify-content: left; align-items: center">
+                  <label for="imei">$$ หมายเลข IMEI : </label>
+                  <input id="input-imei" name="imei" type="text" size="14"  value="018760440999" />
+
+                </div>
+                 
+                  <textarea id="input-textarea" z-index="2" rows="6" cols="60" id="yourTextArea">ROW</textarea>                  
+                  <img id="image-carstatus" src="/images/lock2.png"  alt="My Image" width="150" height="200"    >
+                  <label id="highlighted-json"></label> 
+                <div class="row">
+                  <div class="col-sm-12">
+                    <table id="data_table" class="table table-bordered table-hover dataTable no-footer" border="1"
+                      cellpadding="0" cellspacing="0" role="grid">
+                      <thead>
+                        <%- include ../layout_table_command %>
+
+                      </thead>
+                      <tbody>
+
+                        <tr>
+                          <td>
+                            <label for="Read_config1">1. </label>
+                          </td>
+                          <td>
+                            <label for="Read_config1">Read config </label>
+                          </td>
+                          <td>
+                            <input id="input-Read_config1" name="Read_config1" type="text" size="14" value="Read config" />
+                          </td>
+                          <td>
+                            <button type="button" class="btn btn-success"  onclick="sendFileContents(1,0)">Send</button>
+                          </td>
+                          <td>
+                            <label for="Read_config1"> *** สำหรับขอข้อมูล config mac จากอุปกรณ์ </label>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <label for="Read_config1">2. </label>
+                          </td>
+                          <td>
+                            <label for="Read_config1">Read MAC ID </label>
+                          </td>
+                          <td>
+                            <input id="input-Read_MAC" name="Read_MAC" type="text" size="14" value="Read MAC ID" />
+                          </td>
+                          <td>
+                            <button type="button" class="btn btn-success"  onclick="sendFileContents(2,0)">Send</button>
+                          </td>
+                          <td>
+                            <label for="Read_MAC"> *** สำหรับ read mac จากที่เก็บไว้ที่ server </label>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <label for="Read_config">3. </label>
+                          </td>
+                          <td>
+                            <label for="Read_Status_car">Read Status_car</label>
+                          </td>
+                          <td>
+                            <input id="input-Status_car" name="Status_car" type="text" size="14" value="Status_car" />
+                          </td>
+                          <td>
+                            <button type="button" class="btn btn-success"  onclick="sendFileContents(3,0)">Send</button>
+                          </td>
+                          <td>
+                            <label for="Status_car"> *** สำหรับ read Status_car จากที่เก็บไว้ที่ server </label>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <label for="Read_config">4. </label>
+                          </td>
+                          <td>
+                            <label for="Read_Status_car">CUT Start_car</label>
+                          </td>
+                          <td>
+                            <input id="input-cut_Status_car" name="Status_car" type="text" size="14" value="cut start" />
+                          <td>
+                            <button type="button" class="btn btn-success"  onclick="sendFileContents(4,0)">Send</button>
+                          </td>
+                          <td>
+                            <label for="cut start"> *** สำหรับ cut start car </label>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <label for="Read_config">5. </label>
+                          </td>
+                          <td>
+                            <label for="Read_Status_car">UnCUT Start_car</label>
+                          </td>
+                          <td>
+                            <input id="input-uncut_Status_car" name="Status_car" type="text" size="14" value="Uncut start" />
+                          </td>
+                          <td>
+                            <button type="button" class="btn btn-success"  onclick="sendFileContents(5,0)">Send</button>
+                          </td>
+                          <td>
+                            <label for="Uncut start"> *** สำหรับ ยกเลิกตัดสตาร์ท Uncut start car </label>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <label for="Read_config">6. </label>
+                          </td>
+                          <td>
+                            <label for="Read_Status_car">lock car</label>
+                          </td>
+                          <td>
+                            <input id="input-lock_car" name="Status_car" type="text" size="14" value="lock_car" />
+                          </td>
+                          <td>
+                            <button type="button" class="btn btn-success"  onclick="sendFileContents(6,0)">Send</button>
+                          </td>
+                          <td>
+                            <label for="cut start"> *** สำหรับ lock car </label>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <label for="Read_config">7. </label>
+                          </td>
+                          <td>
+                            <label for="Read_Status_car">Unlock car</label>
+                          </td>
+                          <td>
+                            <input id="input-unlock_car" name="Status_car" type="text" size="14" value="unlock_car" />
+                          </td>
+                          <td>
+                            <button type="button" class="btn btn-success"  onclick="sendFileContents(7,0)">Send</button>
+                          </td>
+                          <td>
+                            <label for="Uncut start"> *** สำหรับ Unlock car </label>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <label for="Read_config">8. </label>
+                          </td>
+                          <td>
+                            <label for="Read_Status_car">start car</label>
+                          </td>
+                          <td>
+                            <input id="input-start_car" name="Status_car" type="text" size="14" value="start_car" />
+                          </td>
+                          <td>
+                            <button type="button" class="btn btn-success"  onclick="sendFileContents(8,0)">Send</button>
+                          </td>
+                          <td>
+                            <label for="Uncut start"> *** start car </label>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <label for="Read_config">9. </label>
+                          </td>
+                          <td>
+                            <label for="Read_Status_car">stop car</label>
+                          </td>
+                          <td>
+                            <input id="input-stop_car" name="Status_car" type="text" size="14" value="stop_car" />
+                          </td>
+                          <td>
+                            <button type="button" class="btn btn-success"  onclick="sendFileContents(9,0)">Send</button>
+                          </td>
+                          <td>
+                            <label for="Uncut start"> *** stop car </label>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <label for="Read_config">10. </label>
+                          </td>
+                          <td>
+                            <label for="Read_Status_car">Password Bluetooth</label>
+                          </td>
+                          <td>
+                            <input id="input-change_password" name="change_password" type="text" size="14" value="12345678" />
+                          </td>
+                          <td>
+                            <button type="button" class="btn btn-success"  onclick="sendFileContents(10,0)">Send</button>
+                          </td>
+                          <td>
+                            <label for="Uncut start"> *** change password Bluetooth </label>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <label for="Read_config">11. </label>
+                          </td>
+                          <td>
+                            <label for="Read_Status_car">config packet data</label>
+                          </td>
+                          <td>
+                            <input id="input-change_packdata" name="change_packdata" type="text" size="14" value="packdata" />
+                          </td>
+                          <td>
+                            <button type="button" class="btn btn-success"  onclick="sendFileContents(11,0)">Send</button>
+                          </td>
+                          <td>
+                            <label for="Uncut start"> *** turn on obd2 packdata </label>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <label for="Read_config">12. </label>
+                          </td>
+                          <td>
+                            <label for="Read_Status_car">config interval time</label>
+                          </td>
+                          <td>
+                            <input id="input-config_interval" name="config_interval" type="text" size="14" value="1min" />
+                          </td>
+                          <td>
+                            <button type="button" class="btn btn-success"  onclick="sendFileContents(12,0)">Send</button>
+                          </td>
+                          <td>
+                            <label for="Uncut start"> *** config interval time 1min </label>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <label for="Read_config">13. </label>
+                          </td>
+                          <td>
+                            <label for="Read_Status_car">config ACC ON volte</label>
+                          </td>
+                          <td>
+                            <input id="input-config_accON" name="config_accON" type="text" size="14" value="134" />
+                          </td>
+                          <td>
+                            <button type="button" class="btn btn-success"  onclick="sendFileContents(13,0)">Send</button>
+                          </td>
+                          <td>
+                            <label for="Uncut start"> *** config ACC ON  from voltage level battery *134 meaning 13.4 V   </label>
+  
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <label for="Read_config">14. </label>
+                          </td>
+                          <td>
+                            <label for="Read_Status_car">config model :</label>
+                          </td>
+                          <td>
+                            <input id="input-config_model_id" name="config_model_id" type="text" size="14" value="FC18" />
+                            
+                          </td>
+                          <td>
+                            <button type="button" class="btn btn-success"  onclick="sendFileContents(14,0)">Send</button>
+                          </td>
+                          <td>
+                            <label for="Uncut start"> *** config FC18=colora ,FC19=yaris   </label>
+  
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <label for="Read_config">15. </label>
+                          </td>
+                          <td>
+                            <label for="Read_Status_car">config server ip&port :</label>
+                          </td>
+                          <td>
+                            <label for="Set_ip_port_apn1">IP: </label>
+                            <input id="input-Set_ip_port_apn1" name="Set_ip_port_apn1" type="text" size="25" value="asapgps.onelink-iot.com" />
+                            <label for="Set_ip_port_apn1">PORT: </label>
+                            <input id="input-Set_ip_port_apn2" name="Set_ip_port_apn2" type="text" size="5" value="10190" />
+                           
+                          </td>
+                          <td>
+                            <button type="button" class="btn btn-success"  onclick="sendFileContents(15,0)">Send</button>
+                          </td>
+                          <td>
+                            <label for="Uncut start"> *** Server    </label>
+  
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <label for="Read_config">16. </label>
+                          </td>
+                          <td>
+                            <label for="Read_Status_car">update firmware :</label>
+                          </td>
+                          <td>
+                            <label for="Set_up_firmware">version : </label>
+                            <input id="input-Set_up_firmware1" name="Set_up_firmware1" type="text" size="15" value="HBT530CVM002D2" />
+                            <label for="Set_up_firmware1">ip: </label>
+                            <input id="input-Set_up_firmware2"  name="Set_up_firmware2" type="text" size="15" value="3.0.63.30" />
+                            <label for="Set_up_firmware2">Folder: </label>
+                            <input id="input-Set_up_firmware3"  name="Set_up_firmware3" type="text" size="15" value="/" />
+                            <label for="Set_up_firmware4">PassW: </label>
+                            <input id="input-Set_up_firmware4"  name="Set_up_firmware4" type="text" size="15" value="" />
+                          </td>
+                          <td>
+                            <button type="button" class="btn btn-success"  onclick="sendFileContents(16,0)">Send</button>
+                          </td>
+                          <td>
+                            <label for="Uncut start"> *** new firmware update    </label>
+  
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <label for="Read_config">17. </label>
+                          </td>
+                          <td>
+                            <label for="Read_Status_car">command by sms :</label>
+                          </td>
+                          <td>
+                            <input id="input-command_by_sms"  name="command_by_sms" type="text" size="35" value="" />
+                          </td>
+                          <td>
+                            <button type="button" class="btn btn-success"  onclick="sendFileContents(17,0)">Send</button>
+                          </td>
+                          <td>
+                            <label for="Uncut start"> *** asap server command by sms    </label>
+      
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td>
+                            <label for="Read_config">18. </label>
+                          </td>
+                          <td>
+                            <label for="Read_Status_car">import file imei:</label>
+                          </td>
+                          <td>
+                            <form id="upload-form">
+                              <input type="file" id="file-input" accept=".txt" required>
+                            </form>
+                            
+                            <label for="checkfuncntion">No: </label>
+                            <select id="input-selecid" name="limit">  
+                              <option value="0" >0</option>                             
+                              <option value="1" >1</option>        
+                              <option value="2">2</option>  
+                              <option value="3">3</option>       
+                              <option value="4">4</option>        
+                              <option value="5">5</option>        
+                              <option value="6">6</option>
+                              <option value="7">7</option>        
+                              <option value="8">8</option>      
+                              <option value="9">9</option> 
+                              <option value="10" >10</option>                             
+                              <option value="11" >11</option>        
+                              <option value="12">12</option>  
+                              <option value="13">13</option>       
+                              <option value="14">14</option>        
+                              <option value="15">15</option>        
+                              <option value="16">16</option>
+                              <option value="17">17</option>        
+                              <option value="18">18</option>   
+        
+                            </select>
+                            <input id="file-contents" rows="3" cols="20"></input>
+                            
+                            
+                          </td>
+                          <td>
+                            <button type="button" class="btn btn-success"  onclick="auto_send()">Auto Send</button>
+
+                          </td>
+                          <td>
+                            <label for="Uncut start"> *** auto send     </label>
+      
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+           
+              
+
+
+            
+            </form>
+          </div>
+        </div>
+      </section>
+
+    </div>
+    <%- include T530B_script_send_command %>
+   
+
+</body>
+
+</html>

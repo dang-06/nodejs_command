@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>PRODUCT TEST</title>
+  <%- include ../logo %>
+    <%- include ../layout_datetime_table %>
+</head>
+
+<body>
+  <%- include ../layout %>
+    <div class="main">
+
+      <section class="content">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="box box-primary">
+              <div class="box-header with-border" align="center">
+                <h3 class="box-title">GPS Logs</h3>
+
+              </div>
+              <form class="" action="/logdata1/add" method="post">
+                <div style="display:flex; flex-direction: row; justify-content: left; align-items: center">
+                  <label for="imei">หมายเลข IMEI : </label>
+                  <input name="imei" type="text" size="14" value="867648041605898" />
+                  <label for="datepicker">กรุณาเลือกวันที่ :</label>
+                  <input type="text" id="datepicker" name="cals" <%=timenow %>>
+                  <label for="limit">Limit :</label>
+                  <div class="col-sm-1">
+                    <select name="limit">
+
+                      <option value="3" selected="">3</option>
+
+                      <option value="10">10</option>
+
+                      <option value="50">50</option>
+
+                      <option value="100">100</option>
+
+                      <option value="500">500</option>
+
+
+                      <option value="1000">1000</option>
+
+                      <option value="0"> 1 Day</option>
+
+
+
+                    </select>
+                  </div>
+                  <input type="submit" class="btn btn-primary" name="Submit" id="Submit" value="Submit">
+                </div>
+              </form>
+            </div>
+            <div class="box">
+              <div align="center">imei = --- Port = 11200 </div>
+              <div class="box-body">
+                <form>
+                  <div class="form-group" style=" overflow: auto;height: 1000px;  ">
+                    <div id="data_table_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+                      <div class="row">
+                        <div class="col-sm-6"></div>
+                        <div class="col-sm-6"></div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <table id="data_table" class="table table-bordered table-hover dataTable no-footer" border="1"
+                            cellpadding="0" cellspacing="0" role="grid">
+                            <thead>
+                              <tr class="style4" role="row">
+
+                                <th height="23" scope="col" class="sorting_asc" tabindex="0" aria-controls="data_table"
+                                  rowspan="1" colspan="1" aria-sort="ascending"
+                                  aria-label="IMEI: activate to sort column descending" style="width: 10px;">
+                                  <div align="center">S.N</div>
+                                </th>
+                                <th height="23" scope="col" class="sorting_asc" tabindex="0" aria-controls="data_table"
+                                  rowspan="1" colspan="1" aria-sort="ascending"
+                                  aria-label="IMEI: activate to sort column descending" style="width: 100px;">
+                                  <div align="center">IMEI</div>
+                                </th>
+                                <th height="23" scope="col" class="sorting_asc" tabindex="0" aria-controls="data_table"
+                                  rowspan="1" colspan="1" aria-sort="ascending"
+                                  aria-label="IMEI: activate to sort column descending" style="width: 170px;">
+                                  <div align="center">Gprs date time</div>
+                                </th>
+                                <th scope="col" class="sorting" tabindex="0" aria-controls="data_table" rowspan="1"
+                                  colspan="1" aria-label=" Gprsdate: activate to sort column ascending"
+                                  style="width: 200px;">
+                                  <div align="center" style=" background-color:WHITE "> RAW DATA</div>
+                                </th>
+                                <th scope="col" class="sorting" tabindex="0" aria-controls="data_table" rowspan="1"
+                                  colspan="1" aria-label="RAW DATA: activate to sort column ascending"
+                                  style="width: 50px;">
+                                  <div align="center">ACK DATA</div>
+                                </th>
+                                <th scope="col" class="sorting" tabindex="0" aria-controls="data_table" rowspan="1"
+                                  colspan="1" style="width: 50px;">
+                                  <div align="center">client_host</div>
+                                </th>
+                                <th scope="col" class="sorting" tabindex="0" aria-controls="data_table" rowspan="1"
+                                  colspan="1" style="width: 50px;">
+                                  <div align="center">client_Port</div>
+                                </th>
+                              </tr>
+
+
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+</body>
+
+</html>

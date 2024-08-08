@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>PRODUCT TEST</title>
+  <%- include ../logo %>
+    <%- include ../layout_datetime_table %>
+
+</head>
+
+<body>
+  <%- include ../layout %>
+    <div class="main">
+
+      <section class="content">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="box box-primary">
+              <div class="box-header with-border" align="center">
+                <h3 class="box-title">GPS Logs</h3>
+
+              </div>
+              <form class="" action="/loggps_data_dt800/add" method="post">
+                <script>
+
+                  console.log("helli");
+
+                </script>
+                <div style="display:flex; flex-direction: row; justify-content: left; align-items: center">
+                  <label for="imei">หมายเลข IMEI : </label>
+                  <input name="imei" type="text" size="14" <%=valueimei %> />
+                  <label for="datepicker">กรุณาเลือกวันที่ :</label>
+                  <input type="text" id="datepicker" name="cals" <%=valuedate %>>
+                  <label for="limit">Limit :</label>
+                  <div class="col-sm-1">
+                    <select name="limit" id="limit" value="30">
+                      <option <%=valuelimit %> ><%=valuelimit2 %>
+                      </option>
+                      <option value="3">3</option>
+
+                      <option value="10">10</option>
+
+                      <option value="50">50</option>
+
+                      <option value="100">100</option>
+
+                      <option value="500">500</option>
+
+                      <option value="1000">1000</option>
+                      <option value="2000">2000</option>
+                      <option value="3000">3000</option>
+                      <option value="0"> 1 Day</option>
+
+
+
+                    </select>
+
+                  </div>
+                  <input type="submit" class="btn btn-primary" name="Submit" id="Submit" value="Submit">
+                </div>
+
+              </form>
+            </div>
+            <div class="box">
+              <div align="center">imei = --- Port = 12300 </div>
+              <div class="box-body">
+                <form>
+
+
+
+
+
+                  <div align="center" class="form-group">
+
+
+                    <table>
+                      <thead>
+
+                        <%- include ../layout_table_gps4 %>
+                      </thead>
+
+                      <% if(userData.length!=0){ var i=1; userData.forEach(function(dataX1){ %>
+                        <tr>
+                          <td>
+                            <%=i; %>
+                          </td>
+                          <td>
+                            <%=dataX1.imei %>
+                          </td>
+                          <td>
+                            <%=dataX1.server_stamp_time %>
+                          </td>
+                          <td>
+                            <%=dataX1.gps_stamp_time %>
+                          </td>
+                          <td>
+                            <%=dataX1.alarm_sign %>
+                          </td>
+                          <td>
+                            <%=dataX1.device_status %>
+                          </td>
+                          <td>
+                            <%=dataX1.latitude %>
+                          </td>
+                          <td>
+                            <%=dataX1.longitude %>
+                          </td>
+                          <td>
+                            <%=dataX1.elevation %>
+                          </td>
+                          <td>
+                            <%=dataX1.gps_speed %>
+                          </td>
+                          <td>
+                            <%=dataX1.device_direction %>
+                          </td>
+                          <td>
+                            <%=dataX1.can_sp1 %>
+                          </td>
+                          <td>
+                            <%=dataX1.ad_value %>
+                          </td>
+                          <td>
+                            <%=dataX1.can_speed %>
+                          </td>
+                          <td>
+                            <%=dataX1.can_rpm %>
+                          </td>
+                          <td>
+                            <%=dataX1.can_brake %>
+                          </td>
+                          <td>
+                            <%=dataX1.clutch %>
+                          </td>
+                          <td>
+                            <%=dataX1.can_alarm_engine %>
+                          </td>
+                          <td>
+                            <%=dataX1.eng_code %>
+                          </td>
+                          <td>
+                            <%=dataX1.can_accelerator %>
+                          </td>
+                          <td>
+                            <%=dataX1.can_engine_total_use_time %>
+                          </td>
+                          <td>
+                            <%=dataX1.can_fuel_total_use %>
+                          </td>
+                          <td>
+                            <%=dataX1.can_fuel_consumtion %>
+                          </td>
+                          <td>
+                            <%=dataX1.can_fuel_level %>
+                          </td>
+                          <td>
+                            <%=dataX1.can_engine_temperature %>
+                          </td>
+                          <td>
+                            <%=dataX1.can_odo %>
+                          </td>
+                          <td>
+                            <%=dataX1.ignition %>
+                          </td>
+                          <td>
+                            <%=dataX1.g_sensor_x %>
+                          </td>
+                          <td>
+                            <%=dataX1.g_sensor_y %>
+                          </td>
+                          <td>
+                            <%=dataX1.g_sensor_z %>
+                          </td>
+                          <td>
+                            <%=dataX1.g_sensor_total %>
+                          </td>
+                          <td>
+                            <%=dataX1.running_time %>
+                          </td>
+                          <td>
+                            <%=dataX1.dlt_card_id %>
+                          </td>
+                          <td>
+                            <%=dataX1.dlt_card_type %>
+                          </td>
+
+
+
+                        </tr>
+                        <% i++; }) %>
+                          <% } else{ %>
+                            <tr>
+                              <td colspan="7">No Data Found</td>
+                            </tr>
+                            <% } %>
+
+                              </thead>
+                              <tbody>
+
+                              </tbody>
+                    </table>
+
+                  </div>
+
+
+
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+</body>
+
+</html>

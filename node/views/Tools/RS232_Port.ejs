@@ -1,0 +1,1837 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- (c) Anticyclone Systems Ltd, 2024 -->
+
+<head>
+  <title>Online RS232 serial port terminal application in a web browser</title>
+  <link rel="canonical" href="https://www.anticyclone-systems.co.uk/aslwebterm.php">
+
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="expires" content="0">
+
+  <meta name="description" content="Our online RS232 serial port terminal application in a web browser. Compatible with all AntiLog and AntiLogPro units">
+  <meta name="keywords" content="RS232,Web browser terminal,Online serial port terminal,AntiLog,AntiLogPro">
+  <meta name="robots" content="index,follow">
+  <meta name="date" content="2024-06-21">
+  <meta name="revised" content="2024-06-21">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+  :root {
+  	--main-table-border-color: #bbbbbb;
+  }
+  
+  .max-page-width {
+  	max-width: 754px;
+  }
+  
+  body {
+  	
+  	background-color: #4d6975;
+  	background-attachment: fixed;
+  	background-size:cover;
+  	-webkit-background-size: cover;
+  	background-position: center top;
+  	line-height: 1.6;
+  	border:0px;
+  	margin:0px;
+  	color: black;
+  }
+  
+  html {
+  	min-height:100%;
+  	height:100%;
+  }
+  
+  p,ul {
+  	font-size:11pt;
+  	font-family: Verdana,Arial,Helvetica,sans-serif;
+  	line-height: 1.6;
+  }
+  
+  h1 {
+  	color: #006bab;
+  	text-align:center;
+  	font-family: Arial,Helvetica,sans-serif;
+  	font-size: 19pt;
+  	font-weight: normal;
+  	font-style: normal;
+  	line-height: 1.4;
+  	margin: 0px;
+  	padding:14px 0px 12px 0px;
+  }
+  
+  h2 {
+  	border-radius: 5px;
+  	background: #bee1f9;
+  	margin: 8px 0px 6px 0px;
+  	padding: 3px 1em 3px 1em;
+  	font-size:13pt;
+  	font-weight: normal;
+  	font-style: normal;
+  	font-family: Verdana,Arial,Helvetica,sans-serif;
+  	box-shadow: 3px 4px 8px 0 rgba(0, 0, 0, 0.2), 4px 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  
+  h3 {
+  	color: black;
+  	text-align:left;
+  	font-family: Verdana,Arial,Helvetica,sans-serif;
+  	font-size: 12pt;
+  	font-weight: bold;
+  	font-style: normal;
+  }
+  
+  img {
+  	max-width: 100%;
+  	height: auto;
+  	border: 0;
+  	image-rendering: -webkit-optimize-contrast;
+  }
+  
+  textarea {
+  	background-color: white;
+  }
+  
+  a.anchor {
+  	display: block;
+  	position: relative;
+  	top: -40px;
+  	visibility: hidden;
+  }
+  
+  .h1-underline {
+  	display: block;
+  	height: 0px;
+  	border: 0;
+  	border-top: 2px solid #cbcbcb;
+  	margin: 0px;
+  	padding: 0;
+  }
+  
+  
+  
+  .image-icon {
+  	width:148px;
+  	height:auto;
+  	float:right;
+  	margin-bottom: 1px;
+  }
+  
+  .headerbarline {
+  	position: fixed;
+  	top: 0px;
+  	width: 100%;
+  	text-align: center;
+  	background-color: white;
+  	background-color: rgba(255,255,255,0.86);
+  }
+  
+  .headerbar {
+  	border: 0px;
+  	width: 100%;
+  	margin:auto;
+  	padding: 0px;
+  	border-spacing: 0px;
+  	background-color: transparent;
+  	line-height: 1.0;
+  }
+  
+  .menuline {
+  	position: fixed;
+  	width: 100%;
+  	top: 0;
+  }
+  .menubarline {
+  	position: fixed;
+  	top: 75px;
+  	width: 100%;
+  	text-align: center;
+  	background-color: #333333;
+  	background-color: rgba(40,40,40,0.91);
+  	box-shadow: 0px 4px 6px 0 rgb(0 0 0 / 20%), 0px 6px 20px 0 rgb(0 0 0 / 10%);
+  }
+  .menubar {
+  	margin:auto;
+  }
+  .menubar-search {
+  	margin:0;
+  }
+  
+  
+  ul.menubar {
+  	list-style-type: none;
+  	margin: 0;
+  	padding: 0;
+  	overflow: hidden;
+  	background-color: transparent;
+  	font-size: 16px;
+  }
+  
+  li.menubar {
+  	float: left;
+  }
+  
+  li.menubar a, .dropbtn {
+  	display: inline-block;
+  	color: white;
+  	text-align: center;
+  	padding: 6px 16px;
+  	text-decoration: none;
+  	font-family:Verdana,Arial,Helvetica,sans-serif;
+  }
+  
+  li.menubar a:hover, .dropdown:hover .dropbtn {
+  	background-color: #00a0ff;
+  }
+  li.menubar a:active, .dropdown:active {
+  	color: white;
+  	background-color: #0080E0;
+  }
+  
+  li.dropdown {
+  	display: inline-block;
+  }
+  
+  .dropdown-content {
+  	display: none;
+  	position: absolute;
+  	background-color: #f9f9f9;
+  	min-width: 160px;
+  	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  	z-index: 10;
+  }
+  
+  .dropdown-content a {
+  	color: black;
+  	padding: 8px 16px;
+  	text-decoration: none;
+  	display: block;
+  	text-align: left;
+  	font-family:Verdana,Arial,Helvetica,sans-serif;
+  }
+  .dropdown-content a:hover {
+  	background-color: #00a0ff
+  }
+  .dropdown-content a:active {
+  	color: white;
+  	background-color: #0080E0
+  }
+  
+  .dropdown:hover .dropdown-content {
+  	display: block;
+  }
+  
+  .menu-basket {
+  	width: 16px;
+  	padding-top:2px;
+  }
+  
+  
+  .main-panel {
+  	border:0px;
+  	padding:0px 2px 0px 2px;
+  	border-spacing:0px;
+  	margin: 129px auto 0px auto;
+  	background-color:transparent;
+  }
+  
+  .button {
+  	padding-left: 16px;
+  	padding-right: 16px;
+  	padding-top: 3px;
+  	padding-bottom: 4px;
+  	font-family: Verdana,Arial,Helvetica,sans-serif;
+  	font-size: 11pt;
+  	text-align: center;
+  	color: white;
+  	background-color: #339999;
+  	border-color: #339999;
+  	border-radius: 4px;
+  	box-shadow: 2px 4px 6px 0 rgba(0, 0, 0, 0.3), 3px 6px 20px 0 rgba(0, 0, 0, 0.1);
+  
+  	text-decoration: none;
+  	display: inline-block;
+  	margin: 4px 2px;
+  	cursor: pointer;
+  }
+  @media(hover: hover) and (pointer: fine) {
+  	.button:hover {
+  		color:white;
+  		border-color: #00a0ff;
+  		background-color: #00a0ff;
+  	}
+  }
+  .button:active {
+  	color: white;
+  	background-color: #0080E0;
+  	border-color: #0090F0;
+  }
+  .button:disabled {
+  	color: #eee;
+  	border-color: #ccc;
+  	background-color: #ccc;
+  }
+  
+  
+  
+  .contentdiv {
+  	background-color:white;
+  	margin:35px 0px 20px 0px;
+  	padding:0px 20px;
+  	border-radius: 7px;
+  	box-shadow: 3px 4px 8px 0 rgba(0, 0, 0, 0.5), 4px 6px 20px 0 rgba(0, 0, 0, 0.3);
+  }
+  .blocktextboundary {
+  	padding-top: 1px;
+  	padding-bottom: 3px;
+  	padding-left: 25px;
+  	padding-right: 25px;
+  	font-size:11pt;
+  	font-family: Verdana,Arial,Helvetica,sans-serif;
+  }
+  .blocktableboundary {
+  	padding-top: 1px;
+  	padding-bottom: 3px;
+  	padding-left: 12px;
+  	padding-right: 12px;
+  	font-size:11pt;
+  	font-family: Verdana,Arial,Helvetica,sans-serif;
+  }
+  
+  @media screen and (max-width: 600px) {
+  	.contentdiv {
+  		padding:0px 6px;
+  	}
+  	.blocktextboundary {
+  		padding-left: 6px;
+  		padding-right: 6px;
+  	}
+  	.blocktableboundary {
+  		padding-left: 2px;
+  		padding-right: 2px;
+  	}
+  }
+  
+  
+  .divtable {
+  	border: 0px solid #cccccc;
+  	padding:0px;
+  	margin:8px 0px;
+  	text-align: left;
+  	box-shadow: 3px 4px 6px 0 rgba(0, 0, 0, 0.1), 4px 6px 20px 0 rgba(0, 0, 0, 0.2);
+  }
+  
+  .divtable-header {
+  	background-color: #ccffcc;
+  	font-weight: bold;
+  	text-align: left;
+  	padding:3px 10px;
+  	border-top: 1px solid #cccccc;
+  }
+  
+  .divtable-line {
+  	background-color: #f4f4f4;
+  	padding:8px 10px;
+  	border-top: 1px solid #cccccc;
+  }
+  .divtable-line:after {
+  	content: "";
+  	display: table;
+  	clear: both;
+  }
+  
+  .divtable-lastline {
+  	background-color: #f4f4f4;
+  	padding:8px 10px;
+  	border-top: 1px solid #cccccc;
+  	border-bottom: 1px solid #cccccc;
+  }
+  .divtable-lastline:after {
+  	content: "";
+  	display: table;
+  	clear: both;
+  }
+  
+  .divtable-firstcol {
+  	float: left;
+  	font-weight: bold;
+  }
+  
+  .infotable {
+  	border-collapse: collapse;
+  	font-family: Verdana,Arial,Helvetica,sans-serif;
+  	font-size: 11pt;
+  	line-height: 1.6;
+  	box-shadow: 3px 4px 6px 0 rgba(0, 0, 0, 0.1), 4px 6px 20px 0 rgba(0, 0, 0, 0.2);
+  }
+  .infotable th {
+  	padding:3px 8px;
+  	text-align: left;
+  	border-top: 1px solid #cccccc;
+  	background-color: #ccffcc;
+  }
+  .infotable tr {
+
+  }
+  .infotable td {
+  	padding:8px 8px;
+  	text-align: left;
+  	border-top: 1px solid #cccccc;
+  	background-color: white;
+  }
+  .infotable td:nth-child(1){background-color: #eeffee;}
+  .infotable tr:last-child td {border-bottom: 1px solid #cccccc;}
+  
+  .contact-text {
+  	text-align:center;
+  	font-style: italic;
+  	color:grey;
+  	margin-top:16px;
+  	margin-bottom:22px;
+  	font-size:10pt;
+  }
+  
+  
+  .hr-page-end {
+  	border: none;
+  	height: 1px;
+  	color: #ccc;
+  	background-color: #ccc;
+  }
+</style>
+<style>
+  :root {
+  	--term-border-color: red;
+  	--term-border-color-focus: red;
+  }
+  
+  h1 {
+  	font-size: 14pt;
+  	margin: 5px 0px 5px 0px;
+  	padding: 9px 0px 0px 0px;
+  }
+  
+  
+  h2 {
+  	margin: 5px 5px 13px 5px;
+  	text-align: center;
+  }
+  
+  h3 {
+  	text-align: center;
+  	font-size: 11pt;
+  	font-weight: bold;
+  	font-style: normal;
+  	font-family: Verdana,Arial,Helvetica,sans-serif;
+  	margin: 4px 0px 0px 0px;
+  }
+  
+  h4 {
+  	text-align:center;
+  	font-size:14pt;
+  	font-weight: normal;
+  	font-style: normal;
+  	font-family: Verdana,Arial,Helvetica,sans-serif;
+  }
+  
+  ul {
+  	margin:0px;
+  	padding-inline-start: 20px;
+  }
+  
+  dl {
+  	margin:0px;
+  }
+  
+  dt {
+  	font-weight:bold;
+  }
+  
+  dd {
+  	margin-inline-start: 20px;
+  }
+  
+  img {
+  	max-width: 100%;
+  	height: auto;
+  	border: 0;
+  	image-rendering: -webkit-optimize-contrast;
+  }
+  
+  textarea {
+  	color: transparent;
+  	resize: none;
+  	padding: 4px 4px 8px 4px;
+  	text-shadow: 0px 0px 0px black;
+  	font-family: monospace;
+  	font-size: 15px;
+  	border-color: var(--term-border-color);
+  	border-width: 3px;
+  	margin: 5px 10px 6px 10px;
+  	white-space:nowrap;
+  	box-sizing:border-box;
+  	-ms-box-sizing: border-box;
+  	-webkit-box-sizing: border-box;
+  	width: calc(97.3%);
+  }
+  textarea:focus {
+  	outline: var(--term-border-color-focus) auto 1px;
+  	border-color: var(--term-border-color-focus);
+  	border-width: 3px;
+  }
+  
+  progress {
+  	height:20px;
+  	width:250px;
+  	margin: 0px 12px 0px 0px;
+  }
+  
+  
+  .header-table {
+  	margin:5px 10px 0px 10px;
+  	border-spacing:0px;
+  	width:-webkit-fill-available;
+  }
+  .header-table td:nth-child(1) {
+  	padding-right:30px;
+  }
+  .header-table td:nth-child(2) {
+  	width:90px;
+  }
+  
+  .title-line {
+  	padding-left:60px;
+  	font-size:13pt;
+  	font-weight: normal;
+  	font-style: normal;
+  	font-family: Verdana,Arial,Helvetica,sans-serif;
+  }
+  
+  .contentdiv {
+  	margin:auto;
+  	margin-top:12px;
+  	margin-bottom:20px;
+  	background-color:white;
+  	padding:10px 10px 5px 10px;
+  	border-radius: 7px;
+  	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  
+  .termdiv {
+  	width:fit-content;
+  	width:-moz-fit-content;
+  }
+  
+  .webapidiv {
+  	padding:6px 10px 6px 10px;
+  	display:none;
+  }
+  .webapidiv-inner {
+  	width:auto;
+  	text-align:center;
+  	border:solid 3px #85c1d4;
+  	border-radius: 7px;
+  	font-size:12pt;
+  	font-weight: normal;
+  	font-style: normal;
+  	font-family: Verdana,Arial,Helvetica,sans-serif;
+  }
+  .webapidiv-info {
+  	max-width:770px;
+  	margin:auto;
+  }
+  .webapidiv-infotext {
+  	padding: 0px 10px;
+  	text-align:left;
+  	font-size:11pt;
+  	font-weight: normal;
+  	font-style: normal;
+  	font-family: Verdana,Arial,Helvetica,sans-serif;
+  	line-height:1.6;
+  }
+  .webapidiv-infotable {
+  	margin:auto;
+  	border-spacing:8px;
+  }
+  .webapidiv-infotable td:nth-child(1) {
+  	width:100px;
+  	font-size:11pt;
+  	color: blue;
+  }
+  .webapidiv-infotable td:nth-child(2) {
+  	padding-right:10px;
+  }
+  
+  .settingsdiv {
+  	padding:6px 10px 6px 10px;
+  	display:none;
+  }
+  .settingsdiv-inner {
+  	width:auto;
+  	padding:00px 10px;
+  	text-align:center;
+  	border:solid 3px #85c1d4;
+  	border-radius: 7px;
+  	font-size:12pt;
+  	font-weight: normal;
+  	font-style: normal;
+  	font-family: Verdana,Arial,Helvetica,sans-serif;
+  }
+  .settingsdiv-opts {
+  	border-radius: 6px;
+  	padding:4px 4px;
+  	margin:4px 4px;
+  	border:solid 2px #ddd;
+  }
+  .settingsinner-table {
+  	width:-webkit-fill-available;
+  }
+  .settingsdiv-table {
+  	width:-webkit-fill-available;
+  	display: table;
+  	border-collapse: separate;
+  	box-sizing: border-box;
+  	text-indent: initial;
+  	white-space: normal;
+  	line-height: normal;
+  	font-weight: normal;
+  	font-size: 11pt;
+  	font-style: normal;
+  	text-align: start;
+  	border-spacing: 2px;
+  	border-color: grey;
+  	font-variant: normal;
+  }
+  .settingsdiv-table td {
+  	padding:2px 15px;
+  	text-align:center;
+  }
+  .settingsdiv-table th {
+  	font-size: 11pt;
+  	font-weight: normal;
+  	background-color:#c5ffc5;
+  }
+  .settingsdiv-table tr:nth-child(2) td {
+  	padding-top:6px;
+  	padding-bottom:6px;
+  	background-color:#eeeeee;
+  }
+  .settingsdiv-table tr:nth-child(4) td {
+  	padding-top:6px;
+  	background-color:#eeeeee;
+  	padding-bottom:6px;
+  }
+  .settings-action-buttons {
+  	margin: 14px auto 7px auto;
+  }
+  
+  .aboutdiv {
+  	padding:6px 10px 6px 10px;
+  	display:none;
+  }
+  .aboutdiv-inner {
+  	width:auto;
+  	text-align:center;
+  	border:solid 3px #85c1d4;
+  	border-radius: 7px;
+  	font-size:11pt;
+  	font-weight: normal;
+  	font-style: normal;
+  	font-family: Verdana,Arial,Helvetica,sans-serif;
+  }
+  
+  .helpdiv {
+  	padding:6px 10px 6px 10px;
+  	display:none;
+  }
+  .helpdiv-inner {
+  	max-width:fit-content;
+  	width:-moz-fit-content;
+  	padding:4px 10px;
+  	text-align:left;
+  	border:solid 3px #85c1d4;
+  	border-radius: 7px;
+  	font-size:11pt;
+  	font-weight: normal;
+  	font-style: normal;
+  	font-family: Verdana,Arial,Helvetica,sans-serif;
+  	line-height:1.6;
+  }
+  
+  .statusdiv {
+  	padding:1px 10px 4px 10px;
+  }
+  .status-inner {
+  	width:auto;
+  	padding:0px 10px 0px 10px;
+  	border-radius: 5px;
+  	text-align:left;
+  	font-size:11pt;
+  	font-weight: normal;
+  	font-style: normal;
+  	font-family: Arial,Helvetica,sans-serif;
+  	background-color:#c5ffc5;
+  	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  .status-table {
+  	font-size: 10pt;
+  	width:-webkit-fill-available;
+  }
+  .status-table td:nth-child(1) {
+  	width:10px;
+  	padding:3px 10px 3px 0px;
+  	border-right: solid 1px grey;
+  	white-space: pre;
+  }
+  .status-table td:nth-child(2) {
+  	width:50px;
+  	padding:0px 10px 0px 10px;
+  	border-right: solid 1px grey;
+  	text-align:center;
+  }
+  .status-table td:nth-child(3) {
+  	padding:3px 0px 3px 0px;
+  	text-align:center;
+  }
+  .statusline-progress {
+  	display:none;
+  }
+  .statusline-progress-table {
+  	margin:0px;
+  	padding:0px;
+  }
+  
+  .termoptionsdiv {
+  	padding:10px 10px 3px 10px;
+  }
+  .termoptions-inner {
+  	width:auto;
+  	text-align:center;
+  	font-size:11pt;
+  	font-weight: normal;
+  	font-style: normal;
+  	font-family: Verdana,Arial,Helvetica,sans-serif;
+  }
+  
+  .upgradesdiv {
+  	margin-bottom: 8px;
+  	padding:6px 10px 6px 10px;
+  	display:none;
+  }
+  .upgradesdiv-info {
+  	min-height:260px;
+  	border-radius: 6px;
+  	padding:8px 8px;
+  	margin: 16px 4px 11px 4px;
+  	border:solid 2px #ddd;
+  }
+  
+  .upgradesdiv-inner {
+  	padding:4px 10px;
+  	text-align:left;
+  	border:solid 3px #d485b8;
+  	border-radius: 7px;
+  	font-size:11pt;
+  	font-weight: normal;
+  	font-style: normal;
+  	font-family: Verdana,Arial,Helvetica,sans-serif;
+  	line-height:1.6;
+  }
+  .upgradesdiv-inner dt {
+  	margin-top: 10px;
+  	margin-bottom: 5px;
+  }
+  .upgrades-controls {
+  	margin:10px auto 5px auto;
+  	text-align:center;
+  }
+  .upgrades-checkboxes {
+  	margin: 12px 2px;
+  }
+  
+  .upgrades-messages
+  {
+  	margin-top: 10px;
+  }
+  
+  .sendfilediv {
+  	padding:14px 10px 4px 10px;
+  	display:none;
+  }
+  .sendfile-inner {
+  	width:auto;
+  	text-align:center;
+  	border:solid 3px #2a4db5;
+  	border-radius: 7px;
+  	font-size:11pt;
+  	font-weight: normal;
+  	font-style: normal;
+  	font-family: Verdana,Arial,Helvetica,sans-serif;
+  	padding:8px 10px;
+  }
+  
+  .term-button {
+  	padding-left: 10px;
+  	padding-right: 10px;
+  	padding-top: 3px;
+  	padding-bottom: 4px;
+  	margin-bottom: 6px;
+  	font-family: Verdana,Arial,Helvetica,sans-serif;
+  	font-size: 11pt;
+  	color: white;
+  	background-color: #339999;
+  	border-color: #339999;
+  	border-radius: 4px;
+  	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  @media(hover: hover) and (pointer: fine) {
+  	.term-button:hover {
+  		color:white;
+  		border-color: #00a0ff;
+  		background-color: #00a0ff;
+  	}
+  }
+  .term-button:active {
+  	color: white;
+  	background-color: #0080E0;
+  	border-color: #0090F0;
+  }
+  .term-button:disabled {
+  	color: #eee;
+  	border-color: #ccc;
+  	background-color: #ccc;
+  }
+  
+  .term-button-small {
+  	padding-left: 6px;
+  	padding-right: 6px;
+  	padding-top: 1px;
+  	padding-bottom: 1px;
+  	vertical-align: middle;
+  	font-family: Verdana,Arial,Helvetica,sans-serif;
+  	font-size: 9pt;
+  	color: white;
+  	background-color: #339999;
+  	border-color: #339999;
+  	border-radius: 3px;
+  }
+  @media(hover: hover) and (pointer: fine) {
+  	.term-button-small:hover {
+  		color:white;
+  		border-color: #00a0ff;
+  		background-color: #00a0ff;
+  	}
+  }
+  .term-button-small:active {
+  	color: white;
+  	background-color: #0080E0;
+  	border-color: #0090F0;
+  }
+  .term-button-small:disabled {
+  	color: #eee;
+  	border-color: #ccc;
+  	background-color: #ccc;
+  }
+  
+  .product-image {
+  	width:90px;
+  	height:auto;
+  	display:none;
+  }
+  
+</style>
+
+<script>
+class ASLOptions{#opts;constructor(opts){this.set(opts);}clear(){this.#opts='';}get(){return this.#opts;
+}set(opts){this.clear();if(typeof opts=='object'){if(opts!=null){this.#opts=opts.get();}}else{this.add(opts);
+}}setAsString(optsStr){this.clear();this.addAsString(optsStr);}add(optsStr){if(optsStr==null){return;
+}optsStr=optsStr.trim();if(optsStr.length==0){return;}optsStr=optsStr.trim();let len=optsStr.length;for(let i=0;i<len;i++)
+{let ch=optsStr[i];if((ch<'A')||(ch>'Z')){if((ch>='a')&&(ch<='z')){if(ch=='s'){ch='S';}}else if((ch<'0')||(ch>'9'))
+{if(ch=='!'){ch='d';}else{continue;}}}if(!this.isSet(ch)){this.#opts=this.#opts+ch;}}}addAsString(optsStr)
+{if(optsStr==null){return;}optsStr=optsStr.trim();if(optsStr.length==0){return;}optsStr=optsStr.replace('[Bootloader]', 'b');
+optsStr=optsStr.replace('[Debug]', 'd');optsStr=optsStr.replace('[IOT]', 'i');let isLower=0;let out='';
+let len=optsStr.length;for(let i=0;i<len;i++){let ch=optsStr[i];if(ch=='['){isLower=1;continue;}if(ch==']')
+{isLower=0;continue;}if(isLower!=0){if(isLower>1){continue;}ch=ch.toLowerCase();isLower++;}out+=ch;}this.add(out);
+}isSet(opt){if(opt=='s'){opt='S';}else{if(opt=='!'){opt='d';}}return this.#opts.indexOf(opt)>=0;}isOEM()
+{if(this.#opts.indexOf('O')>=0){return true;}if(this.#opts.indexOf('R')>=0){return true;}return false;
+}isEqual(opts){let optsStr;if(typeof opts=='object'){optsStr=opts.get();}else{optsStr=(new ASLOptions(opts)).get();
+}let len=optsStr.length;if(len!=this.get().length){return false;}for(let i=0;i<len;i++){if(!this.isSet(optsStr[i]))
+{return false;}}return true;}toString(codes=false,mask=''){let ch;let str='';let optObj={};optObj.opts=this.#opts;
+if(this.#getO(optObj,'b')){str=str+this.#getStr(codes,mask,'b','[Bootloader]');}if(this.#getO(optObj,'d')||this.#getO(optObj,'!'))
+{str=str+this.#getStr(codes,mask,'d','[Debug]');}if(this.#getO(optObj,'i')){str=str+this.#getStr(codes,mask,'i','[IOT]');
+}optObj.opts=optObj.opts.replace('s','S');optObj.opts=optObj.opts.replace('g','G');let i=0;while(i<optObj.opts.length)
+{ch=optObj.opts[i];if((ch>='a')&&(ch<='z')){optObj.opts=optObj.opts.replace(ch,'');str=str+this.#getStr(codes,mask,ch,'['+ch.toUpperCase()+']');
+i=0;continue;}i++;}let optList='GSNALPXDM';let len=optList.length;for(i=0;i<len;i++){let op=optList.charAt(i);
+if(this.#getO(optObj,op)){str=str+this.#getStr(codes,mask,op,op);}}i=0;while(i<optObj.opts.length){ch=optObj.opts[i];
+if((ch>='A')&&(ch<='Z')){optObj.opts=optObj.opts.replace(ch,'');str=str+this.#getStr(codes,mask,ch,ch);
+i=0;continue;}i++;}for(i=0;i<optObj.opts.length;i++){ch=optObj.opts[i];if((ch>='0')&&(ch<='9')){str=str+this.#getStr(codes,mask,ch,ch);
+}}return str;}#getStr(codes,mask,ch,text){if(mask.indexOf(ch)>=0){return '';}return codes ? ch : text;
+}#getO(optObj,ch){if(optObj.opts.indexOf(ch)>=0){optObj.opts=optObj.opts.replace(ch,'');return true;}
+return false;}}
+</script>
+<script>
+class ASLVersion{#major;#minor;#subminor;#revision;#isDev;constructor(ver){this.set(ver);}clear(){this.#major=0;
+this.#minor=0;this.#subminor=0;this.#revision=0;this.#isDev=false;}isValid(){return (this.#major!=0)||(this.#minor!=0);
+}getMajor(){return this.#major;}setMajor(major){this.#major=major;}getMinor(){return this.#minor;}setMinor(minor)
+{this.#minor=minor;}getSubMinor(){return this.#subminor;}setSubMinor(subminor){this.#subminor=subminor;
+}getRevision(){return this.#revision;}setRevision(rev){this.#revision=rev;}isDev(){return this.#isDev;
+}setIsDev(isDev){this.#isDev=Boolean(isDev);}setAll(major,minor=0,subminor=0,revision=0,isDev=false){
+this.#major=major;this.#minor=minor;this.#subminor=subminor;this.#revision=revision;this.#isDev=Boolean(isDev);
+}set(ver){this.clear();if((ver==null)||(ver=='')){return;}if(typeof ver=='object'){this.#major=ver.getMajor();
+this.#minor=ver.getMinor();this.#subminor=ver.getSubMinor();this.#revision=ver.getRevision();this.#isDev=ver.isDev();
+return;}let verStr=ver.trim().toUpperCase();let ch=verStr[0];if(ch=='V'){verStr=verStr.substring(1);}
+if(verStr.length==0){return;}verStr=verStr.replaceAll('_','.');let subs=verStr.split('.');let subsCount=subs.length;
+let str=subs[subsCount-1];if(str.indexOf(" DEV") >= 0){str=str.replace(" DEV", "");subs[subsCount-1]=str;
+this.#isDev=true;}else{if(str.indexOf("-DEV") >= 0){str=str.replace("-DEV", "");subs[subsCount-1]=str;
+this.#isDev=true;}}for(let i=0;i<subsCount;i++){let sub=subs[i];let val=0;let hasValue=false;let subLen=sub.length;
+for(let index=0;index<subLen;index++){let ch=sub[index];if((ch<'0')||(ch>'9')){if((i==(subsCount-1))&&(index==(subLen-1)))
+{if((ch>='A')&&(ch<='Z')){this.#revision=ch.charCodeAt(0)-65;break;}}this.clear();return;}val *= 10;val+=(ch-'0');
+hasValue=true;}if(!hasValue){this.clear();return;}switch (i){case 0:this.#major=val;break;case 1:this.#minor=val;
+break;case 2:this.#subminor=val;break;}}}isSingle(pid=16){if(pid!=16){return false;}if(!this.isValid())
+{return false;}return this.getMajor()<=3;}isEqual(ver,includeDev=true){if(this.#major==ver.#major){if(this.#minor==ver.#minor)
+{if(this.#subminor==ver.#subminor){if(this.#revision==ver.#revision){if(!includeDev||(this.#isDev==ver.#isDev))
+{return true;}}}}}return false;}compareIsGreater(ver,includeDev=true){if(ver.#major>this.#major){return 1;
+}if(ver.#major<this.#major){return -1;}if(ver.#minor>this.#minor){return 1;}if(ver.#minor<this.#minor)
+{return -1;}if(!includeDev||ver.#isDev||!this.#isDev){if(ver.#subminor>this.#subminor){return 1;}if(ver.#subminor<this.#subminor)
+{return -1;}}if(ver.#revision>this.#revision){return 1;}if(ver.#revision<this.#revision){return -1;}if(includeDev)
+{if(ver.#isDev!=this.#isDev){if(this.#isDev){return 1;}return -1;}}return 0;}toMajorMinorString(seperator='.')
+{if(this.isValid()){return this.#major.toString()+seperator+this.#minor;}return '';}toString(seperator='.',showDev=false,showWebDev=false)
+{let str='';if(this.isValid()){str=this.#major.toString()+seperator+this.#minor;if(this.#subminor!=0)
+{str+=seperator+this.#subminor;}if(this.#revision!=0){str+=String.fromCharCode(this.#revision+97);}if(this.#isDev)
+{if(showWebDev){str+="-dev";}else{if(showDev){str+=" dev";}}}}return str;}}
+</script>
+<script>
+class ASLProductID{static ASLPRODUCTID_NOT_DEFINED=0;static ASLPRODUCTID_ANTILOG=16;static ASLPRODUCTID_ANTILOGPRG=17;
+static ASLPRODUCTID_ANTILOG_DCARD=18;static ASLPRODUCTID_ANTILOG2=20;static ASLPRODUCTID_ANTILOG2_DCARD=21;
+static ASLPRODUCTID_ANTILOGPRGPRO=22;static ASLPRODUCTID_ANTILOGPRO=23;static ASLPRODUCTID_ANTILOGPRO_DCARD=24;
+static ASLPRODUCTID_ANTILOGPRG_DCARD=25;static ASLPRODUCTID_ANTILOG_GPSRXSIM=26;static ASLPRODUCTID_ANTILOGPRO2=27;
+static ASLPRODUCTID_THP_DCARD=28;static #ASLPRODUCTID_FIRST=16;static #ASLPRODUCTID_LAST=28;static #configNames=[
+'AntiLog','AntiLogPrg','AntiLog DCARD','AntiLog DCARD Battery Tester','AntiLog2','AntiLog2 DCARD','AntiLogPrgPro',
+'AntiLogPro','AntiLogPro DCARD','AntiLogPrg DCARD adapter','AntiLog GPS RxSim','AntiLogPro2','AntiLogPro THP DCARD'
+];static ASLPRODUCTID_ANTILOGREADER	= 128;static ASLPRODUCTID_ANTITERMPRO		= 129;static ASLPRODUCTID_ASLWEBTERM		= 130;
+static #ASLSOFTID_FIRST= 128;static #ASLSOFTID_LAST=130;static #softConfigNames=['AntiLogReader','AntiTermPro',
+'ASLWebTerm'];static isPIDValid(pid,isSoft=false){if(isSoft){if(ASLProductID.isPIDSoftware(pid)){return true;
+}}return (pid>=ASLProductID.#ASLPRODUCTID_FIRST)&&(pid<=ASLProductID.#ASLPRODUCTID_LAST);}static isPIDAntiLogUnit(pid)
+{return (pid==ASLProductID.ASLPRODUCTID_ANTILOG) ||(pid==ASLProductID.ASLPRODUCTID_ANTILOGPRO) ||(pid==ASLProductID.ASLPRODUCTID_ANTILOGPRO2) ||
+(pid==ASLProductID.ASLPRODUCTID_ANTILOG2);}static isPIDProgrammer(pid){return (pid==ASLProductID.ASLPRODUCTID_ANTILOGPRG) ||
+(pid==ASLProductID.ASLPRODUCTID_ANTILOGPRGPRO);}static isPIDSoftware(pid){return (pid>=ASLProductID.#ASLSOFTID_FIRST) &&
+(pid<=ASLProductID.#ASLSOFTID_LAST);}static getProductNameFromPID(pid,isSoft=false){if(ASLProductID.isPIDValid(pid,isSoft))
+{let index=pid-ASLProductID.#ASLSOFTID_FIRST;if(ASLProductID.isPIDSoftware(pid)){return ASLProductID.#softConfigNames[index];
+}index=pid-ASLProductID.#ASLPRODUCTID_FIRST;return ASLProductID.#configNames[index];}return "";}static getProductIDFromName(name,isSoft=false)
+{name=name.trim();if(name){if(isSoft){let index=ASLProductID.#softConfigNames.indexOf(name);if(index>=0)
+{return index+ASLProductID.#ASLSOFTID_FIRST;}}name=name.replace("_OEM", "");name=name.replace(" (OEM)", "");
+let index=ASLProductID.#configNames.indexOf(name);if(index>=0){return(index+ASLProductID.#ASLPRODUCTID_FIRST);
+}}return ASLProductID.ASLPRODUCTID_NOT_DEFINED;}}
+</script>
+<script>
+class ASLConfig extends ASLProductID{static ASLCONFIGID_MAGICNUMBER=0xA42DEA2F;static ASLCONFIGID_MAGIC_ADDRESS=0x0004;
+static ASLCONFIGID_ADDRESS=0x0008;productID;serialNumber;constructor(conf){super();this.set(conf);}clear()
+{this.productID=ASLConfig.ASLPRODUCTID_NOT_DEFINED;this.serialNumber=0;}isValid(){return ASLProductID.isPIDValid(this.productID)&&(this.serialNumber!=0);
+}isEqual(aslConfig){return (this.productID==aslConfig.productID) &&(this.serialNumber==aslConfig.serialNumber);
+}set(conf){if(typeof conf=='object'){if(conf==null){this.clear();return;}this.setPID_and_SN(conf.getPID(),conf.getSerialNumber());
+return;}this.setFromString(conf.trim());}setPID_and_SN(pid,sn){this.setPID(pid);this.setSerialNumber(sn);
+}getPID(){if(this.isValid()){return this.productID;}return ASLConfig.ASLPRODUCTID_NOT_DEFINED;}setPID(pid)
+{pid=parseInt(pid);if(!ASLProductID.isPIDValid(pid)){pid=ASLConfig.ASLPRODUCTID_NOT_DEFINED;this.serialNumber=0;
+}this.productID=pid;return pid!=ASLConfig.ASLPRODUCTID_NOT_DEFINED;}getSerialNumber(){if(this.isValid())
+{return this.serialNumber;}return 0;}setSerialNumber(sn){this.serialNumber=parseInt(sn);return this.serialNumber!=0;
+}setFromString(str){this.clear();if(str==null){return;}let array=str.split('/');if(array.length!=3){return;
+}if(array[0]!='ASL'){return;}let pid=parseInt(array[1]);let sn=parseInt(array[2]);if(sn==0){pid=ASLConfig.ASLPRODUCTID_NOT_DEFINED;
+}if(this.setPID(pid)!=false){this.setSerialNumber(sn);}}getProductName(){return ASLConfig.getProductNameFromPID(this.productID);
+}isAntiLogUnit(){return ASLProductID.isPIDAntiLogUnit(this.productID);}isProgrammer(){return ASLProductID.isPIDProgrammer(this.productID);
+}toString(){let str='';if(this.productID!=ASLConfig.ASLPRODUCTID_NOT_DEFINED){if(this.serialNumber>0)
+{str="ASL/" + this.productID + "/";if(this.serialNumber<10){str+='00';}else{if(this.serialNumber<100)
+{str+='0';}}str+=this.serialNumber;}}return(str);}}
+</script>
+<script>
+class ASLProduct{#aslVersion;#aslConfig;#aslOptions;constructor(){this.#aslVersion=new ASLVersion(null);
+this.#aslConfig=new ASLConfig(null);this.#aslOptions=new ASLOptions(null);}clear(){this.#aslVersion.clear();
+this.#aslConfig.clear();this.#aslVersion.clear();}isValid(){return this.#aslVersion.isValid()&&this.#aslConfig.isValid();
+}isOEM(){if(this.isValid()){return this.#aslOptions.isOEM();}return false;}isEqual(aslProduct){return this.#aslConfig.isEqual(aslProduct.#aslConfig) &&
+this.#aslVersion.isEqual(aslProduct.#aslVersion) &&this.#aslOptions.isEqual(aslProduct.#aslOptions);}
+getPID(){return this.#aslConfig.getPID();}getASLVersion(){return this.#aslVersion;}setASLVersion(aslVersion)
+{this.#aslVersion.set(aslVersion);}getASLConfig(){return this.#aslConfig;}setASLConfig(aslConfig){this.#aslConfig.set(aslConfig);
+}getASLOptions(){return this.#aslOptions;}setASLOptions(aslOptions){this.#aslOptions.set(aslOptions);
+}getName(showOEM=true,oemSeperator=" "){let name=this.#aslConfig.getProductName();if(showOEM){if(this.#aslOptions.isOEM())
+{name+=oemSeperator+"OEM";}}return name;}set(aslProduct){if(aslProduct==null){this.clear();return;}this.#aslVersion.set(aslProduct.getASLVersion());
+this.#aslConfig.set(aslProduct.getASLConfig());this.#aslOptions.set(aslProduct.getASLOptions());}setFromTitle(title)
+{if(title){if(title.startsWith("AntiLog")){if(title.startsWith("AntiLogPro Production Programmer")){return this.#setFromTitle_AntiLogProgrammer(title);
+}if(title.startsWith("AntiLog Production Programmer")){return this.#setFromTitle_AntiLogProgrammer(title);
+}return this.#setFromTitle_AntiLog(title);}}return false;}#setFromTitle_AntiLog(title){while(title){let aslProduct=new ASLProduct();
+title=title.replaceAll(' dev', '-dev');let argV=title.replaceAll(",","").split(' ');if(argV.length<5) break;
+if(argV[2]!="Serial") break;if(argV[3]!="number") break;let name_opts_str=argV[0];let ver_str=argV[1];
+let conf_str=argV[4];if(name_opts_str.indexOf("_OEM") > 0){aslProduct.#aslOptions.set("O");}let name_opts=name_opts_str.split("-");
+if(name_opts.length>1){aslProduct.#aslOptions.addAsString(name_opts[1]);}aslProduct.#aslVersion.set(ver_str);
+if(!aslProduct.#aslVersion.isValid()){break;}aslProduct.#aslConfig.set(conf_str);if(!aslProduct.#aslConfig.isValid())
+{break;}this.set(aslProduct);return true;}return false;}#setFromTitle_AntiLogProgrammer(title){while(title)
+{let aslProduct=new ASLProduct();title=title.replaceAll(' dev', '-dev');title=title.replaceAll('  ', ' ');
+let argV=title.replaceAll(',','').split(' ');if(argV.length<6) break;if(argV[1]!="Production") break;
+if(argV[2]!="Programmer") break;if(argV[4]!="S/N") break;aslProduct.#aslVersion.set(argV[3]);let serialNumber=parseInt(argV[5]);
+switch (argV[0]){case "AntiLog":aslProduct.#aslConfig.setPID_and_SN(ASLConfig.ASLPRODUCTID_ANTILOGPRG,serialNumber);
+break;case "AntiLogPro":aslProduct.#aslConfig.setPID_and_SN(ASLConfig.ASLPRODUCTID_ANTILOGPRGPRO,serialNumber);
+break;}if(!aslProduct.#aslConfig.isValid()){break;}this.set(aslProduct);return true;}return false;}}
+</script>
+<script>
+const aslsoftware_vertable={"16":"9.2b","16s":"3.8","17":"6.2","22":"5.0","23":"9.2b","27":"9.2b","128":"9.0","129":"4.1c","130":"3.0"};class ASLSoftware{static getLatest(pid,isSingle=false)
+{let pidStr=pid.toString();if((pid==16)&&isSingle){pidStr+='s';}let ver=aslsoftware_vertable[pidStr];
+if(ver){return ver;}return '0.0';}}
+</script>
+<script>
+function common_createXmlHttpRequest(){let xmlhttp;try{if(window.XMLHttpRequest){xmlhttp=new XMLHttpRequest();
+}else{xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");}}catch(e){xmlhttp=false;}return xmlhttp;}
+</script>
+<script>
+class DragNDropText{static dragndrop;static dropArea;static sendTextFn;constructor(elementID,sendTextFn,highlight,unhighlight)
+{DragNDropText.dragndrop=this;DragNDropText.sendTextFn=sendTextFn;DragNDropText.dropArea=document.getElementById(elementID);
+['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName =>{DragNDropText.dropArea.addEventListener(eventName,this.preventDefaults,false);
+});['dragenter', 'dragover'].forEach(eventName =>{DragNDropText.dropArea.addEventListener(eventName,highlight,false);
+});['dragleave', 'drop'].forEach(eventName =>{DragNDropText.dropArea.addEventListener(eventName,unhighlight,false);
+});DragNDropText.dropArea.addEventListener('drop', this.handleDrop, false);}preventDefaults(e){e.preventDefault();
+e.stopPropagation();}handleDroppedFiles(files){([...files]).forEach(this.uploadFile);}handleDrop(e){let dt=e.dataTransfer;
+let files=dt.files;DragNDropText.dragndrop.handleDroppedFiles(files);}uploadFile(file){var reader=new FileReader();
+reader.addEventListener('load', (event) => {DragNDropText.sendTextFn(event.target.result);});reader.readAsText(file);
+}}
+</script>
+<script>
+var PROGRAM_NAME	= "ASLWebTerm";
+var PROGRAM_VERSION	= "3.0";var PROGRAM_DATE	= "29-Feb-2024";
+var PID_OEM=0x0100;var MAIN_SUPPORT_SOFTWARE_URL="download.html#software";class TermPanel{#div=null;#termState=null;
+constructor(divName,keyCharIn){this.#div=document.getElementById(divName);this.#div.onBlur=function() {this.#div.focus();};
+this.#div.addEventListener('keydown', keyCharIn);}setFocus(){this.#div.focus();}setText(text){this.#div.value=text;
+}getTermState(){return this.#termState;}isTermStateConnected(){return this.#termState=='connected';}setTermState(state)
+{this.#termState=state;}setConnected(){this.#div.style.setProperty('--term-border-color', 'orange');this.#div.style.setProperty('--term-border-color-focus', 'lightgreen');
+}setDisconnected(){this.#div.style.setProperty('--term-border-color', 'red');this.#div.style.setProperty('--term-border-color-focus', 'red');
+}setDragOverOn(){if(this.isTermStateConnected()){this.#div.style.setProperty('--term-border-color', '#ff00ff');
+this.#div.style.setProperty('--term-border-color-focus', '#ff00ff');}}setDragOverOff(){if(this.isTermStateConnected())
+{this.setConnected();}}setFromTermState(){if(this.isTermStateConnected()){this.setConnected();}else{this.setDisconnected();
+}}}class SerialSettings{constructor(){this.EOL_CR=0;this.EOL_LF=1;this.EOL_CRLF=2;this.comport="COM";
+this.baud=115200;this.parity='none';this.databits=8;this.stopbits=1;this.displayEoln=this.EOL_CR;this.tabSize=8;
+this.keyEnter=this.EOL_CRLF;}update(){this.baud=parseInt(document.getElementById("baud").value);this.parity=document.getElementById("parity").value;
+this.datebits=parseInt(document.getElementById("databits").value);this.stopbits=parseInt(document.getElementById("stopbits").value);
+this.tabSize=parseInt(document.getElementById("display-tabsize").value);if(this.tabsize<2) this.tabsize=2;
+let eol=document.getElementById("display-eoln").value;this.displayEoln=this.getEolCode(eol);eol=document.getElementById("keyboard-enter").value;
+this.keyEnter=this.getEolCode(eol);}getBaud(){return(this.baud);}getParity(){return(this.parity);}getDataBits()
+{return(this.databits);}getStopBits(){return(this.stopbits);}isDefault(){return ((this.getBaud()==115200) &&
+(this.getDataBits()==8) &&(this.getParity()=='none') &&(this.getStopBits()==1));}getEolCode(str){switch (str)
+{case 'CR':return(this.EOL_CR);break;case 'LF':return(this.EOL_LF);break;}return(this.EOL_CRLF);}toString()
+{return(this.comport+':'+this.baud+','+this.parity.charAt(0) +','+this.databits+','+this.stopbits);}}
+class ListNode{constructor(text){this.next=null;this.prev=null;this.text=text;}}class LinkedList{constructor()
+{this.clear();}clear(){this.head=null;this.tail=null;this.count=0;}getCount(){return(this.count);}append(node)
+{if(this.head==null){this.head=node;this.tail=node;node.next=null;node.prev=null;}else{this.tail.next=node;
+node.next=null;node.prev=this.tail;this.tail=node;}this.count++;}removeFirst(){let node=this.head;if(node!=null)
+{if(this.tail==node){this.head=null;this.tail=null;}else{let next=node.next;this.head=next;next.prev=null;
+}node.next=null;node.prev=null;this.count--;}return(node);}remove(node){if(this.head==this.tail){this.head=null;
+this.tail=null;}else{let prev=node.prev;let next=node.next;if(prev==null){this.head=next;next.prev=null;
+}else if(next==null){this.tail=prev;prev.next=null;}else{prev.next=next;next.prev=prev;}}node.next=null;
+node.prev=null;this.count--;}}class TxBufferNode extends ListNode{constructor(text){super(text);this.index=0;
+this.size=text.length;}}class TxBufferList extends LinkedList{constructor(){super();this.size=0;this.MINSIZE=512;
+}bufferClear(){this.clear();this.size=0;}isEmpty(){return(this.size==0);}getSize(){return(this.size);
+}add(text){this.size+=text.length;if((txBuffer.getCount()<=1)||(text.length>txBuffer.MINSIZE)){this.append(new TxBufferNode(text));
+return;}let node=txBuffer.tail;if(node.size<txBuffer.MINSIZE){node.text+=text;node.size+=text.length;
+return;}this.append(new TxBufferNode(text));}getNext(){let bufNode=this.head;if(bufNode!=null){let text=bufNode.text;
+if((bufNode.size-bufNode.index)<=txBuffer.MINSIZE){if(bufNode.index!=0){text=text.substring(bufNode.index);
+}this.size-=text.length;this.removeFirst();return(text);}text=text.substring(bufNode.index,bufNode.index+txBuffer.MINSIZE);
+bufNode.index+=txBuffer.MINSIZE;this.size-=txBuffer.MINSIZE;return(text);}return(null);}}class TermLineNode extends ListNode
+{constructor(text){super(text);this.cpos=0;this.size=0;this.total=0;}}class TermLineList extends LinkedList
+{constructor(maxLines=2048){super();this.maxLines=maxLines;this.termClear();}termClear(){this.clear();
+var node=new TermLineNode('');this.append(node);this.total=0;}appendTermChar(ch){let node=this.tail;let code=ch.charCodeAt(0);
+if(code<32){if(code==9){let cp=(node.cpos+serialStgs.tabSize) & ~(serialStgs.tabSize-1);while(node.cpos<cp)
+{node.cpos++;while(node.cpos>node.size){node.text+=' ';node.size++;}}return;}if(code==13){node.cpos=0;
+code=10;if(serialStgs.displayEoln!=serialStgs.EOL_CRLF){return;}}if(code==10){let str=node.text;if(str.charAt(0)=='A')
+{productDetect(str);}node=new TermLineNode('');this.append(node);this.total++;if(this.getCount()>this.maxLines)
+{this.removeFirst();}return;}ch=String.fromCharCode(16);}else{if((code>=128)&&(code<160)) ch=String.fromCharCode(16);
+}let index=node.cpos;if(index<node.size){let str=node.text;node.text=str.substring(0,index)+ch+str.substring(index+1);
+node.cpos++;return;}node.text=node.text+ch;node.size++;node.cpos=node.size;}appendTermText(text){let len=text.length;
+for(let i=0;i<len;i++){this.appendTermChar(text.charAt(i));}}getTermText(lines=10000){text='';var node=this.tail;
+if(node!=null){var text=node.text;lines--;while(lines>0){node=node.prev;if(node==null){break;}text=node.text+'\n' + text;
+lines--;}}return(text);}getLineCount(){return(this.count-1);}getLineTotal(){return(this.total);}}
+function aslwebterm_init()
+{
+	// console.log("test");
+let title=PROGRAM_NAME+' V' + PROGRAM_VERSION + ' &nbsp; ' + PROGRAM_DATE;
+
+
+termPanel=new TermPanel("term-input", keyCharIn);
+sendInput=document.getElementById('send-file');
+sendInput.addEventListener('change', sendSingleFile, false);
+sendInput.onclick=function() {this.value=null;};
+main_aslProduct.clear();
+setProduct(main_aslProduct);
+setTermState('disconnected');
+setPanel(null);
+statusline_lines=document.getElementById("statusline-lines");
+new DragNDropText('term-input', dragndrop_sendText, dragndrop_highlight, dragndrop_unhighlight);
+main_menu_init();}
+
+function dragndrop_sendText(text){term_tx(text);}function dragndrop_highlight(e){termPanel.setDragOverOn();
+setStatus('info', "Drop dragged file(s) to transmit them");}function dragndrop_unhighlight(e){termPanel.setDragOverOff();
+setStatus('OK', null);}function isUpgradesPanel(){return main_currentPanel=='upgrades';}
+function setPanel(name)
+{
+	main_currentPanel=name;
+	let isStgs=(name=="settings");
+	let isAbout=(name=="about");
+	let isHelp=(name=="help");
+	let isUpgrades=(name=='upgrades');
+	let isTerm=!isUpgrades;
+	if(!('serial' in navigator))
+	{
+		// document.getElementById('webapidiv').style.display = "block";
+		// isStgs=false;
+}else{
+	if(!termPanel.isTermStateConnected()){isStgs=true;}}
+	showAbout(isAbout);showSettings(isStgs);
+	showHelp(isHelp);showTerm(isTerm);showUpgrades(isUpgrades);
+if(name=='terminal'){termPanel.setFocus();
+}}
+function showAbout(enable){let div=document.getElementById("aboutdiv");div.style.display=enable ? "block" : "none";
+}function showSettings(enable){let div=document.getElementById("settingsdiv");div.style.display=enable ? "block" : "none";
+}function showHelp(enable){let div=document.getElementById("helpdiv");div.style.display=enable ? "block" : "none";
+}function showTerm(enable){let div=document.getElementById("termdiv");div.style.display=enable ? "block" : "none";
+}function showUpgrades(enable){div=document.getElementById("upgradesdiv");div.style.display=enable ? "block" : "none";
+if(isUpgradesPanel()){upgrades_showUpgrades(enable);}}function do_clickProductImage(){if(main_aslProduct.isValid())
+{button_userguide();}}function termInputUpdate(){termPanel.setText(termLines.getTermText(25));str="Lines=" + termLines.getLineTotal() +
+",&nbsp;Buffered=" + termLines.getLineCount();setInnerHTML(statusline_lines,str);}function setStatus(stype,smessage)
+{elem=document.getElementById("statusline");if(stype=='OK'){setInnerHTML(elem,"Status: OK");elem.style.backgroundColor='#c5ffc5';
+return;}if(stype=='info'){setInnerHTML(elem,smessage);elem.style.backgroundColor='#c5ffc5';return;}if(stype=='error')
+{setInnerHTML(elem,"Error: " + smessage);elem.style.backgroundColor='#ffc5c5';return;}if(stype=='warning')
+{setInnerHTML(elem,"Status: " + smessage);elem.style.backgroundColor='#ffffc5';return;}}function setMainProgress()
+{var div;let disc_button=document.getElementById("term-button-disconnect");if(txBuffer.isEmpty()){if(main_progress)
+{div=document.getElementById("statusline-progress");div.style.display= "none";div=document.getElementById("statusline-lines");
+div.style.display= "block";progress_max=0;disc_button.disabled=false;main_progress=false;}return;}if(!main_progress)
+{div=document.getElementById("statusline-lines");div.style.display= "none";div=document.getElementById("statusline-progress");
+div.style.display= "table";progress_max=txBuffer.MINSIZE;disc_button.disabled=true;main_progress=true;
+}let size=txBuffer.getSize();if(size>progress_max){progress_max=size;}let sofar=progress_max-size;let progdiv=document.getElementById("statusline-progressbar");
+progdiv.max=progress_max;progdiv.value=sofar;}async function term_tx(data){if(txBuffer.isEmpty()){if(data.length<=txBuffer.MINSIZE)
+{main_serialWriterPromise=await serialWrite(data);return;}}txBuffer.add(data);main_serialWriterPromise=await serialWrite(txBuffer.getNext());
+}async function keyCharIn(event){event.preventDefault();ch=event.key;if(ch.length>1){switch(ch){case 'Del':
+await term_tx(String.fromCharCode(127));break;case 'Backspace':await term_tx(String.fromCharCode(8));
+break;case 'Tab':await term_tx(String.fromCharCode(9));break;case 'Escape':await term_tx(String.fromCharCode(27));
+break;case 'Enter':if(serialStgs.keyEnter==serialStgs.EOL_CR){await term_tx(String.fromCharCode(13));
+return;}if(serialStgs.keyEnter==serialStgs.EOL_LF){await term_tx(String.fromCharCode(10));return;}if(serialStgs.keyEnter==serialStgs.EOL_CRLF)
+{let str=String.fromCharCode(13)+String.fromCharCode(10);await term_tx(str);return;}break;}}else{if(event.ctrlKey)
+{if((ch>='a')&&(ch<='z')){var chr=String.fromCharCode(ch.charCodeAt(0)-96);await term_tx(chr);}}else{
+await term_tx(ch);}}}function setTermState(newState){if(newState!=termPanel.getTermState()){termPanel.setTermState(newState);
+termPanel.setFromTermState();let scom=document.getElementById("statusline-com");let but=document.getElementById("stgs-connect");
+if(termPanel.isTermStateConnected()){setInnerHTML(scom,serialStgs.toString());setInnerHTML(but,"Disconnect");
+}else{setInnerHTML(scom,"Disconnected");setInnerHTML(but,"Connect");}}}function button_webapi_copy(id)
+{let td=document.getElementById(id);let text=td.innerHTML;var dummy=document.createElement("input");dummy.value=text;
+document.body.appendChild(dummy);dummy.select();document.execCommand("copy");document.body.removeChild(dummy);
+alert(text+"\n\nAbove URL Copied to the system clipbpoard\n\nPaste this value into your browser web address");
+}function button_termclick(){setStatus('OK', null);setPanel('terminal');}function button_terminal(){setStatus('OK', null);
+setPanel('terminal');}
+function button_settings(){setStatus('OK', null);
+div=document.getElementById("settingsdiv");
+if(div.style.display=="block")
+{
+	 setPanel('terminal');
+
+}else{
+	setPanel('settings');
+
+}
+}
+function button_help()
+{setStatus('OK', null);div=document.getElementById("helpdiv");if(div.style.display=="block"){setPanel('terminal');
+}else{setPanel('help');}}function button_about(){setStatus('OK', null);div=document.getElementById("aboutdiv");
+if(div.style.display=="block"){setPanel('terminal');}else{setPanel('about');}}
+
+async function button_stgs_connect(){
+	console.log("test1");
+	let newState='disconnected';
+	if(termPanel.isTermStateConnected())
+	{
+		console.log("test2");
+	await serial_close();
+	txBuffer.bufferClear();
+	setMainProgress();
+	}else{
+		console.log("test3");
+		await serial_open();
+		console.log("test4");
+		if(main_port!=null)
+			{newState='connected';}
+		}
+			setTermState(newState);setPanel('terminal');}
+function button_stgs_defaults(){
+let sel=document.getElementById("baud");sel.value="115200";sel=document.getElementById("parity");sel.value="none";
+sel=document.getElementById("databits");sel.value="8";sel=document.getElementById("stopbits");sel.value="1";
+sel=document.getElementById("display-eoln");sel.value="CR";sel=document.getElementById("display-tabsize");
+sel.value="8";sel=document.getElementById("keyboard-enter");sel.value="CRLF";serialStgs.update();termPanel.setFocus();
+}function button_progress_cancel(){txBuffer.bufferClear();setMainProgress();termPanel.setFocus();}async function button_term_disconnect()
+{await serial_close();txBuffer.bufferClear();setMainProgress();setTermState('disconnected');setPanel('terminal');
+}function button_term_clear(){setStatus('OK', null);termLines.termClear();setProduct(new ASLProduct());
+termPanel.setText('');termPanel.setFocus();}function button_term_snapshot(){setPanel('terminal');let text=termLines.getTermText();
+if(text==''){setStatus('info', 'Terminal display is empty, nothing to snapshot');}else{let title=PROGRAM_NAME+' V' + PROGRAM_VERSION + ' Terminal Snapshot';
+let wnd=window.open('',title,"_blank,titlebar=yes");let tn=wnd.document.createTextNode(text);wnd.document.title=title;
+wnd.document.body.style.whiteSpace='pre';wnd.document.body.style.fontFamily='monospace';wnd.document.body.appendChild(tn);
+}termPanel.setFocus();}function button_term_sendfile(){setPanel('terminal');inp=document.getElementById("send-file");
+inp.value=null;inp.click();termPanel.setFocus();}function button_upgrades_send(){upgrades_doSend();}function button_upgrades_toTerminal()
+{setStatus('OK', null);setPanel('terminal');}function sendSingleFile(e){var file=e.target.files[0];if(!file)
+{return;}var reader=new FileReader();reader.onload=async function(e){var contents=e.target.result;await term_tx(contents);
+setStatus('OK', null);};reader.onerror=function(e){setStatus('error', reader.error);reader.abort();};
+reader.readAsText(file);}function productDetect(str){if(!str.startsWith('AntiLog')){return;}let aslProduct=new ASLProduct();
+let isValid=aslProduct.setFromTitle(str);if(isValid){setProduct(aslProduct);}}
+function setProduct(aslProduct)
+{if(!main_aslProduct.isEqual(aslProduct)||main_firstTime){main_firstTime=false;main_aslProduct.set(aslProduct);
+img_0=document.getElementById("product-image-term");
+img_0.style.display="none";
+img_16=document.getElementById("product-image-antilog");
+img_16.style.display="none";img_16_oem=document.getElementById("product-image-antilog-oem");img_16_oem.style.display="none";
+img_17=document.getElementById("product-image-antilogprg");img_17.style.display="none";img_22=document.getElementById("product-image-antilogprgpro");
+img_22.style.display="none";img_23=document.getElementById("product-image-antilogpro");img_23.style.display="none";
+img_23_oem=document.getElementById("product-image-antilogpro-oem");img_23_oem.style.display="none";img_27=document.getElementById("product-image-antilogpro2");
+img_27.style.display="none";img_27_oem=document.getElementById("product-image-antilogpro2-oem");img_27_oem.style.display="none";
+switch (main_aslProduct.getPID()){case 16:if(main_aslProduct.isOEM()){img_16_oem.style.display="block";
+}else{img_16.style.display="block";}break;case 17:img_17.style.display="block";break;case 22:img_22.style.display="block";
+break;case 23:if(main_aslProduct.isOEM()){img_23_oem.style.display="block";}else{img_23.style.display="block";
+}break;case 27:if(main_aslProduct.isOEM()){img_27_OEM.style.display="block";}else{img_27.style.display="block";
+}break;default:img_0.style.display="block";main_aslProduct.clear();}let buttonDocs=document.getElementById("button-docs");
+let buttonUpgrades=document.getElementById("button-upgrades");if(main_aslProduct.isValid()){let str='Open a new page containing all user guides relating to this ';
+str+=main_aslProduct.getASLConfig().getProductName();if(main_aslProduct.isOEM()){str+=' OEM';}str+=' unit';
+buttonDocs.title=str;buttonDocs.style.display='inline-block';buttonUpgrades.style.display='inline-block';
+}else{buttonDocs.style.display='none';buttonUpgrades.style.display='none';}if(isUpgradesPanel()){setPanel('upgrades');
+}}}
+function setInnerHTML(element,value){if(element.innerHTML!=value){element.innerHTML=value;}}
+function main_getURLSource()
+{return ASLProductID.ASLPRODUCTID_ASLWEBTERM+","+PROGRAM_VERSION;}
+
+function aslwebterm_ug_serverResponse(xhr)
+{if(xhr.status==200){let text=xhr.response;if(text!=null){window.open(text,"_blank");return;}}alert('Something went wrong: ' + xhr.statusText + ', ' + xhr.response);
+}
+
+
+async function serial_open() {
+    main_port_quit = false;
+
+    // Try to request a port from the user
+    try {
+        main_port = await navigator.serial.requestPort({});
+    } catch (e) {
+        let message = e.message;
+        if (message !== "No port selected by the user.") {
+            console.log('serial_connect(): ', message);
+        }
+        main_port = null;
+        return;
+    }
+
+    // Update serial settings (assumes serialStgs is defined elsewhere)
+    serialStgs.update();
+
+    // Define serial port settings
+    let args = {
+        baudRate: serialStgs.getBaud(),
+        dataBits: serialStgs.getDataBits(),
+        stopBits: serialStgs.getStopBits(),
+        parity: serialStgs.getParity(),
+        bufferSize: 16384,
+        flowControl: "none"
+    };
+
+    // Try to open the serial port with the specified settings
+    try {
+        await main_port.open(args);
+    } catch (e2) {
+        let msg = e2.message;
+        if (msg === 'Failed to open serial port.') {
+            msg = 'Port in use? ' + msg;
+        }
+        console.log('serial_connect(): ', msg);
+        setStatus('error', msg);
+        main_port = null;
+        return;
+    }
+
+    // Set status to OK and proceed with serial communication setup
+    setStatus('OK', null);
+
+    if (main_port) {
+        main_serialReaderPromise = serialreader();  // Assumes serialreader() is defined elsewhere
+        setTermState('connected');  // Assumes setTermState() is defined elsewhere
+        setPanel('terminal');       // Assumes setPanel() is defined elsewhere
+    } else {
+        setTermState('disconnected');  // Handle case where port is not available
+    }
+}
+
+
+async function serial_close(){setStatus('warning', 'Closing serial port');
+main_port_quit=true;if(main_port){if(main_reader!=null){main_reader.cancel();}await main_serialReaderPromise;
+}setStatus('OK', null);}async function serialWrite(data){while((!main_port_quit)&&(data!=null) &&(main_port&&main_port.writable))
+{const dataArrayBuffer=main_textEncoder.encode(data);main_writer=main_port.writable.getWriter();let isOK=true;
+try{await main_writer.write(dataArrayBuffer);}catch (e){isOK=false;console.log(e);}finally{main_writer.releaseLock();
+}main_writer=null;if(main_port_quit||(!isOK)){break;}data=txBuffer.getNext();setMainProgress();}await sleep(10);
+}async function serialreader(){while(main_port.readable&&(!main_port_quit)){main_reader=main_port.readable.getReader();
+try{while(!main_port_quit){const {value,done}=await main_reader.read();if(done){break;}let text=main_textDecoder.decode(value);
+termLines.appendTermText(text);termInputUpdate();}}catch (error){console.log(error);}finally{main_reader.releaseLock();
+main_reader=null;}}let timeout=30;while(main_writer&&timeout){await sleep(100);timeout--;}await main_port.close();
+if(("serial" in navigator) && ("forget" in SerialPort.prototype)){await main_port.forget();}main_port=null;
+main_reader=null;}function sleep(ms){return new Promise(resolve => setTimeout(resolve,ms));}
+var termPanel;
+var termLines=new TermLineList(2048);var txBuffer=new TxBufferList();var serialStgs=new SerialSettings();
+var sendFile=null;var statusline_lines;var main_progress=false;var progress_max=0;var main_firstTime=true;
+var main_currentPanel=null;var main_aslProduct=new ASLProduct();var main_port=null;var main_port_counter=0;
+var main_port_quit=false;var main_reader=null;var main_writer=null;var main_serialReaderPromise;var main_serialWriterPromise;
+var main_textEncoder=new TextEncoder();var main_textDecoder=new TextDecoder();var main_headerBarLine_div;
+var main_menuBarLine_div;var main_panel_div;var main_menuBottomMargin;function main_menu_init(bottom_margin=16)
+{main_menuBottomMargin=bottom_margin;main_headerBarLine_div=document.getElementById("headerbarline");
+main_menuBarLine_div=document.getElementById("menubarline");main_panel_div=document.getElementById("main-panel");
+main_menuBarLine_div.style.top=main_headerBarLine_div.clientHeight+"px";main_menu_fadeHeader();}function main_menu_fadeHeader()
+{let bottom_margin=16;if(!main_headerBarLine_div) return;let remaining=parseInt(main_menuBarLine_div.style.top);
+if(remaining>0){remaining-=5;if(remaining<=0){remaining=0;}main_menuBarLine_div.style.top=String(remaining)+"px";
+main_headerBarLine_div.style.top =String(remaining-main_headerBarLine_div.clientHeight)+"px";let top=remaining+main_menuBarLine_div.clientHeight +
+main_menuBottomMargin;main_panel_div.style.marginTop=String(top)+"px";setTimeout(main_menu_fadeHeader,20);
+}}
+</script>
+<script>
+function upgrades_getASLLatest(){let pid=main_aslProduct.getPID();let single=upgrades_isCheckboxSingle();
+return new ASLVersion(ASLSoftware.getLatest(pid,single));}function checkbox_doSingle(){let isSingle=upgrades_isCheckboxSingle();
+if(!upgrades_check_isConnected()){return;}upgrades_enableUpgradeButton(false);let upToDate=upgrades_check_upToDate(setText=true);
+if(!upToDate){upgrades_doProcessUpgrades();}}function upgrades_isCheckboxSingle(){let checkBox=document.getElementById("upgrades-single");
+return checkBox.checked;}function upgrades_checkBaud(){if(serialStgs.isDefault()){return true;}let text =
+'<div style="color:red;text-align:center;font-size:13pt;">' +'Unit serial port configuration mismatch</div>' +
+"<p>Upgrades can only take place if the menu system on your " +main_aslProduct.getName(false) +" unit is configured to use the default menu system serial port " +
+"settings.</p>\n" +"<ul>\n" +"  <li>115200 baud\n" +"  <li>8 data bits\n" +"  <li>No parity\n" +"  <li>One stop bit\n" +
+"</ul><br>\n" +"You will need to change your unit's serial port settings first, " +"then use the 'Settings' button above to match the unit's settings.";
+upgrades_setInfoText(text);upgrades_enableUpgradeButton(false);return false;}function upgrades_check_isConnected(setText=true)
+{if(!main_aslProduct.isValid()){let text=upgrades_getWarning("No unit detected") +"Cannot detect the connected unit. Please cycle the power " +
+"on the unit or refresh the main home menu display using the " +"terminal.";upgrades_setInfoText(text);
+upgrades_enableUpgradeButton(false);return false;}return true;}function upgrades_check_upToDate(setText=true)
+{let single=upgrades_isCheckboxSingle();let aslLatestVer=upgrades_getASLLatest();let aslUnitVer=main_aslProduct.getASLVersion();
+let isEqual=aslUnitVer.isEqual(aslLatestVer);if(isEqual&&setText){let singleText="";if(single){singleText="legacy single channel ";
+}let text=upgrades_getInformation("No upgrade required") +"No upgrade is required for your " +main_aslProduct.getName(true) +
+" unit as it is currently running the very latest version of the " +singleText +"embedded firmware, V" +
+aslLatestVer.toString('.',true);if(single){text +=`<br><br>However,it is highly recommended you upgrade your old single channel
+firmware to the very latest dual channel firmware.  To do this,untick thesingle channel checkbox below and click the send upgrade file button.`;
+}upgrades_setInfoText(text);}return isEqual;}function upgrades_showUpgrades(enable){upgrades_enableUpgradeButton(false);
+let div=document.getElementById("upgrades-titlebar");div.innerText="Unit firmware upgrade options for " +
+main_aslProduct.getASLConfig().toString();if(!upgrades_check_isConnected()){return;}if(upgrades_checkBaud())
+{let isSingle=main_aslProduct.getASLVersion().isSingle();upgrades_enableSingleCheckbox(isSingle);if(!upgrades_check_upToDate(true))
+{upgrades_setInfoText("Collecting upgrade information...");upgrades_doProcessUpgrades();}}}function upgrades_setInfoText(html)
+{let div=document.getElementById("upgradesdiv-info");div.innerHTML=html;}function upgrades_enableUpgradeButton(enabled)
+{let div=document.getElementById("upgrades-send");div.disabled=!enabled;}function upgrades_enableSingleCheckbox(isSingle)
+{let div=document.getElementById("upgrades-single");let divLabel=document.getElementById("upgrades-single-label");
+if(!main_aslProduct.isValid() ||(main_aslProduct.getPID()!=ASLProductID.ASLPRODUCTID_ANTILOG)){isSingle=false;
+div.style.display='none';divLabel.style.display='none';}else{div.style.display='inline-block';divLabel.style.display='inline-block';
+}div.checked=isSingle;}function upgrades_getInformation(text,topMargin=0,bottomMargin=0){let img="info-circle.png";
+return upgrades_getInfoBase(img,text,topMargin,bottomMargin);}function upgrades_getWarning(text,topMargin=0,bottomMargin=0)
+{let img="exclamation-mark.png";return upgrades_getInfoBase(img,text,topMargin,bottomMargin);}function upgrades_getError(text,topMargin=0,bottomMargin=0)
+{let img="error-exclamation-mark.png";return upgrades_getInfoBase(img,text,topMargin,bottomMargin);}function upgrades_getInfoBase(img,text,topMargin=0,bottomMargin=0)
+{let html=`<table style="margin:{$top}px auto {$bottom}px auto;padding:0px;"><tr style="margin:0px;">
+<td style="padding:0px 5px 0px 0px;margin:0px;"><img src="images/{$img}"style="width:38px;height:auto;" ALT="i">
+</td><td style="font-size:16px;font-family: Verdana,Arial,Helvetica,sans-serif;font-weight:700;vertical-align: baseline;">
+{$text}</td></tr></table>`;html=html.replace('{$img}', img);html=html.replace('{$text}', text);html=html.replace('{$top}', topMargin);
+html=html.replace('{$bottom}', bottomMargin);return html;}function upgrades_showUpgradeMessages(messages)
+{let aslLatestVer=upgrades_getASLLatest();let aslUnitVer=main_aslProduct.getASLVersion();let configStr=main_aslProduct.getASLConfig().toString();
+let updown="An upgrade";if(aslUnitVer.compareIsGreater(aslLatestVer)<0){updown="A downgrade";}let text;
+if(!messages){text=upgrades_getInformation(updown +" to V" + aslLatestVer.toString() +" is available for " +
+configStr);}else{text=upgrades_getWarning(updown +" to V" + aslLatestVer.toString() +" is available for " +
+configStr +" with warnings");text+='<dl class="upgrades-messages">';for(const property in messages){text+=upgrades_getMessageEntry(property,messages[property])
+}text+='</dl>';}text +=`<br><div style="text-align:center;">Click on the 'Send upgrade file to unit button to start an upgrade.
+<br><br>Please keep your unit powered on during the upgrade process.</div>`;upgrades_setInfoText(text);
+}function upgrades_getMessageEntry(property,entry){let html="<dt>" + entry.Summary;html+="<dd>" + entry.Description;
+return html;}function upgrades_doSend(){upgrades_doGetUpgrade();}async function upgrades_transmit(upgradeText)
+{await term_tx(upgradeText);}function upgrades_doProcessUpgrades(){let aslConfig	= main_aslProduct.getASLConfig();
+let aslVer		= main_aslProduct.getASLVersion();let aslOpts		= main_aslProduct.getASLOptions();let pid=aslConfig.getPID();
+let sn=aslConfig.getSerialNumber();let single=upgrades_isCheckboxSingle();let latestVer=ASLSoftware.getLatest(pid,single);
+let aslTargetVer=new ASLVersion(latestVer);let xhr=common_createXmlHttpRequest();if(xhr){if((xhr.readyState==0)||(xhr.readyState==4))
+{try{let args="?pid=" + pid +"&sn=" + sn +"&ver=" + aslVer.toString('.', false, true) +"&target=" + aslTargetVer.toString() +
+"&opts=" + aslOpts.get() +"&single=" + single +"&media=0" +"&atp=" +"&acc=0";let url="aslwebterm_process_upgrades.php";
+xhr.open("GET", url + args, true);xhr.responseType='json';xhr.onload=function(){upgrades_check_serverResponse(this);
+};xhr.send(null);}catch(e){alert(e.toString());}}else{setTimeout('upgrades_doProcessUpgrades()', 1000);
+}}}function upgrades_check_serverResponse(xhr){if(xhr.status==200){let messages=xhr.response;upgrades_showUpgradeMessages(messages);
+upgrades_enableUpgradeButton(true);return;}alert('Something went wrong: ' + xhr.statusText + ', ' + xhr.response);
+}function upgrades_doGetUpgrade(){let aslConfig=main_aslProduct.getASLConfig();let pid=aslConfig.getPID();
+let sn=aslConfig.getSerialNumber();let single=upgrades_isCheckboxSingle() ? 1 : 0;let opts=main_aslProduct.getASLOptions().get();
+let curver=main_aslProduct.getASLVersion().toString('.',false,true);let xhr=common_createXmlHttpRequest();
+if(xhr){if((xhr.readyState==0)||(xhr.readyState==4)){try{let args="?pid=" + pid +"&sn=" + sn +"&opts=" + opts +
+"&single=" + single +"&curver=" + curver +"&src=" + main_getURLSource();let url="aslwebterm_process_get.php";
+xhr.open("GET", url + args, true);xhr.responseType='text';xhr.onload=function(){upgrades_get_serverResponse(this);
+};xhr.send(null);}catch(e){alert(e.toString());}}else{setTimeout('upgrades_doGetUpgrade()', 1000);}}}
+function upgrades_get_serverResponse(xhr){if(xhr.status==200){let text=xhr.response;if(text.startsWith('MSG:'))
+{let msg=upgrades_getError("The upgrade process has reported an error") + '<br>' +"Upgrade Service Response: " + text.substring(4);
+upgrades_setInfoText(msg);return;}setPanel('terminal');upgrades_transmit(text);return;}alert('Something went wrong: ' + xhr.statusText + ', ' + xhr.response);
+}
+</script>
+</head>
+<title>PRODUCT TEST</title>
+	<%- include ../logo %>
+<body onload="aslwebterm_init();"	  link="#0000CC" alink="#CC00CC" vlink="#CC00CC">
+	<%- include ../layout %>
+	
+
+<div id="main-panel" class="main-panel max-page-width">
+  <div class="contentdiv max-page-width">
+	<div style="text-align:left;
+		 font-family: Verdana,Arial,Helvetica,sans-serif;
+		 font-size: 11pt;">
+
+	  <table class="header-table">
+		<tr>
+		  <td>
+			<h2>Web  RS232 serial port terminal </h2>
+		  </td>
+		  
+		</tr>
+		<tr>
+		  <td>
+			<button class="term-button" onclick="button_terminal();">
+			  Terminal
+			</button> &nbsp;
+
+			<button class="term-button" onclick="button_settings();">
+			  Settings
+			</button> &nbsp;
+
+			
+
+			
+
+			<button id="button-docs" class="term-button"
+				onclick="button_userguide();"
+				style="display: none;">
+			  Documents
+			</button> &nbsp;
+
+			<button id="button-upgrades" class="term-button"
+				onclick="button_upgrades();"
+				title="Upgrade your unit to the very latest firmware release"
+				style="display: none;">
+			  Upgrades
+			</button> &nbsp;
+		  </td>
+		</tr>
+	  </table>
+
+	  <div id="aboutdiv" class="aboutdiv">
+		<div class="aboutdiv-inner">
+		 
+		</div>
+	  </div>
+
+	  <div id="webapidiv" class="webapidiv">
+		<div class="webapidiv-inner">
+		  <h4>The Web Serial API needs to be enabled in your browser.</h4>
+
+		  <div class="webapidiv-info">
+			<div class="webapidiv-infotext">
+
+			
+
+			</div>
+			
+			<br>
+		  </div>
+		</div>
+	  </div>
+
+	  <div id="helpdiv" class="helpdiv">
+		<div class="helpdiv-inner">
+		  <DL>
+  <DT> Introduction
+
+   <DD>
+
+	 <p>ASLWebTerm is an easy to use RS232 serial port terminal application
+	 built directly into your web browser.</p>
+
+	 <p>It is a quick and readily available way to display and interact with
+	 the menu system built into your AntiLog and AntiLogPro products without
+	 the need to install software on your computer.  It can also interact with
+	 many other serial port devices.</p>
+
+	 ASLWebTerm supports the following features:-
+	 <ul>
+
+	   <li> Full RS232 serial port terminal display with line history buffer.
+
+	   <li> Multiple snapshots of buffered text can be taken at any time.
+
+	   <li> Transmission of files from local store (e.g.  sending custom
+			upgrade files).
+
+	   <li> Supports drag and drop of files over the terminal to transmit
+			their content.
+
+	   <li> Product recognition for extensive product documentation support.
+
+	   <li> Built in product upgrade feature offering checks and upgrades to
+			the latest firmware.
+
+	 </ul>
+
+	 
+
+  <DT> Configuration
+
+   <DD><p>This web application is designed to run on the most up to date
+	 modern web browsers such as Google Chrome or Microsoft Edge.  If you are
+	 running older versions of these applications, you may be asked to enable
+	 'experimental features' to access the local serial port.  These features
+	 are turned on and off in a special flags page within the older browser
+	 versions.  In this case, cut and paste the link shown into the browser
+	 address bar.</p>
+
+  <DT> Notes
+   <DD>
+	 <p>
+	 <UL>
+
+	   <LI> This application needs the latest Web Serial API to run which is
+			not supported in some web browsers (e.g.  Firefox).
+
+	   <LI> If this web application stops working for any reason, please try
+			refreshing the content using the browser's page reload button
+			<span
+			style="color:blue;font-weight:800;">&nbsp;&#8635;&nbsp;</span> and
+			try reconnecting.
+
+	   <LI> To change serial port settings once connected, click 'Disconnect'
+			first, then choose the new settings required and then click
+			'Connect'.
+
+	   <LI> PC 'mother board' serial port connections may not support baud
+			rates greater than 115220 baud.  Try to use a USB RS232 serial
+			port adapter instead.
+
+	   <LI> The frame of the terminal area turns <span
+			style="color:green;">green</span> if it is active and waiting for
+			keyboard input, <span style="color:orange;">orange</span> if the
+			serial port connection is still active but the keyboard focus is
+			not in the terminal window, and <span
+			style="color:red;">red</span> if at any time the terminal serial
+			port is not connected.  The border will turn <span
+			style="color:#FF00FF;">purple</span> during drag and drop
+			operations over a connected terminal.
+
+	   <LI> The terminal display shows the last 25 lines only, but internally,
+			the last 2048 lines at any point are retained.  Click the
+			'Snapshot' button under the terminal display to open all these
+			lines in a new browser window.
+
+	   <LI> 'Documents' and 'Upgrades' buttons will appear at the top of the
+			page when you display any AntiLog unit's main menu.  These buttons
+			allows you to open a new web page containing links to all the
+			documentation associated with the connected unit or to check for
+			updates and optionally update your connected product to the very
+			latest firmware release.
+
+	   <LI> All RS232 data displayed on screen is held within your web browser
+			memory only and is never passed back to the Internet for marketing
+			or any other data analysis reason.  Clicking the 'Documents' or
+			'Upgrades' button when available does however send the connected
+			product's configuration to the Internet to obtain a dynamic link
+			to the very latest user guides and upgrade options for the
+			connected product.
+
+	 </UL>
+	 </p>
+</DL>
+		</div>
+	  </div>
+
+	  <div id="settingsdiv" class="settingsdiv">
+		<div class="settingsdiv-inner">
+
+		  <h3>Serial port settings</h3>
+
+		  <table class="settingsinner-table">
+			<tr>
+			  <td style="padding-right:12px;">
+			  </td>
+			  <td>
+				<div class="settingsdiv-opts">
+				  <table class="settingsdiv-table">
+					<tr>
+					  <th>Baud Rate</th>
+					  <th>Parity</th>
+					  <th>Data</th>
+					  <th>Stop Bits</th>
+					</tr>
+					<tr>
+					  <td>
+						<select name="baud" id="baud">
+						  <option value="600">600</option>
+						  <option value="1200">1200</option>
+						  <option value="2400">2400</option>
+						  <option value="4800">4800</option>
+						  <option value="9600">9600</option>
+						  <option value="14400">14400</option>
+						  <option value="19200">19200</option>
+						  <option value="28800">28800</option>
+						  <option value="38400">38400</option>
+						  <option value="57600">57600</option>
+						  <option value="76800">76800</option>
+						  <option value="115200" selected>115200</option>
+						  <option value="230400">230400</option>
+						  <option value="460800">460800</option>
+						  <option value="921600">921600</option>
+						</select>
+					  </td>
+					  <td>
+						<select name="parity" id="parity">
+						  <option value="none" selected>None</option>
+						  <option value="odd">Odd</option>
+						  <option value="even">Even</option>
+						  <option value="mark">Mark</option>
+						  <option value="space">Space</option>
+						</select>
+					  </td>
+					  <td>
+						<select name="databits" id="databits">
+						  <option value="5">5 bits</option>
+						  <option value="6">6 bits</option>
+						  <option value="7">7 bits</option>
+						  <option value="8" selected>8 bits</option>
+						</select>
+					  </td>
+					  <td>
+						<select name="stopbits" id="stopbits">
+						  <option value="1" selected>1</option>
+						  <option value="2">2</option>
+						</select>
+					  </td>
+					</tr>
+					<tr>
+					  <th>Display</th>
+					  <th>Tab Size</th>
+					  <th colspan="2">Keyboard Entry</th>
+					</tr>
+					<tr>
+					  <td>
+						<select name="display-eoln" id="display-eoln"
+								onchange="serialStgs.update();">
+						  <option value="CR" selected>CR=CR</option>
+						  <option value="CRLF">CR=CR+LF</option>
+						</select>
+					  </td>
+					  <td>
+						<select name="display-tabsize" id="display-tabsize"
+								onchange="serialStgs.update();">
+						  <option value="2">2</option>
+						  <option value="4">4</option>
+						  <option value="8" selected>8</option>
+						</select>
+					  </td>
+					  <td colspan="2">
+						<select name="keyboard-enter" id="keyboard-enter"
+								onchange="serialStgs.update();">
+						  <option value="CR">Enter=CR</option>
+						  <option value="LF">Enter=LF</option>
+						  <option value="CRLF" selected>Enter=CR+LF</option>
+						</select>
+					  </td>
+					</tr>
+				  </table>
+				</div>
+
+				<div class="settings-action-buttons">
+				  <button class="term-button"
+						  title="Set all serial port settings to the default AntiLog menu system settings"
+						  onclick="button_stgs_defaults();">
+					Set to AntiLog menu system defaults
+				  </button>
+
+				  &nbsp;
+
+				  <button class="term-button"
+						  title="Connect to a local serial port on your PC"
+						  onclick="button_stgs_connect();"
+						  id="stgs-connect">
+					Connect
+				  </button>
+				</div>
+
+			  </td>
+			</tr>
+		  </table>
+		</div>
+	  </div>
+
+
+	  <div id="upgradesdiv" class="upgradesdiv">
+		<div class="upgradesdiv-inner">
+		  <h2 id="upgrades-titlebar">Unit firmware upgrade options</h2>
+		  <div id="upgradesdiv-info" class="upgradesdiv-info">
+		  </div>
+
+		  <div class="upgrades-checkboxes">
+			<input type="checkbox"
+				   id="upgrades-single"
+				   name="upgrades-single"
+				   onclick="checkbox_doSingle();"
+				   id="upgrades-single" value="single">
+			<label for="upgrades-single" id="upgrades-single-label">
+			  Upgrade will program the legacy V3.8 single channel build of the AntiLog software
+			</label>
+		  </div>
+
+		  <div class="upgrades-controls">
+			<button class="term-button"
+					onclick="button_upgrades_toTerminal();">
+			  Return to the main terminal
+			</button>
+			&nbsp;
+			<button id="upgrades-send" class="term-button"
+					onclick="button_upgrades_send();">
+			  Send upgrade file to unit
+			</button>
+		  </div>
+
+		</div>
+	  </div>
+
+
+	  <div id="termdiv" class="termdiv">
+		<textarea id="term-input" onclick="button_termclick();"
+				  rows="25" cols="85"
+				  autocomplete="off" autocorrect="off"
+				  autocapitalize="off" spellcheck="false" autofocus
+				  style="height:486px;">
+		</textarea>
+	  </div>
+
+	  <div id="statusdiv" class="statusdiv">
+		<div class="status-inner">
+		  <table class="status-table">
+			<tr>
+			  <td id="statusline-com">
+			  </td>
+			  <td>
+				<div id="statusline-lines">Lines=0,&nbsp;Buffered=0</div>
+				<div id="statusline-progress" class="statusline-progress">
+				  <div style="display:table-cell;">
+					<progress id="statusline-progressbar" value="0" max="100">
+					</progress>
+				  </div>
+				  <div style="display:table-cell;vertical-align:top;">
+					<button class="term-button-small"
+							onclick="button_progress_cancel();">
+					  Cancel
+					</button>
+				  </div>
+				</div>
+			  </td>
+			  <td id="statusline" onclick="setStatus('OK', null);">
+				  Status: OK
+			  </td>
+			</tr>
+		  </table>
+		</div>
+	  </div>
+
+	  <div id="termoptionsdiv" class="termoptionsdiv">
+		<div class="termoptions-inner">
+		  <button class="term-button" id="term-button-disconnect"
+				  title="Disconnect an open serial port connection"
+				  onclick="button_term_disconnect();">
+			  Disconnect
+		  </button> &nbsp;
+		  <button class="term-button"  id="term-button-clear"
+				  title="Clear the content of the terminal display and display
+						 buffer"
+				  onclick="button_term_clear();">
+			  Clear
+		  </button> &nbsp;
+		  <button class="term-button"  id="term-button-snapshot"
+				  title="Open a new window containing a copy of the current
+						 display buffer content"
+				  onclick="button_term_snapshot();">
+			  Snapshot
+		  </button> &nbsp;
+		  <button class="term-button" id="term-button-send"
+				  title="Send (transmit) the contents of a local file to the
+						 connected unit"
+				  onclick="button_term_sendfile();">
+			  Send File
+		  </button>
+		  <input id="send-file" type="file" style="display:none;"/>
+		</div>
+	  </div>
+
+	  </div>
+	</div>
+<div style="background-color:#ccc;
+	 border-radius: 7px;
+	 margin:0px 0px 20px 0px;
+	 color:#333;
+	 box-shadow: 1px 3px 8px 0 rgba(0, 0, 0, 0.5), 1px 5px 20px 0 rgba(0, 0, 0, 0.3);">
+  <table style="border:0px; width: 100%;
+		 padding:8px 12px 8px 10px;
+		 border-spacing:0px;
+		 background-color:transparent;">
+	<tr style="font-family:helvetica,arial,sans-serif;">
+	  <td style="text-align:left; font-size:small;">
+		(c) RS232 PORT	  </td>
+	  <td style="text-align:right; font-size:small;">
+		Updated: 9-07-2024	  </td>
+	</tr>
+  </table>
+</div>
+
+  </div>
+
+  <div style="height:50px;background-color:transparent;">
+  </div>
+
+  <script>
+	// ASLMenuNavBar.js, V2.1, 12-Jan-2024
+	
+	var main_headerBarLine_div;
+	var main_menuBarLine_div;
+	var main_panel_div;
+	var main_menuBottomMargin;
+	var main_scrollClass;
+	
+	function main_menu_init(bottom_margin = 16, scrollClass = null)
+	{
+		main_menuBottomMargin = bottom_margin;
+		main_scrollClass = scrollClass;
+	
+		window.onscroll = function() { main_menu_scroll(); };
+		window.onresize = function() { main_menu_scroll(); };
+	
+		main_headerBarLine_div = document.getElementById("headerbarline");
+		main_menuBarLine_div = document.getElementById("menubarline");
+		main_panel_div = document.getElementById("main-panel");
+	
+		main_menu_scroll();
+	}
+	
+	function main_menu_scroll()
+	{
+		if (main_headerBarLine_div)
+		{
+			let headerHeight = main_headerBarLine_div.clientHeight;
+			let h = (headerHeight-1) - window.pageYOffset;
+			if (h < 0) h = 0;
+	
+			let top = h - (headerHeight-1);
+			if (top > 0) top = 0;
+	
+			main_headerBarLine_div.style.top = String(top) + "px";
+			main_menuBarLine_div.style.top = String(h) + "px";
+	
+			top = headerHeight +
+				  main_menuBarLine_div.clientHeight +
+				  main_menuBottomMargin;
+			if (parseFloat(main_panel_div.style.marginTop) != top)
+			{
+				main_panel_div.style.marginTop = String(top) + "px";
+			}
+	
+			if (main_scrollClass != null)
+			{
+				let start = h + main_menuBarLine_div.clientHeight;
+				main_scrollClass.doScroll(start);
+			}
+		}
+	}
+  </script>
+</body>
+</html>
+

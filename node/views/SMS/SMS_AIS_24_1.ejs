@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>PRODUCT TEST</title>
+  <%- include ../logo %>
+</head>
+
+<body>
+  <%- include ../layout %>
+    <div class="main">
+
+      <section class="content">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="box box-primary">
+              <div class="box-header with-border" align="center">
+                <h3 class="box-title">SMS Send command</h3>
+
+              </div>
+              <form class="" method="post">
+                <div style="display:flex; flex-direction: row; justify-content: center; align-items: center">
+                  <textarea rows="3" cols="80" id="yourTextArea"><%=userData %></textarea>
+                </div>
+                <div style="display:flex; flex-direction: row; justify-content: center; align-items: center">
+
+                  <label for="Read_config">Action : </label>
+
+
+
+
+                  <button class="btn btn-success" onclick='action="/SMS_AIS_24/Send_SMS"'>Send SMS</button>
+
+
+                </div>
+
+            </div>
+
+            <div style="display:flex; flex-direction: row; justify-content: center; align-items: center">
+              <table width="30%" class="tedit">
+                <tbody>
+
+
+                  <tr>
+                    <th>
+                      <div class="helptooltips">
+                        โปรดระบุเบอร์โทรศํพท์:
+                        <span class="showhelp">
+                          phone number </span>
+                      </div>
+                    </th>
+
+                  </tr>
+                  <tr>
+
+                    <td>
+
+                      <textarea id="dest_num" name="dest_num" width="100%" rows="3"
+                        cols="80"><%=value_phone %></textarea>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>
+                      <div class="helptooltips">
+                        โปรดระบุข้อความ:
+                        <span class="showhelp">
+                          Please enter a message to send. </span>
+                      </div>
+                    </th>
+
+                  </tr>
+                  <tr>
+
+                    <td>
+                      <textarea id="msg" name="msg" rows="8" cols="80" width="100%"><%=value_msg %></textarea>
+                    </td>
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+
+
+
+
+
+          </div>
+
+
+
+
+
+          </form>
+        </div>
+    </div>
+    </section>
+
+    </div>
+
+</body>
+
+</html>
