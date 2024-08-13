@@ -226,9 +226,7 @@ function openconnection(dataimei, datacommand) {
     console.log("test-message: " + test_message);
     const buffer_log = Buffer.from(test_message, 'hex');
     // const buffer_log = Buffer.from(data_message, 'hex');
-    const buffer_log1 = Utf8ArrayToStr(buffer_log)
     console.log("message", buffer_log);
-    console.log("message1", buffer_log1);
 
     client.write(buffer_log);
     // client.write(message, function (err) {
