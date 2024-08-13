@@ -196,7 +196,7 @@ function openconnection(dataimei, datacommand) {
   // }
   console.log("new socket");
   client = new net.Socket();
-  client.connect(30129, '103.145.78.64', function () {
+  client.connect(30129, '3.1.175.195', function () {
     console.log('103.145.78.64:30129')
     console.log("-- connection is already open--");
     console.log("imei", dataimei);
@@ -223,19 +223,13 @@ function openconnection(dataimei, datacommand) {
     Stop_message = "56274F4C"; //OLV' 
 
     test_message = Start_message + "4D4D4D4D" + IMEI_message + "4D4D4D4D" +  "44444444" + data_message + "44444444" + Stop_message;
-    test_message1 = data_message
-    console.log("test-message: " + test_message)
+    console.log("test-message: " + test_message);
     const buffer_log = Buffer.from(test_message, 'hex');
-    //const buffer_log = Buffer.from(data_message, 'hex');
+    // const buffer_log = Buffer.from(data_message, 'hex');
+    const buffer_log1 = Utf8ArrayToStr(buffer_log)
     console.log("message", buffer_log);
-    console.log("type of: ",typeof buffer_log);
+    console.log("message1", buffer_log1);
 
-    console.log('length', buffer_log.length);
-    console.log('hex out', buffer_log.toString('hex'))
-
-    console.log('.buffer');
-    console.log(buffer_log.buffer.byteLength);
-    console.log(buffer_log.buffer);
     client.write(buffer_log);
     // client.write(message, function (err) {
     //   if (err) {
