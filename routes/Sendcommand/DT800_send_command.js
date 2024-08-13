@@ -228,13 +228,13 @@ function openconnection(dataimei, datacommand) {
     // const buffer_log = Buffer.from(data_message, 'hex');
     console.log("message", buffer_log);
 
-    client.write(buffer_log);
-    // client.write(message, function (err) {
-    //   if (err) {
-    //       console.error('Error writing to the client:', err);
-    //   } else {
-    //       // console.log('Message successfully written to the client:', message);
-    //   }
+    client.write(buffer_log, (err) => {
+      if (err) {
+        console.error('Error writing to the client:', err);
+      } else {
+        console.log('Message successfully sent to the client.');
+      }
+    });
     //-------------------------------
  
   });
