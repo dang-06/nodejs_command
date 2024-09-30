@@ -196,8 +196,8 @@ function openconnection(dataimei, datacommand) {
   // }
   console.log("new socket");
   client = new net.Socket();
-  client.connect(30129, '3.1.175.195', function () {
-    console.log('103.145.78.64:30129')
+  client.connect(30129, '42.96.40.90', function () {
+    console.log('42.96.40.90:30129')
     console.log("-- connection is already open--");
     console.log("imei", dataimei);
     console.log("datacommandsend", datacommand);
