@@ -337,6 +337,7 @@ router.post("/DT800_set_command", function (req, res, next) {
       message: 'Data received successfully',
       imei: setimei,
       fileContents: dataX2,
+      IP: '42.96.40.90'
     });
   }, 900); // 1000 milliseconds = 1 second
 
